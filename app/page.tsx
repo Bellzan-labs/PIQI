@@ -378,9 +378,9 @@ export default function HomePage() {
               smooth.
             </h2>
             <LottiePanel
-                  src="/brand/animations/office-flourish.json"
-                  className="motion-lottie"
-                />
+              src="/brand/animations/office-flourish.json"
+              className="motion-lottie"
+            />
             <p>
               The original site leaned on strategy-capture and implementation
               language. This keeps that tone, but trims the clutter so the story
@@ -403,9 +403,9 @@ export default function HomePage() {
 
           <div className="approach-aside reveal delay-1">
             <LottiePanel
-                  src="/brand/animations/strategy.json"
-                  className="motion-lottie"
-                />
+              src="/brand/animations/strategy.json"
+              className="motion-lottie"
+            />
             <div className="source-quote">
               <p>
                 An effective high-level strategy is the secret behind every
@@ -429,38 +429,26 @@ export default function HomePage() {
 
           <div className="motion-grid">
             <article className="motion-card reveal">
-              <div className="motion-panel motion-panel-lottie">
-                
-              </div>
+              <div className="motion-panel motion-panel-lottie"></div>
               <div className="motion-copy">
                 <h3>Strategy in motion</h3>
-                <p>
-                  fill this in
-                </p>
+                <p>fill this in</p>
               </div>
             </article>
 
             <article className="motion-card reveal delay-1">
-              <div className="motion-panel motion-panel-lottie">
-                
-              </div>
+              <div className="motion-panel motion-panel-lottie"></div>
               <div className="motion-copy">
                 <h3>Office rhythm</h3>
-                <p>
-                  fill this in
-                </p>
+                <p>fill this in</p>
               </div>
             </article>
 
             <article className="motion-card motion-card-shapes reveal delay-2">
-              <div className="business-scene" aria-hidden="true">
-                
-              </div>
+              <div className="business-scene" aria-hidden="true"></div>
               <div className="motion-copy">
                 <h3>when</h3>
-                <p>
-                  fill this in
-                </p>
+                <p>fill this in</p>
               </div>
             </article>
           </div>
@@ -606,6 +594,7 @@ export default function HomePage() {
             </p>
           </div>
         </div>
+        Powered By Bellzan
       </footer>
     </main>
   );
