@@ -1,6 +1,16 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
+const themeBootstrap = `(() => {
+  try {
+    const stored = window.localStorage.getItem('piqi-theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const theme = stored === 'light' || stored === 'dark' ? stored : (prefersDark ? 'dark' : 'light');
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.style.colorScheme = theme;
+  } catch (error) {}
+})();`;
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://piqigroup.com"),
   title: "PIQI Group | Consulting, Strategy, Projects",
@@ -23,8 +33,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#000032",
-  colorScheme: "dark",
+  themeColor: "#ffffff",
   width: "device-width",
   initialScale: 1
 };
@@ -35,8 +44,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <body>
+        <script dangerouslySetInnerHTML={{ __html: themeBootstrap }} />
+        {children}
+      </body>
     </html>
   );
 }

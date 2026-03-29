@@ -31,7 +31,6 @@ export function ContactForm() {
           autoComplete="name"
           value={name}
           onChange={(event) => setName(event.target.value)}
-          placeholder="Your name"
         />
       </div>
       <div className="form-field">
@@ -43,7 +42,6 @@ export function ContactForm() {
           autoComplete="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
-          placeholder="you@company.com"
         />
       </div>
       <div className="form-field">
@@ -54,7 +52,6 @@ export function ContactForm() {
           rows={6}
           value={message}
           onChange={(event) => setMessage(event.target.value)}
-          placeholder="Tell us what you need help with"
         />
       </div>
       <button type="submit" className="button button-primary button-full">

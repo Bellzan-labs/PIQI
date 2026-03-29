@@ -7,7 +7,9 @@ Brand-faithful one-page Next.js site for PIQI Group, rebuilt from the live WordP
 - App Router Next.js setup with TypeScript
 - Sticky one-page navigation
 - Hero section with the PIQI logo, video background, and motion panel
+- Light/dark theme toggle with theme-aware image treatment
 - Service, approach, commercial, brand, and contact sections
+- Animated motion gallery using the bundled PIQI Lottie assets
 - Local `public/brand` assets pulled from the live PIQI site
 - Accessible contact form that opens the user’s email client
 

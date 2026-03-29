@@ -2,68 +2,195 @@ import Image from "next/image";
 import Link from "next/link";
 import { ContactForm } from "@/components/contact-form";
 import { LottiePanel } from "@/components/lottie-panel";
+import { ThemeToggle } from "@/components/theme-toggle";
 
-const servicePillars = [
+const navItems = [
+  { href: "#services", label: "Services", icon: "grid" },
+  { href: "#approach", label: "Approach", icon: "flow" },
+  { href: "#motion", label: "Motion", icon: "spark" },
+  { href: "#brands", label: "Brands", icon: "orbit" },
+  { href: "#contact", label: "Contact", icon: "phone" }
+] as const;
+
+const serviceCards = [
   {
+    id: "consulting",
     eyebrow: "Business consulting",
-    title: "Make the operating model easier to run",
+    title: "Focused guidance",
     description:
-      "We help teams clarify priorities, improve performance, and align strategy with the way the business actually works.",
+      "Our experienced consultants provide valuable insights and guidance to help businesses thrive.",
     image: "/brand/icons/Consultation.svg"
   },
   {
+    id: "strategy",
     eyebrow: "Business strategy",
-    title: "Turn long-term vision into executable moves",
+    title: "Strategic advice",
     description:
-      "From strategy capture to gap analysis, we help leadership teams break the plan into practical, time-bound actions.",
+      "We assist in developing effective business strategies to drive growth, maximize profitability, and gain a competitive edge.",
     image: "/brand/icons/Stats.svg"
   },
   {
+    id: "projects",
     eyebrow: "Project management",
-    title: "Keep delivery on time and under control",
+    title: "On-time delivery",
     description:
-      "Plan, risk, resources, and stakeholder communication are managed together so the project does not drift off course.",
+      "Our team helps with project planning, risk management, resource allocation, and stakeholder communication.",
     image: "/brand/icons/Management.svg"
   },
   {
-    eyebrow: "Process consulting",
-    title: "Remove friction from the work floor",
+    id: "logistics",
+    eyebrow: "Supply chain support",
+    title: "Operational control",
     description:
-      "We document, simplify, and improve core processes so teams can work with fewer constraints and better consistency.",
+      "We analyze your business processes, identify areas for improvement, and implement streamlined solutions.",
     image: "/brand/icons/Cube.svg"
   },
   {
-    eyebrow: "Supply chain support",
-    title: "Build a smarter path from need to delivery",
+    id: "commercial",
+    eyebrow: "Commercial projects",
+    title: "Detail that protects the outcome",
     description:
-      "We improve sourcing, logistics, inventory, and supplier alignment to support the bottom line and cash flow.",
+      "Procurement, contracts, claims, costs, workshops, and close-out support, all tied to the commercial result.",
     image: "/brand/icons/Projects.svg"
   }
 ];
 
-const commercialPoints = [
-  "Front-end loading and project set-up for success",
-  "Risk management, budgeting, and planning support",
-  "Procurement, contracts, claims, and negotiation",
-  "Cost control, workshops, and knowledge management",
-  "Project auditing and close-out support"
+const processCards = [
+  {
+    title: "Capture the brief",
+    text: "We keep the first pass simple: understand the business, the pressure points, and what success needs to look like."
+  },
+  {
+    title: "Translate into action",
+    text: "The original site leaned on strategy capture and implementation language, so we keep that tone but strip the clutter."
+  },
+  {
+    title: "Support the handoff",
+    text: "Workshops, controls, follow-through, and commercial clarity stay in one place instead of being scattered across pages."
+  },
+  {
+    title: "Keep the outcome intact",
+    text: "The team stays close to delivery, risk, procurement, and close-out so the business can actually use the plan."
+  }
 ];
 
-const brandTiles = [
-  { label: "Consulting", image: "/brand/hero/Consutling.png", href: "#services" },
-  { label: "Coaching", image: "/brand/brands/Home.png", href: "https://piqigroup.com/consulting/" },
-  { label: "Property", image: "/brand/brands/Property.png", href: "https://piqigroup.com/property-management/" },
-  { label: "Auto", href: "https://piqigroup.com/auto/" },
-  { label: "Yacht Charters", image: "/brand/brands/Yatch.png", href: "https://piqigroup.com/yacht-chartering/" },
-  { label: "Downtown Fashion", href: "https://piqigroup.com/downtown-fashion/" }
+const serviceJumpTiles = [
+  { label: "Home", href: "#home", image: "/brand/brands/Home.png" },
+  { label: "Consulting", href: "#consulting", image: "/brand/hero/Consutling.png" },
+  { label: "Property", href: "#property", image: "/brand/brands/Property.png" },
+  { label: "Auto", href: "#auto" },
+  { label: "Yacht Charters", href: "#yacht", image: "/brand/brands/Yatch.png" },
+  { label: "Fashion", href: "#fashion" }
 ];
 
-const contactDetails = [
-  "PO Box 751615 Gardenview 2047, South Africa",
-  "info@piqi.co.za",
-  "+27(0) 10 007-3358",
-  "+27(0) 86 671-7958"
-];
+const detailSections = [
+  {
+    id: "consulting",
+    kicker: "Consulting",
+    title: "Coaching",
+    intro:
+      "Our experienced coaches provide focused guidance to further enhance your personal and professional growth, addressing specific areas of improvement and providing actionable strategies for success.",
+    body:
+      "Unlock your potential and embark on a transformative journey with Piqi Group's consulting service. Our holistic approach, combined with personalized coaching, will empower you to achieve your goals, overcome obstacles, and reach new heights of success. Contact us today and discover how our experienced team can guide you toward a brighter future.",
+    points: ["Focused guidance", "Personal and professional growth", "Actionable strategies for success"],
+    image: "/brand/hero/Consutling.png",
+    imageAlt: "PIQI consulting artwork"
+  },
+  {
+    id: "property",
+    kicker: "Property",
+    title: "Property Management",
+    intro:
+      "We offer comprehensive property management services that cover maintenance, letting, and construction support.",
+    body:
+      "Managing properties can be complex and time-consuming. Our team is designed to alleviate the burdens associated with property ownership, from routine inspections and repairs to tenant screening, lease agreements, rent collection, and property marketing.",
+    points: ["Maintenance", "Letting", "Construction services"],
+    image: "/brand/brands/Property.png",
+    imageAlt: "Property management artwork"
+  },
+  {
+    id: "auto",
+    kicker: "Auto",
+    title: "Piqi Auto",
+    intro: "We provide professional automotive services that encompass panel beating and tyre sales.",
+    body:
+      "Whether you require minor repairs or a full tyre replacement, our skilled technicians and wide range of tyres are here to cater to your needs. We keep the focus on professionalism, care, and customer satisfaction.",
+    points: ["Panel beating", "Tyre supplier", "Customer satisfaction"],
+    image: null,
+    imageAlt: ""
+  },
+  {
+    id: "yacht",
+    kicker: "Yacht Charters",
+    title: "Yacht Chartering",
+    intro:
+      "A unique catamaran yacht charter on a self-catering basis, giving you the freedom to explore the coastline at your own pace.",
+    body:
+      "Our spacious catamaran features 4 double cabins for a comfortable sailing journey. You can supply your own food and drinks, creating a personalized experience on board while enjoying the freedom of self-catering travel.",
+    points: ["Self-catering basis", "4 double cabins", "Freedom to explore"],
+    image: "/brand/brands/Yatch.png",
+    imageAlt: "Yacht charter artwork"
+  },
+  {
+    id: "fashion",
+    kicker: "Fashion",
+    title: "Downtown Fashion",
+    intro: "High fashion and bespoke clothing that translates your vision into luxurious style.",
+    body:
+      "We design and manufacture wedding attire, bridesmaid and flower girl outfits, groom and best man suits, matric dance outfits, school uniforms, tracksuits, safety clothing, and branded embroidered or printed clothing.",
+    points: ["Wedding attire", "Matric dance outfits", "Uniforms and branded clothing"],
+    image: null,
+    imageAlt: ""
+  }
+] as const;
+
+function NavIcon({ name }: { name: (typeof navItems)[number]["icon"] }) {
+  switch (name) {
+    case "grid":
+      return (
+        <svg viewBox="0 0 20 20" aria-hidden="true">
+          <rect x="2" y="2" width="6" height="6" rx="1.5" />
+          <rect x="12" y="2" width="6" height="6" rx="1.5" />
+          <rect x="2" y="12" width="6" height="6" rx="1.5" />
+          <rect x="12" y="12" width="6" height="6" rx="1.5" />
+        </svg>
+      );
+    case "flow":
+      return (
+        <svg viewBox="0 0 20 20" aria-hidden="true">
+          <path d="M4 6h6a4 4 0 0 1 4 4v0a4 4 0 0 0 4 4h-2" />
+          <path d="M11 4l3 2-3 2" />
+          <path d="M6 12l-3 2 3 2" />
+        </svg>
+      );
+    case "spark":
+      return (
+        <svg viewBox="0 0 20 20" aria-hidden="true">
+          <path d="M10 1.5l1.8 5.2L17 8.5l-5.2 1.8L10 15.5l-1.8-5.2L3 8.5l5.2-1.8L10 1.5z" />
+        </svg>
+      );
+    case "orbit":
+      return (
+        <svg viewBox="0 0 20 20" aria-hidden="true">
+          <circle cx="10" cy="10" r="3.5" />
+          <path d="M2.5 10a7.5 7.5 0 0 1 15 0" />
+          <path d="M5.5 15.5a7.5 7.5 0 0 1 9-11" />
+        </svg>
+      );
+    case "phone":
+      return (
+        <svg viewBox="0 0 20 20" aria-hidden="true">
+          <path d="M6.5 3.5l1.9 3.9-1.6 1.6a13.5 13.5 0 0 0 4.7 4.7l1.6-1.6 3.9 1.9-.6 3.1c-.1.5-.5.9-1 .9A14 14 0 0 1 2.5 4.1c0-.5.4-.9.9-1l3.1.4z" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+}
+
+function SectionDirection(index: number) {
+  return index % 2 === 0 ? "reveal-left" : "reveal-right";
+}
 
 export default function HomePage() {
   return (
@@ -77,34 +204,33 @@ export default function HomePage() {
               width={258}
               height={118}
               priority
-              className="brand-logo"
+              className="brand-logo theme-logo"
             />
           </Link>
 
           <nav className="site-nav" aria-label="Primary">
-            <a href="#services">Services</a>
-            <a href="#approach">Approach</a>
-            <a href="#commercial">Commercial</a>
-            <a href="#brands">Brands</a>
-            <a href="#contact">Contact</a>
+            {navItems.map((item) => (
+              <a href={item.href} key={item.label} className="nav-link">
+                <span className="nav-icon" aria-hidden="true">
+                  <NavIcon name={item.icon} />
+                </span>
+                <span>{item.label}</span>
+              </a>
+            ))}
           </nav>
 
-          <a className="header-cta" href="#contact">
-            Contact us
-          </a>
+          <div className="header-actions">
+            <ThemeToggle />
+            <a className="header-cta" href="#contact">
+              Contact us
+            </a>
+          </div>
         </div>
       </header>
 
       <section id="home" className="hero section">
         <div className="hero-media" aria-hidden="true">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster="/brand/hero/Consutling.png"
-            className="hero-video"
-          >
+          <video autoPlay muted loop playsInline poster="/brand/hero/Consutling.png" className="hero-video">
             <source src="/brand/video/consultants-office.mp4" type="video/mp4" />
           </video>
           <div className="hero-overlay" />
@@ -114,71 +240,72 @@ export default function HomePage() {
 
         <div className="container hero-grid">
           <div className="hero-copy reveal">
-            <p className="eyebrow">PIQI Group</p>
-            <h1>Strategy that moves the business. Delivery that survives the real world.</h1>
+            <p className="eyebrow">Piqi Consulting</p>
+            <h1>Choose PIQI Group for comprehensive consultancy services that drive success in your business.</h1>
             <p className="hero-text">
-              PIQI helps leadership teams simplify complexity across consulting, strategy, project
-              delivery, process improvement, supply chain support, and commercial controls.
+              Our expertise in business consulting, strategy, project management, process consulting,
+              project commercial services, and supply chain support services will empower your
+              organization to achieve its goals. Contact us today to take your business to new heights.
             </p>
             <div className="hero-actions">
               <a className="button button-primary" href="#contact">
-                Talk to PIQI
+                Get info
               </a>
               <a className="button button-secondary" href="#services">
-                Explore services
+                Services
               </a>
             </div>
             <ul className="hero-tags" aria-label="Key capabilities">
-              <li>Business consulting</li>
-              <li>Project commercial controls</li>
-              <li>Supply chain support</li>
-              <li>South Africa based</li>
+              <li>Consulting</li>
+              <li>Strategy</li>
+              <li>Projects</li>
+              <li>Logistics</li>
             </ul>
           </div>
 
-          <div className="hero-aside reveal delay-1">
-            <div className="hero-panel panel-panel">
-              <div className="hero-panel-top">
-                <span className="panel-kicker">Brand signal</span>
-                <span className="panel-chip">Premium refresh</span>
+          <div className="hero-collage reveal delay-1" aria-hidden="true">
+            <div className="collage-primary">
+              <Image
+                src="/brand/hero/Consutling.png"
+                alt=""
+                fill
+                sizes="(max-width: 900px) 100vw, 32vw"
+                className="collage-cover theme-media"
+              />
+            </div>
+            <div className="collage-grid">
+              <div className="collage-tile">
+                <Image
+                  src="/brand/brands/Home.png"
+                  alt=""
+                  fill
+                  sizes="(max-width: 900px) 50vw, 12vw"
+                  className="theme-media"
+                />
               </div>
-              <div className="hero-panel-media">
-                <LottiePanel src="/brand/animations/strategy.json" />
+              <div className="collage-tile">
+                <Image
+                  src="/brand/brands/Property.png"
+                  alt=""
+                  fill
+                  sizes="(max-width: 900px) 50vw, 12vw"
+                  className="theme-media"
+                />
               </div>
-              <div className="hero-mini-grid">
-                <article>
-                  <strong>5</strong>
-                  <span>Core pillars</span>
-                </article>
-                <article>
-                  <strong>1</strong>
-                  <span>One-page experience</span>
-                </article>
-                <article>
-                  <strong>6</strong>
-                  <span>Group brands surfaced</span>
-                </article>
-                <article>
-                  <strong>24/7</strong>
-                  <span>Clear contact access</span>
-                </article>
+              <div className="collage-tile">
+                <Image
+                  src="/brand/brands/Yatch.png"
+                  alt=""
+                  fill
+                  sizes="(max-width: 900px) 50vw, 12vw"
+                  className="theme-media"
+                />
+              </div>
+              <div className="collage-tile collage-label">
+                <span>PIQI Group</span>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="section trust-section">
-        <div className="container trust-grid reveal">
-          <div>
-            <p className="eyebrow">What the site needed more of</p>
-            <h2>Cleaner hierarchy, stronger proof, less WordPress noise.</h2>
-          </div>
-          <p className="trust-copy">
-            The rebuild keeps the original PIQI brand, but turns the content into a sharper,
-            easier-to-scan story with clearer service groupings, better contrast, and a more
-            intentional conversion path.
-          </p>
         </div>
       </section>
 
@@ -186,14 +313,14 @@ export default function HomePage() {
         <div className="container">
           <div className="section-heading reveal">
             <p className="eyebrow">Services</p>
-            <h2>Five core pillars, plus the commercial work that holds the whole machine together.</h2>
+            <h2>Piqi Group offers comprehensive consultancy services in the following categories:</h2>
           </div>
 
           <div className="service-grid">
-            {servicePillars.map((service, index) => (
-              <article className={`service-card reveal delay-${(index % 3) + 1}`} key={service.title}>
+            {serviceCards.map((service, index) => (
+              <article className={`service-card reveal ${SectionDirection(index)}`} key={service.title}>
                 <div className="service-icon">
-                  <Image src={service.image} alt="" width={128} height={128} aria-hidden="true" />
+                  <Image src={service.image} alt="" width={128} height={128} aria-hidden="true" className="theme-media" />
                 </div>
                 <p className="card-eyebrow">{service.eyebrow}</p>
                 <h3>{service.title}</h3>
@@ -207,79 +334,81 @@ export default function HomePage() {
       <section id="approach" className="section approach-section">
         <div className="container approach-grid">
           <div className="approach-copy reveal">
-            <p className="eyebrow">Approach</p>
-            <h2>Capture the strategy, clean up the process, and protect the delivery.</h2>
+            <p className="eyebrow">How it works</p>
+            <h2>We keep the strategy practical, the process clear, and the handoff real.</h2>
             <p>
-              PIQI&apos;s better version of consulting is practical, board-friendly, and grounded in
-              the details that make teams succeed or stall.
+              The original site leaned on strategy-capture and implementation language. This keeps
+              that tone, but trims the clutter so the story reads faster and lands harder.
             </p>
-            <div className="approach-steps">
-              <article>
-                <span>01</span>
-                <strong>Capture</strong>
-                <p>Understand the current strategy, operating rhythm, and commercial reality.</p>
-              </article>
-              <article>
-                <span>02</span>
-                <strong>Clarify</strong>
-                <p>Expose gaps, duplicate effort, and decision bottlenecks before they spread.</p>
-              </article>
-              <article>
-                <span>03</span>
-                <strong>Improve</strong>
-                <p>Rewrite the process and commercial controls in a way teams can actually use.</p>
-              </article>
-              <article>
-                <span>04</span>
-                <strong>Deliver</strong>
-                <p>Support implementation so the work lands in the real world, not just in slides.</p>
-              </article>
+
+            <div className="process-grid">
+              {processCards.map((card, index) => (
+                <article className={`process-card reveal ${index % 2 === 0 ? "reveal-left" : "reveal-right"}`} key={card.title}>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <h3>{card.title}</h3>
+                  <p>{card.text}</p>
+                </article>
+              ))}
             </div>
           </div>
 
-          <div className="approach-visual reveal delay-1">
-            <div className="visual-frame">
-              <LottiePanel src="/brand/animations/office-flourish.json" />
-              <div className="visual-caption">
-                <span>Built for teams that need clarity, control, and momentum.</span>
-              </div>
-            </div>
-            <div className="quote-card">
-              <p>
-                “An effective high-level strategy is the secret behind every successful business.”
-              </p>
+          <div className="approach-aside reveal delay-1">
+            <div className="source-quote">
+              <p>An effective high-level strategy is the secret behind every successful business.</p>
               <strong>Mike Wright</strong>
+            </div>
+            <div className="source-note">
+              <p>Business strategy</p>
+              <span>Project management</span>
+              <span>Process consulting</span>
+              <span>Supply chain support</span>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="commercial" className="section commercial-section">
-        <div className="container commercial-grid">
-          <div className="commercial-copy reveal">
-            <p className="eyebrow">Commercial services</p>
-            <h2>Procurement, contracts, controls, and the detail work that protects the outcome.</h2>
-            <p>
-              This is where PIQI adds serious operational value: smarter set-up, better risk
-              handling, tighter commercial decisions, and a cleaner close-out path.
-            </p>
+      <section id="motion" className="section motion-section">
+        <div className="container">
+          <div className="section-heading reveal">
+            <p className="eyebrow">Motion</p>
+            <h2>Small animated moments keep the page alive without turning it into a template.</h2>
           </div>
 
-          <div className="commercial-panel reveal delay-1">
-            <div className="commercial-image">
-              <Image
-                src="/brand/hero/Consutling.png"
-                alt="PIQI consulting illustration"
-                fill
-                sizes="(max-width: 900px) 100vw, 45vw"
-                className="cover-image"
-              />
-            </div>
-            <ul>
-              {commercialPoints.map((point) => (
-                <li key={point}>{point}</li>
-              ))}
-            </ul>
+          <div className="motion-grid">
+            <article className="motion-card reveal">
+              <div className="motion-panel motion-panel-lottie">
+                <LottiePanel src="/brand/animations/strategy.json" className="motion-lottie" />
+              </div>
+              <div className="motion-copy">
+                <h3>Strategy in motion</h3>
+                <p>Business shapes, signal lines, and planning energy that feel more like the brand than a generic gif wall.</p>
+              </div>
+            </article>
+
+            <article className="motion-card reveal delay-1">
+              <div className="motion-panel motion-panel-lottie">
+                <LottiePanel src="/brand/animations/office-flourish.json" className="motion-lottie" />
+              </div>
+              <div className="motion-copy">
+                <h3>Office rhythm</h3>
+                <p>A quieter motion pass that keeps the visual system warm, polished, and a little unexpected.</p>
+              </div>
+            </article>
+
+            <article className="motion-card motion-card-shapes reveal delay-2">
+              <div className="business-scene" aria-hidden="true">
+                <span className="scene-shape shape-briefcase" />
+                <span className="scene-shape shape-chart" />
+                <span className="scene-shape shape-cube" />
+                <span className="scene-shape shape-arrow" />
+                <span className="scene-shape shape-circle shape-circle-a" />
+                <span className="scene-shape shape-circle shape-circle-b" />
+              </div>
+              <div className="motion-copy">
+                <h3>Business objects, but playful</h3>
+                <p>Floating cubes, charts, and briefcase forms add the extra motion layer the page was missing.</p>
+              </div>
+            </article>
           </div>
         </div>
       </section>
@@ -287,45 +416,77 @@ export default function HomePage() {
       <section id="brands" className="section brands-section">
         <div className="container">
           <div className="section-heading reveal">
-            <p className="eyebrow">PIQI group brands</p>
-            <h2>One ecosystem, multiple service lines, all presented with a cleaner visual rhythm.</h2>
+            <p className="eyebrow">More PIQI</p>
+            <h2>The original site branches into a wider group. These are now anchored into the same page.</h2>
           </div>
 
           <div className="brand-grid">
-            {brandTiles.map((brand, index) => (
-              <a
-                key={brand.label}
-                href={brand.href}
-                className={`brand-card reveal delay-${(index % 3) + 1}`}
-              >
-                <div className={`brand-image-wrap${brand.image ? "" : " brand-fallback"}`}>
-                  {brand.image ? (
-                    <Image src={brand.image} alt="" fill sizes="(max-width: 900px) 100vw, 16vw" />
+            {serviceJumpTiles.map((tile, index) => (
+              <a key={tile.label} href={tile.href} className={`brand-card reveal ${SectionDirection(index)}`}>
+                <div className={`brand-image-wrap${tile.image ? "" : " brand-fallback"}`}>
+                  {tile.image ? (
+                    <Image src={tile.image} alt="" fill sizes="(max-width: 900px) 100vw, 16vw" className="theme-media" />
                   ) : (
-                    <span aria-hidden="true">{brand.label.slice(0, 2).toUpperCase()}</span>
+                    <span aria-hidden="true">{tile.label.slice(0, 2).toUpperCase()}</span>
                   )}
                 </div>
-                <span>{brand.label}</span>
+                <span>{tile.label}</span>
               </a>
             ))}
           </div>
         </div>
       </section>
 
+      {detailSections.map((section, index) => (
+        <section id={section.id} className={`section detail-section detail-${section.id}`} key={section.id}>
+          <div className="container detail-grid">
+            <div className={`detail-copy reveal ${index % 2 === 0 ? "reveal-left" : "reveal-right"}`}>
+              <p className="eyebrow">{section.kicker}</p>
+              <h2>{section.title}</h2>
+              <p className="detail-intro">{section.intro}</p>
+              <div className="detail-points">
+                {section.points.map((point) => (
+                  <span key={point}>{point}</span>
+                ))}
+              </div>
+              <p className="detail-body">{section.body}</p>
+            </div>
+
+            <div className={`detail-media reveal delay-1${section.image ? "" : " detail-media-fallback"}`}>
+              {section.image ? (
+                <Image
+                  src={section.image}
+                  alt={section.imageAlt}
+                  fill
+                  sizes="(max-width: 900px) 100vw, 45vw"
+                  className="cover-image theme-media"
+                />
+              ) : (
+                <div className="detail-fallback">
+                  <strong>{section.title}</strong>
+                  <p>{section.points.join(" / ")}</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+      ))}
+
       <section id="contact" className="section contact-section">
         <div className="container contact-grid">
           <div className="contact-copy reveal">
             <p className="eyebrow">Contact</p>
-            <h2>Let&apos;s turn the brief into a cleaner operating reality.</h2>
+            <h2>Get in touch and we will shape the brief into something practical.</h2>
             <p>
-              Reach out if you need help with consulting, commercial controls, strategy capture,
-              project delivery, or process improvement.
+              The rebuilt page keeps the PIQI contact details visible and easy to reach, without the
+              dead-end WordPress form feel.
             </p>
 
             <ul className="contact-details">
-              {contactDetails.map((line) => (
-                <li key={line}>{line}</li>
-              ))}
+              <li>PO Box 751615 Gardenview 2047, South Africa</li>
+              <li>info@piqi.co.za</li>
+              <li>+27(0) 10 007-3358</li>
+              <li>+27(0) 86 671-7958</li>
             </ul>
 
             <div className="contact-actions">
@@ -351,10 +512,11 @@ export default function HomePage() {
             alt="PIQI Group logo"
             width={180}
             height={82}
+            className="theme-logo"
           />
           <div>
             <p>PIQI Group</p>
-            <p>Consulting, strategy, projects, and commercial support.</p>
+            <p>Consulting, strategy, projects, property, auto, yacht charters, and fashion.</p>
           </div>
         </div>
       </footer>
