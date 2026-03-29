@@ -284,13 +284,14 @@ export default function HomePage() {
 
           <div className="hero-collage reveal delay-1" aria-hidden="true">
             <div className="collage-primary">
-              <Image
-                src="/brand/hero/Consutling.png"
-                alt=""
-                fill
-                sizes="(max-width: 900px) 100vw, 32vw"
-                className="collage-cover theme-media"
-              />
+              <div className="business-scene" aria-hidden="true">
+                <span className="scene-shape shape-briefcase" />
+                <span className="scene-shape shape-chart" />
+                <span className="scene-shape shape-cube" />
+                <span className="scene-shape shape-arrow" />
+                <span className="scene-shape shape-circle shape-circle-a" />
+                <span className="scene-shape shape-circle shape-circle-b" />
+              </div>
             </div>
             <div className="collage-grid">
               <div className="collage-tile">
@@ -320,8 +321,14 @@ export default function HomePage() {
                   className="theme-media"
                 />
               </div>
-              <div className="collage-tile collage-label">
-                <span>PIQI Group</span>
+              <div className="collage-tile">
+                <Image
+                  src="/brand/logo/new-piqi-logo-white.png"
+                  alt=""
+                  fill
+                  sizes="(max-width: 900px) 50vw, 12vw"
+                  className="theme-media"
+                />
               </div>
             </div>
           </div>
@@ -333,8 +340,7 @@ export default function HomePage() {
           <div className="section-heading reveal">
             <p className="eyebrow">Services</p>
             <h2>
-              Piqi Group offers comprehensive consultancy services in the
-              following categories:
+              Piqi Group offers a range of comprehensive services to choose from
             </h2>
           </div>
 
@@ -366,11 +372,15 @@ export default function HomePage() {
       <section id="approach" className="section approach-section">
         <div className="container approach-grid">
           <div className="approach-copy reveal">
-            <p className="eyebrow">How it works</p>
+            <p className="eyebrow">Our Approach</p>
             <h2>
               We keep the strategy practical, the process clear, and the handoff
-              real.
+              smooth.
             </h2>
+            <LottiePanel
+                  src="/brand/animations/office-flourish.json"
+                  className="motion-lottie"
+                />
             <p>
               The original site leaned on strategy-capture and implementation
               language. This keeps that tone, but trims the clutter so the story
@@ -392,18 +402,16 @@ export default function HomePage() {
           </div>
 
           <div className="approach-aside reveal delay-1">
+            <LottiePanel
+                  src="/brand/animations/strategy.json"
+                  className="motion-lottie"
+                />
             <div className="source-quote">
               <p>
                 An effective high-level strategy is the secret behind every
                 successful business.
               </p>
               <strong>Mike Wright</strong>
-            </div>
-            <div className="source-note">
-              <p>Business strategy</p>
-              <span>Project management</span>
-              <span>Process consulting</span>
-              <span>Supply chain support</span>
             </div>
           </div>
         </div>
@@ -422,50 +430,36 @@ export default function HomePage() {
           <div className="motion-grid">
             <article className="motion-card reveal">
               <div className="motion-panel motion-panel-lottie">
-                <LottiePanel
-                  src="/brand/animations/strategy.json"
-                  className="motion-lottie"
-                />
+                
               </div>
               <div className="motion-copy">
                 <h3>Strategy in motion</h3>
                 <p>
-                  Business shapes, signal lines, and planning energy that feel
-                  more like the brand than a generic gif wall.
+                  fill this in
                 </p>
               </div>
             </article>
 
             <article className="motion-card reveal delay-1">
               <div className="motion-panel motion-panel-lottie">
-                <LottiePanel
-                  src="/brand/animations/office-flourish.json"
-                  className="motion-lottie"
-                />
+                
               </div>
               <div className="motion-copy">
                 <h3>Office rhythm</h3>
                 <p>
-                  A quieter motion pass that keeps the visual system warm,
-                  polished, and a little unexpected.
+                  fill this in
                 </p>
               </div>
             </article>
 
             <article className="motion-card motion-card-shapes reveal delay-2">
               <div className="business-scene" aria-hidden="true">
-                <span className="scene-shape shape-briefcase" />
-                <span className="scene-shape shape-chart" />
-                <span className="scene-shape shape-cube" />
-                <span className="scene-shape shape-arrow" />
-                <span className="scene-shape shape-circle shape-circle-a" />
-                <span className="scene-shape shape-circle shape-circle-b" />
+                
               </div>
               <div className="motion-copy">
-                <h3>Business objects, but playful</h3>
+                <h3>when</h3>
                 <p>
-                  Floating cubes, charts, and briefcase forms add the extra
-                  motion layer the page was missing.
+                  fill this in
                 </p>
               </div>
             </article>
