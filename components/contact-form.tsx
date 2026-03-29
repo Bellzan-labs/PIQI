@@ -60,7 +60,7 @@ export function ContactForm() {
       <p className="form-note">
         {status === "ready"
           ? "Opening your email client so you can send the enquiry directly to PIQI."
-          : "This form opens your email client instead of relying on a backend."}
+          : "This form opens your email directly."}
       </p>
     </form>
   );
