@@ -468,9 +468,7 @@ export default function HomePage() {
         <div className="container">
           <div className="section-heading reveal">
             <p className="eyebrow">More PIQI</p>
-            <h2>
-              Our Prooudest Projects
-            </h2>
+            <h2>Our Prooudest Projects</h2>
             <p>
               With extensive experience in the Project Commercial environment,
               we are able to provide cradle to grave project support services to
@@ -478,8 +476,8 @@ export default function HomePage() {
               carrying out project reviews to ensure their Front-End Loading
               (FEL) process is streamlined and efficient, facilitating accurate
               budgeting, planning and risk management with the end goal in mind.
-              </p>
-              <p>
+            </p>
+            <p>
               This goal can then be supported during implementation to
               commercially ensure the objectives are achieved and closed out
               with Knowledge Management Learnings.{" "}
