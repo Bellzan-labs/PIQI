@@ -576,7 +576,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
+{/* TODO: make the date auto update and link the owered by bellzan to bellzan.com */}
       <footer className="site-footer">
         <div className="container footer-inner">
           <Image
@@ -587,14 +587,14 @@ export default function HomePage() {
             className="theme-logo"
           />
           <div>
-            <p>PIQI Group</p>
+            <p>©PIQI Group 2026</p>
             <p>
               Consulting, strategy, projects, property, auto, yacht charters,
               and fashion.
             </p>
           </div>
         </div>
-        Powered By Bellzan
+        <p className='align-center'>Powered By Bellzan</p>
       </footer>
     </main>
   );
