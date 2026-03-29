@@ -8,7 +8,7 @@ import RevolverHeading from "@/components/revolver-heading";
 const navItems = [
   { href: "#services", label: "Services", icon: "grid" },
   { href: "#approach", label: "Approach", icon: "flow" },
-  { href: "#motion", label: "Motion", icon: "spark" },
+  { href: "#management", label: "Management", icon: "spark" },
   { href: "#brands", label: "Projects", icon: "orbit" },
   { href: "#contact", label: "Contact", icon: "phone" },
 ] as const;
@@ -417,14 +417,23 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="motion" className="section motion-section">
+      <section id="management" className="section motion-section">
         <div className="container">
           <div className="section-heading reveal">
-            <p className="eyebrow">Motion</p>
+            <p className="eyebrow">Management</p>
             <h2>
-              Small animated moments keep the page alive without turning it into
-              a template.
+              Piqi Group offers project management solutions to ensure
+              successful project execution.
             </h2>
+            <p>
+              Our team helps with project planning, risk management, resource
+              allocation, and stakeholder communication to deliver projects on
+              time and within budget. For reasons of both security and urgency,
+              organisations are often wary of offloading complete development or
+              management tasks offsite. For such companies, having an
+              experienced and dependable source of management consulting can be
+              optimal.
+            </p>
           </div>
 
           <div className="motion-grid">
@@ -460,9 +469,21 @@ export default function HomePage() {
           <div className="section-heading reveal">
             <p className="eyebrow">More PIQI</p>
             <h2>
-              The original site branches into a wider group. These are now
-              anchored into the same page.
+              Our Prooudest Projects
             </h2>
+            <p>
+              With extensive experience in the Project Commercial environment,
+              we are able to provide cradle to grave project support services to
+              our clients to enable them to set their projects up for success by
+              carrying out project reviews to ensure their Front-End Loading
+              (FEL) process is streamlined and efficient, facilitating accurate
+              budgeting, planning and risk management with the end goal in mind.
+              </p>
+              <p>
+              This goal can then be supported during implementation to
+              commercially ensure the objectives are achieved and closed out
+              with Knowledge Management Learnings.{" "}
+            </p>
           </div>
 
           <div className="brand-grid">
@@ -576,7 +597,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-{/* TODO: make the date auto update and link the owered by bellzan to bellzan.com */}
+      {/* TODO: make the date auto update and link the owered by bellzan to bellzan.com */}
       <footer className="site-footer">
         <div className="container footer-inner">
           <Image
@@ -594,7 +615,7 @@ export default function HomePage() {
             </p>
           </div>
         </div>
-        <p className='align-center'>Powered By Bellzan</p>
+        <p className="align-center">Powered By Bellzan</p>
       </footer>
     </main>
   );
