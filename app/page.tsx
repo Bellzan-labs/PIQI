@@ -3,13 +3,14 @@ import Link from "next/link";
 import { ContactForm } from "@/components/contact-form";
 import { LottiePanel } from "@/components/lottie-panel";
 import { ThemeToggle } from "@/components/theme-toggle";
+import RevolverHeading from "@/components/revolver-heading";
 
 const navItems = [
   { href: "#services", label: "Services", icon: "grid" },
   { href: "#approach", label: "Approach", icon: "flow" },
   { href: "#motion", label: "Motion", icon: "spark" },
-  { href: "#brands", label: "Brands", icon: "orbit" },
-  { href: "#contact", label: "Contact", icon: "phone" }
+  { href: "#brands", label: "Projects", icon: "orbit" },
+  { href: "#contact", label: "Contact", icon: "phone" },
 ] as const;
 
 const serviceCards = [
@@ -19,7 +20,7 @@ const serviceCards = [
     title: "Focused guidance",
     description:
       "Our experienced consultants provide valuable insights and guidance to help businesses thrive.",
-    image: "/brand/icons/Consultation.svg"
+    image: "/brand/icons/Consultation.svg",
   },
   {
     id: "strategy",
@@ -27,7 +28,7 @@ const serviceCards = [
     title: "Strategic advice",
     description:
       "We assist in developing effective business strategies to drive growth, maximize profitability, and gain a competitive edge.",
-    image: "/brand/icons/Stats.svg"
+    image: "/brand/icons/Stats.svg",
   },
   {
     id: "projects",
@@ -35,7 +36,7 @@ const serviceCards = [
     title: "On-time delivery",
     description:
       "Our team helps with project planning, risk management, resource allocation, and stakeholder communication.",
-    image: "/brand/icons/Management.svg"
+    image: "/brand/icons/Management.svg",
   },
   {
     id: "logistics",
@@ -43,7 +44,7 @@ const serviceCards = [
     title: "Operational control",
     description:
       "We analyze your business processes, identify areas for improvement, and implement streamlined solutions.",
-    image: "/brand/icons/Cube.svg"
+    image: "/brand/icons/Cube.svg",
   },
   {
     id: "commercial",
@@ -51,36 +52,40 @@ const serviceCards = [
     title: "Detail that protects the outcome",
     description:
       "Procurement, contracts, claims, costs, workshops, and close-out support, all tied to the commercial result.",
-    image: "/brand/icons/Projects.svg"
-  }
+    image: "/brand/icons/Projects.svg",
+  },
 ];
 
 const processCards = [
   {
     title: "Capture the brief",
-    text: "We keep the first pass simple: understand the business, the pressure points, and what success needs to look like."
+    text: "We keep the first pass simple: understand the business, the pressure points, and what success needs to look like.",
   },
   {
     title: "Translate into action",
-    text: "The original site leaned on strategy capture and implementation language, so we keep that tone but strip the clutter."
+    text: "The original site leaned on strategy capture and implementation language, so we keep that tone but strip the clutter.",
   },
   {
     title: "Support the handoff",
-    text: "Workshops, controls, follow-through, and commercial clarity stay in one place instead of being scattered across pages."
+    text: "Workshops, controls, follow-through, and commercial clarity stay in one place instead of being scattered across pages.",
   },
   {
     title: "Keep the outcome intact",
-    text: "The team stays close to delivery, risk, procurement, and close-out so the business can actually use the plan."
-  }
+    text: "The team stays close to delivery, risk, procurement, and close-out so the business can actually use the plan.",
+  },
 ];
 
 const serviceJumpTiles = [
   { label: "Home", href: "#home", image: "/brand/brands/Home.png" },
-  { label: "Consulting", href: "#consulting", image: "/brand/hero/Consutling.png" },
+  {
+    label: "Consulting",
+    href: "#consulting",
+    image: "/brand/hero/Consutling.png",
+  },
   { label: "Property", href: "#property", image: "/brand/brands/Property.png" },
   { label: "Auto", href: "#auto" },
   { label: "Yacht Charters", href: "#yacht", image: "/brand/brands/Yatch.png" },
-  { label: "Fashion", href: "#fashion" }
+  { label: "Fashion", href: "#fashion" },
 ];
 
 const detailSections = [
@@ -90,11 +95,14 @@ const detailSections = [
     title: "Coaching",
     intro:
       "Our experienced coaches provide focused guidance to further enhance your personal and professional growth, addressing specific areas of improvement and providing actionable strategies for success.",
-    body:
-      "Unlock your potential and embark on a transformative journey with Piqi Group's consulting service. Our holistic approach, combined with personalized coaching, will empower you to achieve your goals, overcome obstacles, and reach new heights of success. Contact us today and discover how our experienced team can guide you toward a brighter future.",
-    points: ["Focused guidance", "Personal and professional growth", "Actionable strategies for success"],
+    body: "Unlock your potential and embark on a transformative journey with Piqi Group's consulting service. Our holistic approach, combined with personalized coaching, will empower you to achieve your goals, overcome obstacles, and reach new heights of success. Contact us today and discover how our experienced team can guide you toward a brighter future.",
+    points: [
+      "Focused guidance",
+      "Personal and professional growth",
+      "Actionable strategies for success",
+    ],
     image: "/brand/hero/Consutling.png",
-    imageAlt: "PIQI consulting artwork"
+    imageAlt: "PIQI consulting artwork",
   },
   {
     id: "property",
@@ -102,22 +110,21 @@ const detailSections = [
     title: "Property Management",
     intro:
       "We offer comprehensive property management services that cover maintenance, letting, and construction support.",
-    body:
-      "Managing properties can be complex and time-consuming. Our team is designed to alleviate the burdens associated with property ownership, from routine inspections and repairs to tenant screening, lease agreements, rent collection, and property marketing.",
+    body: "Managing properties can be complex and time-consuming. Our team is designed to alleviate the burdens associated with property ownership, from routine inspections and repairs to tenant screening, lease agreements, rent collection, and property marketing.",
     points: ["Maintenance", "Letting", "Construction services"],
     image: "/brand/brands/Property.png",
-    imageAlt: "Property management artwork"
+    imageAlt: "Property management artwork",
   },
   {
     id: "auto",
     kicker: "Auto",
     title: "Piqi Auto",
-    intro: "We provide professional automotive services that encompass panel beating and tyre sales.",
-    body:
-      "Whether you require minor repairs or a full tyre replacement, our skilled technicians and wide range of tyres are here to cater to your needs. We keep the focus on professionalism, care, and customer satisfaction.",
+    intro:
+      "We provide professional automotive services that encompass panel beating and tyre sales.",
+    body: "Whether you require minor repairs or a full tyre replacement, our skilled technicians and wide range of tyres are here to cater to your needs. We keep the focus on professionalism, care, and customer satisfaction.",
     points: ["Panel beating", "Tyre supplier", "Customer satisfaction"],
     image: null,
-    imageAlt: ""
+    imageAlt: "",
   },
   {
     id: "yacht",
@@ -125,23 +132,26 @@ const detailSections = [
     title: "Yacht Chartering",
     intro:
       "A unique catamaran yacht charter on a self-catering basis, giving you the freedom to explore the coastline at your own pace.",
-    body:
-      "Our spacious catamaran features 4 double cabins for a comfortable sailing journey. You can supply your own food and drinks, creating a personalized experience on board while enjoying the freedom of self-catering travel.",
+    body: "Our spacious catamaran features 4 double cabins for a comfortable sailing journey. You can supply your own food and drinks, creating a personalized experience on board while enjoying the freedom of self-catering travel.",
     points: ["Self-catering basis", "4 double cabins", "Freedom to explore"],
     image: "/brand/brands/Yatch.png",
-    imageAlt: "Yacht charter artwork"
+    imageAlt: "Yacht charter artwork",
   },
   {
     id: "fashion",
     kicker: "Fashion",
     title: "Downtown Fashion",
-    intro: "High fashion and bespoke clothing that translates your vision into luxurious style.",
-    body:
-      "We design and manufacture wedding attire, bridesmaid and flower girl outfits, groom and best man suits, matric dance outfits, school uniforms, tracksuits, safety clothing, and branded embroidered or printed clothing.",
-    points: ["Wedding attire", "Matric dance outfits", "Uniforms and branded clothing"],
+    intro:
+      "High fashion and bespoke clothing that translates your vision into luxurious style.",
+    body: "We design and manufacture wedding attire, bridesmaid and flower girl outfits, groom and best man suits, matric dance outfits, school uniforms, tracksuits, safety clothing, and branded embroidered or printed clothing.",
+    points: [
+      "Wedding attire",
+      "Matric dance outfits",
+      "Uniforms and branded clothing",
+    ],
     image: null,
-    imageAlt: ""
-  }
+    imageAlt: "",
+  },
 ] as const;
 
 function NavIcon({ name }: { name: (typeof navItems)[number]["icon"] }) {
@@ -197,7 +207,11 @@ export default function HomePage() {
     <main className="page-shell">
       <header className="site-header">
         <div className="container header-bar">
-          <Link href="#home" className="brand-lockup" aria-label="PIQI Group home">
+          <Link
+            href="#home"
+            className="brand-lockup"
+            aria-label="PIQI Group home"
+          >
             <Image
               src="/brand/logo/new-piqi-logo-white.png"
               alt="PIQI Group logo"
@@ -230,8 +244,18 @@ export default function HomePage() {
 
       <section id="home" className="hero section">
         <div className="hero-media" aria-hidden="true">
-          <video autoPlay muted loop playsInline poster="/brand/hero/Consutling.png" className="hero-video">
-            <source src="/brand/video/consultants-office.mp4" type="video/mp4" />
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster="/brand/hero/Consutling.png"
+            className="hero-video"
+          >
+            <source
+              src="/brand/video/consultants-office.mp4"
+              type="video/mp4"
+            />
           </video>
           <div className="hero-overlay" />
           <div className="hero-glow hero-glow-one" />
@@ -240,12 +264,13 @@ export default function HomePage() {
 
         <div className="container hero-grid">
           <div className="hero-copy reveal">
-            <p className="eyebrow">Piqi Consulting</p>
-            <h1>Choose PIQI Group for comprehensive consultancy services that drive success in your business.</h1>
+            <RevolverHeading />
             <p className="hero-text">
-              Our expertise in business consulting, strategy, project management, process consulting,
-              project commercial services, and supply chain support services will empower your
-              organization to achieve its goals. Contact us today to take your business to new heights.
+              Our expertise in business consulting, strategy, project
+              management, process consulting, project commercial services, and
+              supply chain support services will empower your organization to
+              achieve its goals. Contact us today to take your business to new
+              heights.
             </p>
             <div className="hero-actions">
               <a className="button button-primary" href="#contact">
@@ -255,12 +280,6 @@ export default function HomePage() {
                 Services
               </a>
             </div>
-            <ul className="hero-tags" aria-label="Key capabilities">
-              <li>Consulting</li>
-              <li>Strategy</li>
-              <li>Projects</li>
-              <li>Logistics</li>
-            </ul>
           </div>
 
           <div className="hero-collage reveal delay-1" aria-hidden="true">
@@ -313,14 +332,27 @@ export default function HomePage() {
         <div className="container">
           <div className="section-heading reveal">
             <p className="eyebrow">Services</p>
-            <h2>Piqi Group offers comprehensive consultancy services in the following categories:</h2>
+            <h2>
+              Piqi Group offers comprehensive consultancy services in the
+              following categories:
+            </h2>
           </div>
 
           <div className="service-grid">
             {serviceCards.map((service, index) => (
-              <article className={`service-card reveal ${SectionDirection(index)}`} key={service.title}>
+              <article
+                className={`service-card reveal ${SectionDirection(index)}`}
+                key={service.title}
+              >
                 <div className="service-icon">
-                  <Image src={service.image} alt="" width={128} height={128} aria-hidden="true" className="theme-media" />
+                  <Image
+                    src={service.image}
+                    alt=""
+                    width={128}
+                    height={128}
+                    aria-hidden="true"
+                    className="theme-media"
+                  />
                 </div>
                 <p className="card-eyebrow">{service.eyebrow}</p>
                 <h3>{service.title}</h3>
@@ -335,15 +367,22 @@ export default function HomePage() {
         <div className="container approach-grid">
           <div className="approach-copy reveal">
             <p className="eyebrow">How it works</p>
-            <h2>We keep the strategy practical, the process clear, and the handoff real.</h2>
+            <h2>
+              We keep the strategy practical, the process clear, and the handoff
+              real.
+            </h2>
             <p>
-              The original site leaned on strategy-capture and implementation language. This keeps
-              that tone, but trims the clutter so the story reads faster and lands harder.
+              The original site leaned on strategy-capture and implementation
+              language. This keeps that tone, but trims the clutter so the story
+              reads faster and lands harder.
             </p>
 
             <div className="process-grid">
               {processCards.map((card, index) => (
-                <article className={`process-card reveal ${index % 2 === 0 ? "reveal-left" : "reveal-right"}`} key={card.title}>
+                <article
+                  className={`process-card reveal ${index % 2 === 0 ? "reveal-left" : "reveal-right"}`}
+                  key={card.title}
+                >
                   <span>{String(index + 1).padStart(2, "0")}</span>
                   <h3>{card.title}</h3>
                   <p>{card.text}</p>
@@ -354,7 +393,10 @@ export default function HomePage() {
 
           <div className="approach-aside reveal delay-1">
             <div className="source-quote">
-              <p>An effective high-level strategy is the secret behind every successful business.</p>
+              <p>
+                An effective high-level strategy is the secret behind every
+                successful business.
+              </p>
               <strong>Mike Wright</strong>
             </div>
             <div className="source-note">
@@ -371,27 +413,42 @@ export default function HomePage() {
         <div className="container">
           <div className="section-heading reveal">
             <p className="eyebrow">Motion</p>
-            <h2>Small animated moments keep the page alive without turning it into a template.</h2>
+            <h2>
+              Small animated moments keep the page alive without turning it into
+              a template.
+            </h2>
           </div>
 
           <div className="motion-grid">
             <article className="motion-card reveal">
               <div className="motion-panel motion-panel-lottie">
-                <LottiePanel src="/brand/animations/strategy.json" className="motion-lottie" />
+                <LottiePanel
+                  src="/brand/animations/strategy.json"
+                  className="motion-lottie"
+                />
               </div>
               <div className="motion-copy">
                 <h3>Strategy in motion</h3>
-                <p>Business shapes, signal lines, and planning energy that feel more like the brand than a generic gif wall.</p>
+                <p>
+                  Business shapes, signal lines, and planning energy that feel
+                  more like the brand than a generic gif wall.
+                </p>
               </div>
             </article>
 
             <article className="motion-card reveal delay-1">
               <div className="motion-panel motion-panel-lottie">
-                <LottiePanel src="/brand/animations/office-flourish.json" className="motion-lottie" />
+                <LottiePanel
+                  src="/brand/animations/office-flourish.json"
+                  className="motion-lottie"
+                />
               </div>
               <div className="motion-copy">
                 <h3>Office rhythm</h3>
-                <p>A quieter motion pass that keeps the visual system warm, polished, and a little unexpected.</p>
+                <p>
+                  A quieter motion pass that keeps the visual system warm,
+                  polished, and a little unexpected.
+                </p>
               </div>
             </article>
 
@@ -406,7 +463,10 @@ export default function HomePage() {
               </div>
               <div className="motion-copy">
                 <h3>Business objects, but playful</h3>
-                <p>Floating cubes, charts, and briefcase forms add the extra motion layer the page was missing.</p>
+                <p>
+                  Floating cubes, charts, and briefcase forms add the extra
+                  motion layer the page was missing.
+                </p>
               </div>
             </article>
           </div>
@@ -417,17 +477,34 @@ export default function HomePage() {
         <div className="container">
           <div className="section-heading reveal">
             <p className="eyebrow">More PIQI</p>
-            <h2>The original site branches into a wider group. These are now anchored into the same page.</h2>
+            <h2>
+              The original site branches into a wider group. These are now
+              anchored into the same page.
+            </h2>
           </div>
 
           <div className="brand-grid">
             {serviceJumpTiles.map((tile, index) => (
-              <a key={tile.label} href={tile.href} className={`brand-card reveal ${SectionDirection(index)}`}>
-                <div className={`brand-image-wrap${tile.image ? "" : " brand-fallback"}`}>
+              <a
+                key={tile.label}
+                href={tile.href}
+                className={`brand-card reveal ${SectionDirection(index)}`}
+              >
+                <div
+                  className={`brand-image-wrap${tile.image ? "" : " brand-fallback"}`}
+                >
                   {tile.image ? (
-                    <Image src={tile.image} alt="" fill sizes="(max-width: 900px) 100vw, 16vw" className="theme-media" />
+                    <Image
+                      src={tile.image}
+                      alt=""
+                      fill
+                      sizes="(max-width: 900px) 100vw, 16vw"
+                      className="theme-media"
+                    />
                   ) : (
-                    <span aria-hidden="true">{tile.label.slice(0, 2).toUpperCase()}</span>
+                    <span aria-hidden="true">
+                      {tile.label.slice(0, 2).toUpperCase()}
+                    </span>
                   )}
                 </div>
                 <span>{tile.label}</span>
@@ -438,9 +515,15 @@ export default function HomePage() {
       </section>
 
       {detailSections.map((section, index) => (
-        <section id={section.id} className={`section detail-section detail-${section.id}`} key={section.id}>
+        <section
+          id={section.id}
+          className={`section detail-section detail-${section.id}`}
+          key={section.id}
+        >
           <div className="container detail-grid">
-            <div className={`detail-copy reveal ${index % 2 === 0 ? "reveal-left" : "reveal-right"}`}>
+            <div
+              className={`detail-copy reveal ${index % 2 === 0 ? "reveal-left" : "reveal-right"}`}
+            >
               <p className="eyebrow">{section.kicker}</p>
               <h2>{section.title}</h2>
               <p className="detail-intro">{section.intro}</p>
@@ -452,7 +535,9 @@ export default function HomePage() {
               <p className="detail-body">{section.body}</p>
             </div>
 
-            <div className={`detail-media reveal delay-1${section.image ? "" : " detail-media-fallback"}`}>
+            <div
+              className={`detail-media reveal delay-1${section.image ? "" : " detail-media-fallback"}`}
+            >
               {section.image ? (
                 <Image
                   src={section.image}
@@ -476,10 +561,12 @@ export default function HomePage() {
         <div className="container contact-grid">
           <div className="contact-copy reveal">
             <p className="eyebrow">Contact</p>
-            <h2>Get in touch and we will shape the brief into something practical.</h2>
+            <h2>
+              Get in touch and we will shape the brief into something practical.
+            </h2>
             <p>
-              The rebuilt page keeps the PIQI contact details visible and easy to reach, without the
-              dead-end WordPress form feel.
+              We will answer as soon as we get the chance, please do try to
+              stick to business hours though.
             </p>
 
             <ul className="contact-details">
@@ -490,7 +577,10 @@ export default function HomePage() {
             </ul>
 
             <div className="contact-actions">
-              <a className="button button-primary" href="mailto:info@piqi.co.za">
+              <a
+                className="button button-primary"
+                href="mailto:info@piqi.co.za"
+              >
                 Email PIQI
               </a>
               <a className="button button-secondary" href="tel:+27100073358">
@@ -516,7 +606,10 @@ export default function HomePage() {
           />
           <div>
             <p>PIQI Group</p>
-            <p>Consulting, strategy, projects, property, auto, yacht charters, and fashion.</p>
+            <p>
+              Consulting, strategy, projects, property, auto, yacht charters,
+              and fashion.
+            </p>
           </div>
         </div>
       </footer>
