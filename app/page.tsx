@@ -606,7 +606,7 @@ export default function HomePage() {
             className="theme-logo"
           />
           <div>
-            <p>©PIQI Group 2026</p>
+            <p>© 2026 PIQI Group. All rights reserved.</p>
             <p>
               Consulting, strategy, projects, property, auto, yacht charters,
               and fashion.
