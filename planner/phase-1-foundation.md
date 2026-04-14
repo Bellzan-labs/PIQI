@@ -18,11 +18,12 @@
 ## 1. Scaffold Audit
 
 The following are already in place (verify, don't re-create):
-- [ ] Next.js 14 App Router (`app/layout.tsx`, `app/page.tsx`)
-- [ ] React 18, TypeScript strict
-- [ ] Tailwind CSS (check `tailwind.config.*` and `postcss.config.*`)
-- [ ] Vercel deployment (built-in, no adapter needed — Next.js on Vercel is native)
-- [ ] `public/brand/` asset tree (logo, icons, brand images, video, animations)
+- [x] Next.js 14 App Router (`app/layout.tsx`, `app/page.tsx`)
+- [x] React 18, TypeScript strict
+- [x] Plain CSS with CSS custom properties in `app/globals.css` (**no Tailwind** — don't add it; the token system works)
+- [x] Vercel deployment (built-in, no adapter needed — Next.js on Vercel is native)
+- [x] `public/brand/` asset tree (logo, icons, brand images, video, animations)
+- [x] Existing components: `ContactForm`, `LottiePanel`, `RevolverHeading`, `ScrambleText`, `ThemeToggle` (in `components/` — reuse, don't recreate)
 
 Gaps to fill:
 - [ ] Confirm `next.config.mjs` has `trailingSlash: false`
@@ -91,36 +92,32 @@ Gaps to fill:
 
 ## 3. Design System (Tailwind tokens)
 
-The existing `app/globals.css` uses **Montserrat** (display) and **Hind** (body). Dark theme is in place; white PIQI logo is the precedent. Extract current values into semantic Tailwind tokens — do not re-skin.
+The existing `app/globals.css` already defines a working token system. Montserrat (display) + Hind (body). Light + dark themes. Dark is default; white PIQI logo is the precedent.
 
-### Action
-- [ ] Inspect `app/globals.css` for all `--color-*` / background / text values currently used
-- [ ] Catalogue into a single `@theme` (or `tailwind.config.ts` `theme.extend`) block with semantic names:
-  - `--color-bg` / `--color-bg-muted`
-  - `--color-fg` / `--color-fg-muted`
-  - `--color-accent` (CTA) / `--color-accent-strong`
-  - `--color-border`
-- [ ] Typography tokens:
-  - `--font-display`: `"Montserrat", ui-sans-serif, system-ui, sans-serif`
-  - `--font-body`: `"Hind", system-ui, sans-serif`
-- [ ] Spacing / radius / shadow / z-index scale (mirror existing patterns in globals.css)
-- [ ] `:focus-visible` ring: 2px solid `--color-accent`, offset 2px
+### Tokens already present in `globals.css` (don't re-invent)
+| Token | Value (light) | Value (dark) | Usage |
+|-------|---------------|--------------|-------|
+| `--bg` | `#ffffff` | `#09070d` | Primary background |
+| `--bg-soft` | `#f7f3ee` | `#12101a` | Alternate surface |
+| `--surface` | `#ffffff` | `#11101a` | Card surface |
+| `--surface-strong` | `#fffdfb` | `#171421` | Elevated surface |
+| `--line` | `#e9ddd6` | `rgba(255,255,255,0.09)` | Dividers, borders |
+| `--text` | `#1c1b1a` | `#f7f2ec` | Body text |
+| `--muted` | `#6d625d` | `#bbb1aa` | Secondary text |
+| `--brand` | `#bb181d` | `#bb181d` | Signature red — CTAs, accents |
+| `--brand-deep` | `#7e000a` | `#7e000a` | Gradient stops |
+| `--brand-navy` | `#1d1624` | `#1d1624` | Supporting accent |
+| `--radius-xl / lg / md` | `30 / 22 / 16px` | same | Card radii |
+| `--shadow` | `0 24px 60px rgba(56,35,25,0.08)` | `0 24px 60px rgba(0,0,0,0.35)` | Elevation |
+| `--container` | `1180px` | same | Max content width |
 
-### Brand Colors Reference
-TBD — fill this table after inspecting `app/globals.css`. Add a blocker entry in MASTER-PLAN if the palette needs client sign-off.
-
-| Token | Name | Hex | Usage |
-|-------|------|-----|-------|
-| `--color-bg` | TBD | TBD | Primary background (dark) |
-| `--color-fg` | TBD | TBD | Body text |
-| `--color-accent` | TBD | TBD | CTAs, active states |
-| `--color-border` | TBD | TBD | Dividers, card borders |
-
-### Typography
-- **Display:** Montserrat (400 / 500 / 700)
-- **Body:** Hind (400 / 500 / 700)
-- [ ] Font files in `public/fonts/` (self-hosted). Preload the two 400-weight files in `app/layout.tsx` via `<link rel="preload">`.
-- [ ] `font-display: swap` on all `@font-face` rules.
+### Actions for Phase 1A
+- [ ] **Self-host fonts** — currently `@font-face` rules in `globals.css` point to `https://piqigroup.com/wp-content/...` (WordPress CDN). Download Montserrat 400/500/700 and Hind 400/500/700 `.woff2` files to `public/fonts/` and rewrite the `@font-face` src URLs.
+- [ ] Preload the body 400 and display 700 files in `app/layout.tsx` via `<link rel="preload" as="font" crossOrigin="anonymous">`.
+- [ ] Verify `font-display: swap` is on every `@font-face` (already is).
+- [ ] Add `:focus-visible` outline rule in `globals.css`: `outline: 2px solid var(--brand); outline-offset: 2px`.
+- [ ] Add skip-to-content link styles.
+- [ ] Extract reusable CSS (buttons, containers, section rhythm, reveal animations) into logical sections within `globals.css` — don't split into per-component files unless a component truly needs scoped styles (CSS Modules via `.module.css`).
 
 ### Layout Principles (carry forward)
 - Dark theme primary; white logo mark

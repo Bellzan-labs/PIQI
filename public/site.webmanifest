@@ -1,0 +1,10 @@
+{
+  "name": "PIQI Group",
+  "short_name": "PIQI",
+  "icons": [
+    { "src": "/brand/logo/new-piqi-logo-white.png", "sizes": "258x118", "type": "image/png" }
+  ],
+  "theme_color": "#bb181d",
+  "background_color": "#09070d",
+  "display": "standalone"
+}

@@ -1,39 +1,48 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { Header } from "@/components/global/Header";
+import { Footer } from "@/components/global/Footer";
+import { Breadcrumbs } from "@/components/global/Breadcrumbs";
+import { JsonLd } from "@/components/global/JsonLd";
+import { buildOrganization, buildWebSite } from "@/lib/schema";
+import { SITE } from "@/lib/constants";
 
-const themeBootstrap = `(() => {
-  try {
-    const stored = window.localStorage.getItem('piqi-theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const theme = stored === 'light' || stored === 'dark' ? stored : (prefersDark ? 'dark' : 'light');
-    document.documentElement.dataset.theme = theme;
-    document.documentElement.style.colorScheme = theme;
-  } catch (error) {}
-})();`;
+const DEFAULT_OG_IMAGE =
+  "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=2400&q=80&auto=format&fit=crop";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://piqigroup.com"),
-  title: "PIQI Group | Consulting, Strategy, Projects",
-  description:
-    "PIQI Group helps businesses simplify complexity across strategy, project delivery, process consulting, supply chain support, and commercial controls.",
+  metadataBase: new URL(SITE.url),
+  title: {
+    default: "PIQI Group | Consulting, Property, Fashion, Yachts, Auto, Coaching",
+    template: "%s | PIQI Group"
+  },
+  description: SITE.description,
+  manifest: "/site.webmanifest",
   openGraph: {
     title: "PIQI Group",
-    description:
-      "Consulting, strategy, project delivery, process improvement, supply chain support, and commercial services.",
-    url: "https://piqigroup.com",
-    siteName: "PIQI Group",
-    type: "website"
+    description: SITE.description,
+    url: SITE.url,
+    siteName: SITE.name,
+    type: "website",
+    images: [
+      {
+        url: DEFAULT_OG_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: "PIQI Group"
+      }
+    ]
   },
   twitter: {
     card: "summary_large_image",
     title: "PIQI Group",
-    description:
-      "Consulting, strategy, project delivery, process improvement, supply chain support, and commercial services."
+    description: SITE.description,
+    images: [DEFAULT_OG_IMAGE]
   }
 };
 
 export const viewport: Viewport = {
-  themeColor: "#ffffff",
+  themeColor: "#bb181d",
   width: "device-width",
   initialScale: 1
 };
@@ -44,10 +53,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" data-theme="dark">
       <body>
-        <script dangerouslySetInnerHTML={{ __html: themeBootstrap }} />
-        {children}
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
+        <JsonLd data={[buildOrganization(), buildWebSite()]} />
+        <Header />
+        <main id="main-content" className="page-shell">
+          <Breadcrumbs />
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );

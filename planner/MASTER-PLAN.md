@@ -24,10 +24,10 @@ The generic reusable template this was derived from used `{{PLACEHOLDER}}` token
 | `{{BRAND_NAME_SHORT}}` | PIQI |
 | `{{DOMAIN}}` | piqigroup.com |
 | `{{DOMAIN_URL}}` | https://piqigroup.com |
-| `{{BUSINESS_DESCRIPTION}}` | a South African group operating an advisory practice and a portfolio of asset-based businesses across consulting, property management, fashion, yacht charters, auto, and coaching |
+| `{{BUSINESS_DESCRIPTION}}` | a South African group, founded 2016, serving clients internationally — operating an advisory practice and a portfolio of asset-based businesses across consulting, property management, fashion, yacht charters, auto, and coaching |
 | `{{TARGET_AUDIENCE}}` | Per-vertical — see `reference/audience.md` |
-| `{{PRIMARY_FONT}}` | Montserrat (display) + Hind (body) — confirmed from existing `app/globals.css` |
-| `{{BRAND_COLORS}}` | TBD — dark theme + white PIQI logo precedent. Inspect `app/globals.css` tokens before locking palette. |
+| `{{PRIMARY_FONT}}` | Montserrat (display, 400/500/700) + Hind (body, 400/500/700) — confirmed from existing `app/globals.css` |
+| `{{BRAND_COLORS}}` | Confirmed from `app/globals.css`: `--brand: #bb181d` (signature red), `--brand-deep: #7e000a`, `--brand-navy: #1d1624`. Light theme `--bg: #ffffff`; dark theme `--bg: #09070d`. Dark theme is default; white logo on dark |
 | `{{PRIMARY_EMAIL}}` | info@piqi.co.za |
 | `{{TEAM_MEMBER_*}}` | TBD (blocker — see Dependencies) |
 | `{{DEVELOPER_GIT_HOST}}` | stephencruzwright's GitHub (private repo) |
@@ -49,7 +49,15 @@ A ~16-page Virgin-style group-shell marketing website for **PIQI Group**, a Sout
 The site is structured as an **octopus sitemap**: a thin umbrella (Home, About, Contact) routing visitors to six heterogeneous vertical hubs, each with its own tone and imagery. Only the Consulting vertical has sub-service spoke pages in v1.
 
 **Domain:** piqigroup.com
-**Tech:** Next.js 14 (App Router, RSC) / React 18 / TypeScript / Tailwind CSS / Vercel / Resend (email).
+**Tech:** Next.js 14 (App Router, RSC) / React 18 / TypeScript / plain CSS with CSS custom properties (design tokens in `app/globals.css`) / Vercel / Resend (email).
+
+> **Note on CSS approach:** The existing repo does NOT use Tailwind. Design tokens live as CSS custom properties in `app/globals.css` (`--brand`, `--bg`, `--text`, `--radius-*`, etc.) with light/dark themes keyed on `html[data-theme=...]`. Phase 1 preserves this pattern rather than introducing Tailwind — the token system is already clean.
+
+**Group facts (confirmed 2026-04-14):**
+- Founded **2016**
+- Headquartered in South Africa (PO Box 751615, Gardenview 2047)
+- Serves clients **internationally**
+- Contact: info@piqi.co.za · +27 (0)10 007 3358 · +27 (0)86 671 7958
 
 ---
 
