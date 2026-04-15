@@ -5,6 +5,8 @@ import { GroupFacts } from "@/components/sections/GroupFacts";
 import { VerticalGrid } from "@/components/sections/VerticalGrid";
 import { UVP } from "@/components/sections/UVP";
 import { CTABanner } from "@/components/sections/CTABanner";
+import { ClientLogos } from "@/components/sections/ClientLogos";
+import { Motif1 } from "@/components/brand";
 import { SITE } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -85,7 +87,9 @@ export default function HomePage() {
           </div>
         </div>
       </Hero>
+      <Motif1 className="motif-divider" />
       <GroupFacts />
+      <ClientLogos />
       <VerticalGrid />
       <UVP />
       <CTABanner />

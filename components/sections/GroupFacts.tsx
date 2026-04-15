@@ -1,5 +1,6 @@
 import { SITE } from "@/lib/constants";
 import { getAllVerticals } from "@/lib/data/verticals";
+import { Motif3 } from "@/components/brand";
 
 export function GroupFacts() {
   const verticals = getAllVerticals();
@@ -11,6 +12,7 @@ export function GroupFacts() {
 
   return (
     <section className="section group-facts-section">
+      <Motif3 className="group-facts-motif" variant="light" />
       <div className="container">
         <ul className="group-facts">
           {facts.map((f) => (

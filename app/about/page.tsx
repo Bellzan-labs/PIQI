@@ -4,6 +4,7 @@ import { GroupFacts } from "@/components/sections/GroupFacts";
 import { CTABanner } from "@/components/sections/CTABanner";
 import { Container } from "@/components/ui/Container";
 import { JsonLd } from "@/components/global/JsonLd";
+import { Motif2 } from "@/components/brand";
 import { buildWebPage } from "@/lib/schema";
 import { SITE } from "@/lib/constants";
 
@@ -20,20 +21,23 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <Hero
-        eyebrow="About"
-        title={
-          <>
-            A group built around <span className="text-accent">useful</span> work.
-          </>
-        }
-        subtitle="PIQI Group was founded in 2016 in South Africa. We serve clients internationally across six distinct verticals, each run on its own terms."
-        actions={[{ label: "Contact the group", href: "/contact", variant: "primary" }]}
-        image={{
-          src: "https://images.unsplash.com/photo-1460472178825-e5240623afd5?w=2400&q=80&auto=format&fit=crop",
-          alt: "Sweeping modernist staircase in a dark architectural space."
-        }}
-      />
+      <div className="hero-motif-wrap">
+        <Hero
+          eyebrow="About"
+          title={
+            <>
+              A group built around <span className="text-accent">useful</span> work.
+            </>
+          }
+          subtitle="PIQI Group was founded in 2016 in South Africa. We serve clients internationally across six distinct verticals, each run on its own terms."
+          actions={[{ label: "Contact the group", href: "/contact", variant: "primary" }]}
+          image={{
+            src: "https://images.unsplash.com/photo-1460472178825-e5240623afd5?w=2400&q=80&auto=format&fit=crop",
+            alt: "Sweeping modernist staircase in a dark architectural space."
+          }}
+        />
+        <Motif2 className="hero-motif-accent" />
+      </div>
 
       <section className="section">
         <Container variant="narrow">
