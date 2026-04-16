@@ -1,3 +1,5 @@
+import type { FAQ } from "@/lib/data/faqs";
+
 export type ConsultingServiceFeature = {
   title: string;
   description: string;
@@ -7,6 +9,13 @@ export type ConsultingServiceHeroImage = {
   url: string;
   alt: string;
   credit?: string;
+};
+
+export type FELStage = {
+  stage: string;
+  deliverable: string;
+  decision: string;
+  duration: string;
 };
 
 export type ConsultingService = {
@@ -21,7 +30,9 @@ export type ConsultingService = {
   seoKeywords: string[];
   order: number;
   published: boolean;
-  bodyParagraph?: string;
+  bodyParagraphs?: readonly string[];
+  felStages?: readonly FELStage[];
+  faqs?: readonly FAQ[];
 };
 
 const unsplash = (id: string) =>
@@ -65,8 +76,22 @@ export const CONSULTING_SERVICES: readonly ConsultingService[] = [
     ],
     order: 1,
     published: true,
-    bodyParagraph:
-      "Profitability is a function of your business model and the overall efficiency of your setup. We have worked with numerous organisations to fine-tune the business and streamline internal operations — the result is better services, better products, and, in turn, enhanced customer satisfaction and improved profitability."
+    bodyParagraphs: [
+      "Profitability is a function of your business model and the overall efficiency of your setup. We have worked with numerous organisations to fine-tune the business and streamline internal operations — the result is better services, better products, and, in turn, enhanced customer satisfaction and improved profitability.",
+      "On the process side, we analyse your business processes, identify areas for improvement, and implement streamlined solutions that reduce constraints, enhance efficiency, reduce costs, and optimise performance — the work that adds up to operational excellence rather than one-off wins."
+    ],
+    faqs: [
+      {
+        question: "How does process work improve team management?",
+        answer:
+          "Once existing strategies, processes, and procedures are captured, your core management is ready to re-evaluate and enhance the direction of the business. That cascades down — evolved processes and procedures across teams, better integration across the organisation, and clearer lines on where you are going and what it will take to get there."
+      },
+      {
+        question: "How do you approach department-level structure?",
+        answer:
+          "With documented processes in hand, a right-sized team is in a position to build training plans and materials for identified departments. Capability is lifted systematically rather than reactively, and the department knows what good looks like before the next hire lands."
+      }
+    ]
   },
   {
     slug: "strategy",
@@ -100,8 +125,21 @@ export const CONSULTING_SERVICES: readonly ConsultingService[] = [
     seoKeywords: ["business strategy", "strategic planning", "competitive positioning", "PIQI Group"],
     order: 2,
     published: true,
-    bodyParagraph:
+    bodyParagraphs: [
       "Every company has a long-term vision organised into smaller, time-bound missions. Your business strategy is the chosen path to those missions. Working closely with your core management, we capture, study, and present your existing strategy, then run strategy-capture sessions with the management team to surface gaps and translate intent into the processes and procedures that run on the work floor."
+    ],
+    faqs: [
+      {
+        question: "What happens after you capture the strategy?",
+        answer:
+          "We run sessions with your management team dedicated to strategy and strategy-implementation analysis. Those sessions surface gaps in the existing strategy and build a shared understanding of how the core strategy has translated into processes and procedures on the work floor — or where it has not yet."
+      },
+      {
+        question: "Can you get the business crisis-ready?",
+        answer:
+          "Yes. We work with you to build a strategy and operating model that evolves as new pressures emerge — so your organisation moves to the next level of operational efficiency on its own terms, rather than being caught flat-footed. Mike Wright puts it plainly: an effective high-level strategy is the secret behind every successful business."
+      }
+    ]
   },
   {
     slug: "project-management",
@@ -140,8 +178,9 @@ export const CONSULTING_SERVICES: readonly ConsultingService[] = [
     seoKeywords: ["project management", "project planning", "risk management", "PIQI Group"],
     order: 3,
     published: true,
-    bodyParagraph:
+    bodyParagraphs: [
       "For reasons of both security and urgency, organisations are often wary of offloading complete development or management tasks offsite. For companies in that position, an experienced and dependable source of management consulting is often the optimal shape — people inside the room, accountable to the plan, without adding permanent headcount."
+    ]
   },
   {
     slug: "supply-chain",
@@ -175,8 +214,9 @@ export const CONSULTING_SERVICES: readonly ConsultingService[] = [
     seoKeywords: ["supply chain", "logistics", "operations consulting", "PIQI Group"],
     order: 4,
     published: true,
-    bodyParagraph:
+    bodyParagraphs: [
       "Strategic sourcing is underrated because the benefits of long-term requirement consolidation are not always clear — vendor relationships, internal staff efficiency, and value-for-money all compound over time. Streamlining the flow from requirement identification to required-for-installation adds to the bottom line and improves cash flow."
+    ]
   },
   {
     slug: "commercial-services",
@@ -256,8 +296,38 @@ export const CONSULTING_SERVICES: readonly ConsultingService[] = [
     ],
     order: 5,
     published: true,
-    bodyParagraph:
+    bodyParagraphs: [
       "Cradle-to-grave project support across the commercial disciplines: Front-End Loading reviews, risk management, procurement, contracts, claims, negotiation, cost control, planning, workshop facilitation, knowledge management, and project auditing. The detail protects the outcome through close-out."
+    ],
+    felStages: [
+      {
+        stage: "FEL 1 — Concept",
+        deliverable: "Opportunity framing, order-of-magnitude estimate, go/no-go case.",
+        decision: "Is this worth developing further?",
+        duration: "2–4 weeks"
+      },
+      {
+        stage: "FEL 2 — Pre-feasibility",
+        deliverable:
+          "Scope definition, ±25% estimate, preliminary risk register, procurement strategy draft.",
+        decision: "Is the preferred option the right option?",
+        duration: "6–10 weeks"
+      },
+      {
+        stage: "FEL 3 — Feasibility",
+        deliverable:
+          "Execution plan, ±10% estimate, contract strategy, award-ready tender packages.",
+        decision: "Can we sanction and commit capital?",
+        duration: "12–20 weeks"
+      },
+      {
+        stage: "FEL 4 — Execution",
+        deliverable:
+          "Procurement execution, contract administration, cost and schedule control through to close-out.",
+        decision: "Is the outcome being protected under real conditions?",
+        duration: "Full project duration"
+      }
+    ]
   }
 ] as const;
 

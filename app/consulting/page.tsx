@@ -51,6 +51,27 @@ export default function ConsultingHubPage() {
 
       <section className="section">
         <Container variant="narrow">
+          <p className="eyebrow">The advisory arm</p>
+          <h2>Piqi Consulting — one arm of PIQI Group.</h2>
+          <div className="prose">
+            <p>
+              Piqi Consulting is the advisory practice of PIQI Group. Our expertise spans business
+              consulting, strategy, project management, process consulting, supply chain support,
+              and project commercial services — brought in where your organisation needs clarity on
+              the next move and control over the work that delivers it.
+            </p>
+            <p>
+              Across engagements we offer Strategic Business Planning, Operational Performance,
+              Product and Service Lifecycle, and Supply Chain Systems — alongside the deeper
+              commercial detail that protects the outcome on capital projects. Each of the five
+              services below is a distinct practice; most clients draw on more than one.
+            </p>
+          </div>
+        </Container>
+      </section>
+
+      <section className="section">
+        <Container variant="narrow">
           <p className="eyebrow">What we do</p>
           <h2>Cradle-to-grave project support.</h2>
           <div className="prose">

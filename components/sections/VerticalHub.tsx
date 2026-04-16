@@ -12,9 +12,17 @@ export type VerticalHubProps = {
   vertical: Vertical;
 };
 
+const LANES_HEADING: Record<string, string> = {
+  property: "Three lanes, one accountable team.",
+  fashion: "Three lanes, one in-house studio.",
+  auto: "Two lanes, one workshop.",
+  coaching: "Three lanes of work."
+};
+
 export function VerticalHub({ vertical }: VerticalHubProps) {
   const url = `${SITE.url}/${vertical.slug}`;
   const faqs = getFAQs(vertical.slug);
+  const lanesHeading = LANES_HEADING[vertical.slug] ?? "What we actually do.";
   return (
     <>
       <Hero
@@ -51,6 +59,30 @@ export function VerticalHub({ vertical }: VerticalHubProps) {
           </ul>
         </Container>
       </section>
+
+      {vertical.lanes && vertical.lanes.length > 0 ? (
+        <section className="section lanes-section">
+          <Container>
+            <div className="section-heading">
+              <p className="eyebrow">What we actually do</p>
+              <h2>{lanesHeading}</h2>
+            </div>
+            <div className="lanes-grid">
+              {vertical.lanes.map((lane) => (
+                <article key={lane.title} className="lane-card">
+                  <h3>{lane.title}</h3>
+                  <p className="lane-description">{lane.description}</p>
+                  {lane.whenItApplies ? (
+                    <p className="lane-when">
+                      <span>When it applies:</span> {lane.whenItApplies}
+                    </p>
+                  ) : null}
+                </article>
+              ))}
+            </div>
+          </Container>
+        </section>
+      ) : null}
 
       {vertical.howWeEngage && vertical.howWeEngage.length > 0 ? (
         <section className="section engagement-section">

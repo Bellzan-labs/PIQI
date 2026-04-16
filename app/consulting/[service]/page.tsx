@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Hero } from "@/components/sections/Hero";
 import { CTABanner } from "@/components/sections/CTABanner";
+import { FAQ } from "@/components/sections/FAQ";
 import { Container } from "@/components/ui/Container";
 import { JsonLd } from "@/components/global/JsonLd";
 import { buildService, buildWebPage } from "@/lib/schema";
@@ -51,7 +52,15 @@ export default function ConsultingServicePage({ params }: { params: Params }) {
         <Container variant="narrow">
           <p className="eyebrow">Where we come in</p>
           <h2>{service.heroTagline}</h2>
-          <p>{service.bodyParagraph ?? service.heroDescription}</p>
+          {service.bodyParagraphs && service.bodyParagraphs.length > 0 ? (
+            <div className="prose">
+              {service.bodyParagraphs.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
+          ) : (
+            <p>{service.heroDescription}</p>
+          )}
         </Container>
       </section>
 
@@ -71,6 +80,41 @@ export default function ConsultingServicePage({ params }: { params: Params }) {
           </div>
         </Container>
       </section>
+
+      {service.felStages && service.felStages.length > 0 ? (
+        <section className="section fel-section">
+          <Container>
+            <div className="section-heading">
+              <p className="eyebrow">FEL stages</p>
+              <h2>What each gate actually produces.</h2>
+            </div>
+            <ol className="fel-stages">
+              {service.felStages.map((s) => (
+                <li key={s.stage} className="fel-stage">
+                  <h3>{s.stage}</h3>
+                  <dl className="fel-stage-rows">
+                    <dt>Deliverable</dt>
+                    <dd>{s.deliverable}</dd>
+                    <dt>Decision</dt>
+                    <dd>{s.decision}</dd>
+                    <dt>Duration</dt>
+                    <dd>{s.duration}</dd>
+                  </dl>
+                </li>
+              ))}
+            </ol>
+          </Container>
+        </section>
+      ) : null}
+
+      {service.faqs && service.faqs.length > 0 ? (
+        <FAQ
+          items={service.faqs}
+          slugForSchema={`consulting-${service.slug}`}
+          eyebrow="Questions"
+          title={`Good questions about ${service.shortTitle.toLowerCase()}.`}
+        />
+      ) : null}
 
       <section className="section consulting-back-link-section">
         <Container variant="narrow">
