@@ -7,6 +7,9 @@ import { UVP } from "@/components/sections/UVP";
 import { CTABanner } from "@/components/sections/CTABanner";
 import { ClientLogos } from "@/components/sections/ClientLogos";
 import { Motif1 } from "@/components/brand";
+import { Container } from "@/components/ui/Container";
+import { JsonLd } from "@/components/global/JsonLd";
+import { buildWebPage } from "@/lib/schema";
 import { SITE } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -91,9 +94,42 @@ export default function HomePage() {
       <GroupFacts />
       <ClientLogos />
       <VerticalGrid />
+
+      <section className="section">
+        <Container variant="narrow">
+          <div className="section-heading">
+            <p className="eyebrow">About the group</p>
+            <h2>
+              A South African group with an <span className="text-accent">international</span> client base.
+            </h2>
+          </div>
+          <p>
+            PIQI Group was founded in 2016 and operates from South Africa, serving clients internationally.
+            The group runs an advisory practice alongside a portfolio of asset-based businesses — property
+            management, fashion, yacht charters, auto, and coaching. These are distinct operations with
+            distinct customers; we do not pretend otherwise.
+          </p>
+          <p>
+            What ties the arms together is common ownership, a shared standard for how the work is run,
+            and a service ethos that favours clarity and follow-through over noise. Each business is
+            accountable for its own outcomes; the group provides the operational discipline and the
+            single point of contact when a client needs more than one of them.
+          </p>
+        </Container>
+      </section>
+
       <UVP />
       <CTABanner />
       {/* TODO Phase 3: add group-voice trust strip once named team / client logos land. */}
+
+      <JsonLd
+        data={buildWebPage({
+          title: "PIQI Group",
+          description: SITE.description,
+          url: SITE.url,
+          type: "WebPage"
+        })}
+      />
     </>
   );
 }

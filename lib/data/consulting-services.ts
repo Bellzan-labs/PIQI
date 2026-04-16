@@ -43,17 +43,17 @@ export const CONSULTING_SERVICES: readonly ConsultingService[] = [
       {
         title: "Process consulting",
         description:
-          "Map current-state operations, surface friction, and rebuild flows that teams actually use."
+          "We map current-state operations, surface friction, and rebuild flows that teams actually use."
       },
       {
         title: "Operational performance",
         description:
-          "Define measures, controls, and cadences that keep performance visible and improvable."
+          "We define measures, controls, and cadences that keep performance visible and improvable."
       },
       {
         title: "Product and service lifecycle",
         description:
-          "Standardise how offerings move from brief to launch to maintenance, without losing the detail."
+          "We standardise how offerings move from brief to launch to maintenance, without losing the detail."
       }
     ],
     seoKeywords: [
@@ -69,10 +69,10 @@ export const CONSULTING_SERVICES: readonly ConsultingService[] = [
     slug: "strategy",
     title: "Strategy",
     shortTitle: "Strategy",
-    description: "Strategic advice that drives growth and sharpens positioning.",
-    heroTagline: "Strategic advice that drives growth.",
+    description: "Strategy work that sets direction, clarifies trade-offs, and sharpens positioning.",
+    heroTagline: "Direction, trade-offs, positioning.",
     heroDescription:
-      "We help you develop effective business strategies to drive growth, maximise profitability, and gain a competitive edge.",
+      "We structure business strategies that set clear direction, protect margin, and sharpen how you compete in chosen markets.",
     heroImage: {
       url: unsplash("1529699211952-734e80c4d42b"),
       alt: "Strategic pieces arranged on a dark surface, overhead framing."
@@ -81,17 +81,17 @@ export const CONSULTING_SERVICES: readonly ConsultingService[] = [
       {
         title: "Business strategy",
         description:
-          "Clarify direction and trade-offs so leaders and teams make aligned decisions."
+          "We clarify direction and trade-offs so leaders and teams make aligned decisions."
       },
       {
         title: "Strategic business planning",
         description:
-          "Translate strategy into an operating plan with measurable milestones."
+          "We translate strategy into an operating plan with measurable milestones and owners."
       },
       {
         title: "Competitive positioning",
         description:
-          "Sharpen how you show up in the market and why customers should choose you."
+          "We sharpen how you compete in chosen markets and why customers should choose you."
       }
     ],
     seoKeywords: ["business strategy", "strategic planning", "competitive positioning", "PIQI Group"],
@@ -105,7 +105,7 @@ export const CONSULTING_SERVICES: readonly ConsultingService[] = [
     description: "On-time delivery with planning, risk, and stakeholder rigour.",
     heroTagline: "On-time delivery.",
     heroDescription:
-      "We help with project planning, risk management, resource allocation, and stakeholder communication to deliver on time and within budget.",
+      "We plan, schedule, and steer projects across risk, resource, and stakeholder lines so they land on time and within budget.",
     heroImage: {
       url: unsplash("1541410965313-d53b3c16ef17"),
       alt: "Construction crane against a dusk sky."
@@ -114,22 +114,22 @@ export const CONSULTING_SERVICES: readonly ConsultingService[] = [
       {
         title: "Planning",
         description:
-          "Scope, schedule, and sequence the work so teams know what they're being asked to deliver."
+          "We scope, schedule, and sequence the work so teams know exactly what they are being asked to deliver."
       },
       {
         title: "Risk management",
         description:
-          "Identify, track, and mitigate risks before they become issues that cost time or margin."
+          "We identify, track, and mitigate risks before they become issues that cost time or margin."
       },
       {
         title: "Resource allocation",
         description:
-          "Match the right people and capacity to the right workstream at the right time."
+          "We match the right people and capacity to the right workstream at the right time."
       },
       {
         title: "Stakeholder communication",
         description:
-          "Keep decision-makers current with concise, accurate status and clear asks."
+          "We keep decision-makers current with concise, accurate status and clear asks."
       }
     ],
     seoKeywords: ["project management", "project planning", "risk management", "PIQI Group"],
@@ -143,7 +143,7 @@ export const CONSULTING_SERVICES: readonly ConsultingService[] = [
     description: "Operational control across logistics and the flow of work.",
     heroTagline: "Operational control.",
     heroDescription:
-      "Supply chain support, logistics analysis, and process streamlining for organisations that need to see and steer their operations.",
+      "We provide supply chain support, logistics analysis, and process streamlining for organisations that need to see and steer their operations.",
     heroImage: {
       url: unsplash("1493238792000-8113da705763"),
       alt: "Stacked shipping containers at a cargo port."
@@ -152,17 +152,17 @@ export const CONSULTING_SERVICES: readonly ConsultingService[] = [
       {
         title: "Supply chain support",
         description:
-          "Hands-on support across sourcing, flow, and delivery to keep operations moving."
+          "We provide hands-on support across sourcing, flow, and delivery to keep operations moving."
       },
       {
         title: "Logistics analysis",
         description:
-          "Quantify where cost, time, and reliability are leaking, and recommend the fix."
+          "We quantify where cost, time, and reliability are leaking, and recommend the fix."
       },
       {
         title: "Process streamlining",
         description:
-          "Remove duplicated steps and hand-offs so throughput and accuracy both improve."
+          "We remove duplicated steps and hand-offs so throughput and accuracy both improve."
       }
     ],
     seoKeywords: ["supply chain", "logistics", "operations consulting", "PIQI Group"],
@@ -183,24 +183,44 @@ export const CONSULTING_SERVICES: readonly ConsultingService[] = [
     },
     features: [
       {
-        title: "Procurement and contracts",
+        title: "Procurement",
         description:
-          "Structure and award work so obligations and incentives line up with the result."
+          "We structure tender strategy, evaluate bidders, and award work so obligations and incentives line up with the intended outcome."
       },
       {
-        title: "Claims and negotiation",
+        title: "Contracts management",
         description:
-          "Protect position through disciplined contract administration and evidence-based negotiation."
+          "We administer contracts end-to-end — variations, notices, and obligations — so the paper trail holds up when it matters."
       },
       {
-        title: "Cost control and planning",
+        title: "Claims management",
         description:
-          "Budgets, forecasts, and schedules that move together and keep the outcome honest."
+          "We prepare and defend claims with evidence-based entitlement analysis that protects commercial position without stalling delivery."
       },
       {
-        title: "Risk management and FEL",
+        title: "Negotiation",
         description:
-          "Front-End Loading reviews and risk registers that set projects up for success from day one."
+          "We negotiate rates, variations, and settlements from a prepared position, grounded in contract and data rather than posture."
+      },
+      {
+        title: "Cost control",
+        description:
+          "We run budgets, commitments, and forecasts against actuals so leadership sees the true cost position every reporting cycle."
+      },
+      {
+        title: "Planning development",
+        description:
+          "We build and maintain integrated schedules that link scope, resource, and cost so slippage is visible before it becomes damage."
+      },
+      {
+        title: "Risk management",
+        description:
+          "We stand up risk registers, quantify exposure, and track mitigations so decisions are made with the downside priced in."
+      },
+      {
+        title: "Front-End Loading (FEL)",
+        description:
+          "We run FEL reviews that pressure-test scope, cost, and execution readiness before sanction — setting projects up for success from day one."
       }
     ],
     seoKeywords: [

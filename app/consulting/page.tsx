@@ -72,7 +72,8 @@ export default function ConsultingHubPage() {
           title: "PIQI Consulting",
           description: vertical?.description ?? "",
           url: `${SITE.url}/consulting`,
-          type: "CollectionPage"
+          type: "CollectionPage",
+          hasPart: services.map((s) => `${SITE.url}/consulting/${s.slug}`)
         })}
       />
     </>

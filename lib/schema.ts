@@ -114,8 +114,9 @@ export function buildWebPage(args: {
   description: string;
   url: string;
   type?: WebPageType;
+  hasPart?: readonly string[];
 }): Record<string, unknown> {
-  return {
+  const base: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": args.type ?? "WebPage",
     name: args.title,
@@ -124,4 +125,11 @@ export function buildWebPage(args: {
     isPartOf: { "@id": SITE_ID },
     about: { "@id": ORG_ID }
   };
+  if (args.hasPart && args.hasPart.length > 0) {
+    base.hasPart = args.hasPart.map((partUrl) => ({
+      "@type": "WebPage",
+      "@id": partUrl
+    }));
+  }
+  return base;
 }
