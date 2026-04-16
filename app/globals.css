@@ -1502,10 +1502,22 @@ blockquote,
 .group-fact-value {
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
-  font-size: clamp(3rem, 6vw, 5.5rem);
   color: var(--brand);
   letter-spacing: -0.03em;
   line-height: 0.95;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+.group-fact-value--numeric {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+}
+
+.group-fact-value--text {
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  letter-spacing: -0.01em;
+  line-height: 1.1;
 }
 
 .group-fact-label {
@@ -1771,4 +1783,79 @@ blockquote,
     animation: none !important;
     transition: none !important;
   }
+}
+
+/* FAQ accordion (Phase 4 content migration) */
+.faq-section {
+  /* inherits .section padding */
+}
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+.faq-item {
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--brand);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  padding: 1.1rem 1.25rem;
+  transition: border-color 180ms ease, background 180ms ease;
+}
+.faq-item[open] {
+  border-left-color: var(--brand-deep);
+  background: linear-gradient(180deg, var(--brand-tint), var(--surface));
+}
+.faq-item summary {
+  cursor: pointer;
+  font-weight: 700;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.05rem;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: "+";
+  color: var(--brand);
+  font-size: 1.5rem;
+  line-height: 1;
+  transition: transform 180ms ease;
+}
+.faq-item[open] summary::after {
+  content: "–";
+}
+.faq-answer {
+  margin-top: 0.75rem;
+  color: var(--muted-strong);
+  line-height: 1.6;
+}
+
+/* Small hero subline — used for operator-brand labels under hero copy */
+.hero-subline-section {
+  padding-top: 0;
+}
+.hero-subline {
+  display: block;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Pullquote attribution (cite) treatment */
+.pullquote cite {
+  display: block;
+  margin-top: 1rem;
+  font-style: normal;
+  font-size: 0.95rem;
+  color: var(--muted);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }

@@ -21,6 +21,7 @@ export type ConsultingService = {
   seoKeywords: string[];
   order: number;
   published: boolean;
+  bodyParagraph?: string;
 };
 
 const unsplash = (id: string) =>
@@ -63,7 +64,9 @@ export const CONSULTING_SERVICES: readonly ConsultingService[] = [
       "PIQI Group"
     ],
     order: 1,
-    published: true
+    published: true,
+    bodyParagraph:
+      "Profitability is a function of your business model and the overall efficiency of your setup. We have worked with numerous organisations to fine-tune the business and streamline internal operations — the result is better services, better products, and, in turn, enhanced customer satisfaction and improved profitability."
   },
   {
     slug: "strategy",
@@ -96,7 +99,9 @@ export const CONSULTING_SERVICES: readonly ConsultingService[] = [
     ],
     seoKeywords: ["business strategy", "strategic planning", "competitive positioning", "PIQI Group"],
     order: 2,
-    published: true
+    published: true,
+    bodyParagraph:
+      "Every company has a long-term vision organised into smaller, time-bound missions. Your business strategy is the chosen path to those missions. Working closely with your core management, we capture, study, and present your existing strategy, then run strategy-capture sessions with the management team to surface gaps and translate intent into the processes and procedures that run on the work floor."
   },
   {
     slug: "project-management",
@@ -134,7 +139,9 @@ export const CONSULTING_SERVICES: readonly ConsultingService[] = [
     ],
     seoKeywords: ["project management", "project planning", "risk management", "PIQI Group"],
     order: 3,
-    published: true
+    published: true,
+    bodyParagraph:
+      "For reasons of both security and urgency, organisations are often wary of offloading complete development or management tasks offsite. For companies in that position, an experienced and dependable source of management consulting is often the optimal shape — people inside the room, accountable to the plan, without adding permanent headcount."
   },
   {
     slug: "supply-chain",
@@ -167,7 +174,9 @@ export const CONSULTING_SERVICES: readonly ConsultingService[] = [
     ],
     seoKeywords: ["supply chain", "logistics", "operations consulting", "PIQI Group"],
     order: 4,
-    published: true
+    published: true,
+    bodyParagraph:
+      "Strategic sourcing is underrated because the benefits of long-term requirement consolidation are not always clear — vendor relationships, internal staff efficiency, and value-for-money all compound over time. Streamlining the flow from requirement identification to required-for-installation adds to the bottom line and improves cash flow."
   },
   {
     slug: "commercial-services",
@@ -221,6 +230,21 @@ export const CONSULTING_SERVICES: readonly ConsultingService[] = [
         title: "Front-End Loading (FEL)",
         description:
           "We run FEL reviews that pressure-test scope, cost, and execution readiness before sanction — setting projects up for success from day one."
+      },
+      {
+        title: "Workshop facilitation and training",
+        description:
+          "We run structured sessions that close gaps between the plan on paper and the team running the work."
+      },
+      {
+        title: "Knowledge management",
+        description:
+          "Lessons learned captured and written down so the next project starts from a better baseline than the last."
+      },
+      {
+        title: "Project auditing",
+        description:
+          "Independent reviews at defined gates — FEL, mid-delivery, close-out — to verify the commercial position before it becomes hard to recover."
       }
     ],
     seoKeywords: [
@@ -231,7 +255,9 @@ export const CONSULTING_SERVICES: readonly ConsultingService[] = [
       "PIQI Group"
     ],
     order: 5,
-    published: true
+    published: true,
+    bodyParagraph:
+      "Cradle-to-grave project support across the commercial disciplines: Front-End Loading reviews, risk management, procurement, contracts, claims, negotiation, cost control, planning, workshop facilitation, knowledge management, and project auditing. The detail protects the outcome through close-out."
   }
 ] as const;
 

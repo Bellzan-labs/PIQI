@@ -107,6 +107,36 @@ export function buildService(args: {
   };
 }
 
+export type FAQItem = { question: string; answer: string };
+
+export function buildFAQPage(items: readonly FAQItem[]): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer
+      }
+    }))
+  };
+}
+
+export function buildReview(args: {
+  body: string;
+  authorName: string;
+}): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Review",
+    reviewBody: args.body,
+    author: { "@type": "Person", name: args.authorName },
+    itemReviewed: { "@type": "Organization", name: SITE.name }
+  };
+}
+
 export type WebPageType = "WebPage" | "AboutPage" | "ContactPage" | "CollectionPage";
 
 export function buildWebPage(args: {

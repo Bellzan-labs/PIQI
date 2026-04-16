@@ -13,17 +13,5 @@ export const metadata: Metadata = {
 };
 
 export default function FashionPage() {
-  return (
-    <VerticalHub
-      vertical={v}
-      offerings={[
-        "Wedding attire, bridesmaid and flower girl outfits",
-        "Groom and best man suits",
-        "Matric dance outfits",
-        "School uniforms, tracksuits, and safety clothing",
-        "Branded embroidered or printed clothing"
-      ]}
-      body="High fashion and bespoke clothing that translates your vision into craft."
-    />
-  );
+  return <VerticalHub vertical={v} />;
 }

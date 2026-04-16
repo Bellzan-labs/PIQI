@@ -51,7 +51,7 @@ export default function ConsultingServicePage({ params }: { params: Params }) {
         <Container variant="narrow">
           <p className="eyebrow">Where we come in</p>
           <h2>{service.heroTagline}</h2>
-          <p>{service.heroDescription}</p>
+          <p>{service.bodyParagraph ?? service.heroDescription}</p>
         </Container>
       </section>
 

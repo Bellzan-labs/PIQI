@@ -4,6 +4,31 @@ Running log for the project. Newest entries on top.
 
 ---
 
+## 2026-04-15 — Content migration pass from piqigroup.com
+
+WebFetched every live page of piqigroup.com (home, `/consulting/`, `/property-management/`, `/auto/`, `/downtown-fashion/`, `/yacht-chartering/`; confirmed `/about/`, `/contact/`, `/coaching/`, `/privacy/`, `/terms/` all 404). Migrated the content worth keeping into the new site.
+
+What landed:
+
+- **25 FAQ pairs** across all 6 verticals, in a new `lib/data/faqs.ts`. Rendered via a new `components/sections/FAQ.tsx` server component using native `<details>`/`<summary>` (no client JS). Each vertical hub + the consulting hub gained a FAQ section.
+- **Mike Wright testimonial** — the only piece of social proof on the live site — rendered as a `.pullquote` on `/consulting` with Review JSON-LD.
+- **NW Yacht Chartering** surfaced as the operator brand on `/yachts` via a new optional `operatorBrand` field on the Vertical type.
+- **Vertical hub body paragraphs** — 1–2 paragraphs per vertical, lightly tightened from the live site. New `bodyParagraphs?: readonly string[]` field on Vertical, rendered in VerticalHub.
+- **Consulting spoke body paragraphs** — new `bodyParagraph?: string` field on ConsultingService, migrated from the live-site consulting copy (strategy "strategy-capture" language, commercial services "cradle-to-grave", supply chain "strategic sourcing", etc.). Rendered in the "Where we come in" section.
+- **Three new commercial-services features** — Workshop facilitation & training, Knowledge Management, Project Auditing — growing the spoke from 8 to 11 features (the `.feature-grid` already handles this at 2×4 / 4×2 / 3-col / 2-col responsive breakpoints).
+- **About page "How we operate as a group"** expanded from 1 generic paragraph to 2 paragraphs migrated from the live site ethos copy.
+- **Refactor:** the hardcoded `offerings` + `body` strings in the 5 vertical hub page files moved into `lib/data/verticals.ts`. VerticalHub prop surface reduced from `{ vertical, offerings, body }` to `{ vertical }`.
+- **Schema additions:** `buildFAQPage(items)` and `buildReview({ body, authorName })` in `lib/schema.ts`. Schema count rose from 67 → 74 (+6 FAQPage, +1 Review) across 16 routes.
+
+Ambiguities flagged for user review:
+
+- Consulting hub's new prose section uses "Cradle-to-grave project support." as the H2 (derived from the source paragraph). Swap if preferred.
+- About page's second new paragraph ("We operate from South Africa...") partially duplicates the About hero subtitle. Kept verbatim per source; dedup if desired.
+
+Dependencies table updated in MASTER-PLAN: vertical hub body copy, FAQ content, yacht operator brand, Auto tyres-honesty framing, and founded year + area served now marked **Resolved**. Remaining blockers unchanged (team bios, case studies, vessel name + pricing, Group Profile PDF, physical address, DNS/MX, GA4 + cookie consent, handoff accounts).
+
+---
+
 ## 2026-04-14 — Competitor audit pass
 
 WebFetched Bidvest, Remgro, Berkshire Hathaway, Prosus, Richemont, Caudwell Group, Naspers (Virgin.com and Imperial Logistics blocked — substituted Naspers + Wikipedia on Virgin). Synthesis applied to planner:

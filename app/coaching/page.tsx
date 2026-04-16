@@ -13,16 +13,5 @@ export const metadata: Metadata = {
 };
 
 export default function CoachingPage() {
-  return (
-    <VerticalHub
-      vertical={v}
-      offerings={[
-        "Leadership enhancement",
-        "Communication coaching",
-        "Work-life balance guidance",
-        "Actionable strategies for personal and professional growth"
-      ]}
-      body="Sessions are confidential and focused on outcomes you can apply the next week."
-    />
-  );
+  return <VerticalHub vertical={v} />;
 }

@@ -15,12 +15,19 @@ export function GroupFacts() {
       <Motif3 className="group-facts-motif" variant="light" />
       <div className="container">
         <ul className="group-facts">
-          {facts.map((f) => (
-            <li key={f.label} className="group-fact">
-              <span className="group-fact-value">{f.value}</span>
-              <span className="group-fact-label">{f.label}</span>
-            </li>
-          ))}
+          {facts.map((f) => {
+            const isNumeric = /^\d+\+?$/.test(f.value);
+            return (
+              <li key={f.label} className="group-fact">
+                <span
+                  className={`group-fact-value ${isNumeric ? "group-fact-value--numeric" : "group-fact-value--text"}`}
+                >
+                  {f.value}
+                </span>
+                <span className="group-fact-label">{f.label}</span>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </section>

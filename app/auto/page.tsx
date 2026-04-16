@@ -13,15 +13,5 @@ export const metadata: Metadata = {
 };
 
 export default function AutoPage() {
-  return (
-    <VerticalHub
-      vertical={v}
-      offerings={[
-        "Panel beating and accident repair",
-        "Tyre sales and replacement",
-        "Customer-first service and aftercare"
-      ]}
-      body="Whether you need minor repairs or a full tyre replacement, the team is here to help."
-    />
-  );
+  return <VerticalHub vertical={v} />;
 }

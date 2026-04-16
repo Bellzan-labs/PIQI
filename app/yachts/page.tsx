@@ -13,15 +13,5 @@ export const metadata: Metadata = {
 };
 
 export default function YachtsPage() {
-  return (
-    <VerticalHub
-      vertical={v}
-      offerings={[
-        "Self-catering catamaran charter",
-        "Four double cabins",
-        "Freedom to explore the coastline at your own pace"
-      ]}
-      body="Supply your own food and drinks, or arrange for provisioning. The charter is yours to run."
-    />
-  );
+  return <VerticalHub vertical={v} />;
 }

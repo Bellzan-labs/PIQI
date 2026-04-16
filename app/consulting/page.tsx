@@ -2,14 +2,20 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Hero } from "@/components/sections/Hero";
 import { CTABanner } from "@/components/sections/CTABanner";
+import { FAQ } from "@/components/sections/FAQ";
 import { Container } from "@/components/ui/Container";
 import { JsonLd } from "@/components/global/JsonLd";
-import { buildWebPage } from "@/lib/schema";
+import { buildReview, buildWebPage } from "@/lib/schema";
 import { getVertical } from "@/lib/data/verticals";
 import { getAllConsultingServices } from "@/lib/data/consulting-services";
+import { getFAQs } from "@/lib/data/faqs";
 import { SITE } from "@/lib/constants";
 
 const VERTICAL = getVertical("consulting");
+
+const PULLQUOTE_BODY =
+  "An effective high-level strategy is the secret behind every successful business.";
+const PULLQUOTE_AUTHOR = "Mike Wright";
 
 export const metadata: Metadata = {
   title: "Consulting",
@@ -44,9 +50,29 @@ export default function ConsultingHubPage() {
       />
 
       <section className="section">
+        <Container variant="narrow">
+          <p className="eyebrow">What we do</p>
+          <h2>Cradle-to-grave project support.</h2>
+          <div className="prose">
+            <p>
+              With extensive experience in the Project Commercial environment, Piqi Consulting
+              provides cradle-to-grave project support services. We run project reviews so
+              Front-End Loading (FEL) is streamlined and efficient, and we stay close to delivery
+              so budgeting, planning, and risk management all land against the original end-goal.
+            </p>
+            <p>
+              The second half is discipline during implementation: procurement, contracts, claims,
+              cost control — protecting the commercial outcome until close-out, with Knowledge
+              Management Learnings written down and transferred to your team.
+            </p>
+          </div>
+        </Container>
+      </section>
+
+      <section className="section">
         <Container>
           <div className="section-heading">
-            <p className="eyebrow">What we do</p>
+            <p className="eyebrow">Where we come in</p>
             <h2>Five services, one commercial mindset.</h2>
           </div>
           <div className="consulting-grid">
@@ -61,6 +87,24 @@ export default function ConsultingHubPage() {
           </div>
         </Container>
       </section>
+
+      <section className="section">
+        <Container variant="narrow">
+          <blockquote className="pullquote">
+            &ldquo;{PULLQUOTE_BODY}&rdquo;
+            <cite>&mdash; {PULLQUOTE_AUTHOR}</cite>
+          </blockquote>
+          <JsonLd
+            data={buildReview({ body: PULLQUOTE_BODY, authorName: PULLQUOTE_AUTHOR })}
+          />
+        </Container>
+      </section>
+
+      <FAQ
+        items={getFAQs("consulting")}
+        eyebrow="Questions"
+        title="Good questions to ask a consulting partner."
+      />
 
       <CTABanner
         headline="Need a short read on where to start?"

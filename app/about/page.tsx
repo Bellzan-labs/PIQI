@@ -61,12 +61,18 @@ export default function AboutPage() {
       <section className="section">
         <Container variant="narrow">
           <h2>How we operate as a group</h2>
-          <p>
-            Verticals don&apos;t cross-sell each other by default. The group function keeps
-            standards consistent across brand, contracting, and governance, and steps in where a
-            client benefits from more than one vertical working together.
-          </p>
-          {/* TODO Phase 3: expand into the group-level governance and shared services picture. */}
+          <div className="prose">
+            <p>
+              Verticals don&apos;t cross-sell each other by default. The group function keeps
+              standards consistent across brand, contracting, and governance, and steps in when a
+              client benefits from more than one vertical working together on the same problem.
+            </p>
+            <p>
+              We operate from South Africa and serve clients internationally. The group holds the
+              same position today it held when it started in 2016: deliver what we said we would,
+              write down what we did, and leave your team able to run it without us.
+            </p>
+          </div>
         </Container>
       </section>
 

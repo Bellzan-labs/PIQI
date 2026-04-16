@@ -13,16 +13,5 @@ export const metadata: Metadata = {
 };
 
 export default function PropertyPage() {
-  return (
-    <VerticalHub
-      vertical={v}
-      offerings={[
-        "Routine inspections and maintenance",
-        "Letting, tenant screening, and lease agreements",
-        "Rent collection and property marketing",
-        "Construction support for owners"
-      ]}
-      body="Managing properties can be complex and time-consuming. Our team is designed to alleviate the burdens of property ownership, end to end."
-    />
-  );
+  return <VerticalHub vertical={v} />;
 }

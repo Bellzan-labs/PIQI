@@ -1,19 +1,20 @@
 import { Hero } from "@/components/sections/Hero";
 import { CTABanner } from "@/components/sections/CTABanner";
+import { FAQ } from "@/components/sections/FAQ";
 import { Container } from "@/components/ui/Container";
 import { JsonLd } from "@/components/global/JsonLd";
 import { buildWebPage } from "@/lib/schema";
+import { getFAQs } from "@/lib/data/faqs";
 import type { Vertical } from "@/lib/data/verticals";
 import { SITE } from "@/lib/constants";
 
 export type VerticalHubProps = {
   vertical: Vertical;
-  offerings: string[];
-  body?: string;
 };
 
-export function VerticalHub({ vertical, offerings, body }: VerticalHubProps) {
+export function VerticalHub({ vertical }: VerticalHubProps) {
   const url = `${SITE.url}/${vertical.slug}`;
+  const faqs = getFAQs(vertical.slug);
   return (
     <>
       <Hero
@@ -24,16 +25,30 @@ export function VerticalHub({ vertical, offerings, body }: VerticalHubProps) {
         image={{ src: vertical.heroImage.url, alt: vertical.heroImage.alt }}
       />
 
+      {vertical.operatorBrand ? (
+        <section className="section hero-subline-section">
+          <Container variant="narrow">
+            <p className="hero-subline">Operated as {vertical.operatorBrand}</p>
+          </Container>
+        </section>
+      ) : null}
+
       <section className="section">
         <Container variant="narrow">
           <p className="eyebrow">What we offer</p>
           <h2>Core offerings</h2>
+          {vertical.bodyParagraphs && vertical.bodyParagraphs.length > 0 ? (
+            <div className="prose">
+              {vertical.bodyParagraphs.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
+          ) : null}
           <ul className="offerings-list">
-            {offerings.map((o) => (
+            {vertical.offerings.map((o) => (
               <li key={o}>{o}</li>
             ))}
           </ul>
-          {body ? <p>{body}</p> : null}
         </Container>
       </section>
 
@@ -58,6 +73,13 @@ export function VerticalHub({ vertical, offerings, body }: VerticalHubProps) {
           </Container>
         </section>
       ) : null}
+
+      <FAQ
+        items={faqs}
+        slugForSchema={vertical.slug}
+        eyebrow="Questions"
+        title="Good questions to ask."
+      />
 
       <CTABanner actionLabel={vertical.cta.label} actionHref={vertical.cta.href} />
 
