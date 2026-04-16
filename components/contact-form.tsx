@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { SITE } from "@/lib/constants";
 
 type Status = "idle" | "submitting" | "success" | "error";
@@ -11,6 +12,21 @@ type FieldErrors = {
   message?: string;
 };
 
+const VERTICAL_OPTIONS = [
+  { value: "", label: "Not sure yet" },
+  { value: "consulting", label: "Consulting" },
+  { value: "property", label: "Property Management" },
+  { value: "fashion", label: "Downtown Fashion" },
+  { value: "yachts", label: "Yacht Charters" },
+  { value: "auto", label: "Piqi Auto" },
+  { value: "coaching", label: "Coaching" },
+  { value: "other", label: "Other" }
+] as const;
+
+const VALID_VERTICAL_VALUES = new Set<string>(
+  VERTICAL_OPTIONS.map((option) => option.value).filter((value) => value !== "")
+);
+
 const HONEYPOT_STYLE: React.CSSProperties = {
   position: "absolute",
   left: "-10000px",
@@ -20,10 +36,17 @@ const HONEYPOT_STYLE: React.CSSProperties = {
 };
 
 export function ContactForm() {
+  const searchParams = useSearchParams();
+  const initialVerticalRaw = searchParams?.get("vertical") ?? "";
+  const initialVertical = VALID_VERTICAL_VALUES.has(initialVerticalRaw)
+    ? initialVerticalRaw
+    : "";
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
+  const [vertical, setVertical] = useState<string>(initialVertical);
   const [company, setCompany] = useState(""); // honeypot
   const [errors, setErrors] = useState<FieldErrors>({});
   const [status, setStatus] = useState<Status>("idle");
@@ -64,6 +87,7 @@ export function ContactForm() {
           email: email.trim(),
           subject: subject.trim() || undefined,
           message: message.trim(),
+          vertical: vertical || undefined,
           company
         })
       });
@@ -84,6 +108,7 @@ export function ContactForm() {
         setEmail("");
         setSubject("");
         setMessage("");
+        setVertical("");
         setCompany("");
         setErrors({});
         return;
@@ -161,6 +186,23 @@ export function ContactForm() {
             {errors.email}
           </p>
         ) : null}
+      </div>
+
+      <div className="form-field">
+        <label htmlFor="contact-vertical">What&apos;s this about?</label>
+        <select
+          id="contact-vertical"
+          name="vertical"
+          value={vertical}
+          onChange={(event) => setVertical(event.target.value)}
+          disabled={isSubmitting}
+        >
+          {VERTICAL_OPTIONS.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div className="form-field">

@@ -4,6 +4,23 @@ Running log for the project. Newest entries on top.
 
 ---
 
+## 2026-04-15 — Second content-migration pass (from source-content corpus)
+
+Applied the README's top-ranked [NEW]/[PARTIAL] items from `planner/source-content/`:
+
+- **5 yacht photographs** downloaded from piqigroup.com CDN to `public/brand/yachts/` — the "on-water" shot becomes the new yacht hero; the remaining 4 (ocean, deck-1, deck-2, interior) render as a gallery between MediaSplit and how-we-engage on `/yachts`
+- **New ImageGallery component** at `components/sections/ImageGallery.tsx` — server, native `<figure>`/`<figcaption>`, red-hover overlay, auto-fit grid
+- **VerticalHub** grew an optional `extraAfterMediaSplit?: ReactNode` slot — yachts uses it for the gallery; cleaner than adding `gallery` to the data layer with a one-vertical flag
+- **Strategy spoke** — new second body paragraph ("strategy work that delivers growth, protects margin…")
+- **Supply-chain spoke** — 2 new features (Inventory management, Supplier relationships) — grows from 3 → 5 features
+- **Coaching** — 1 new FAQ on measuring whether coaching is working
+- **Auto** — empathetic "Accidents happen…" opener replacing the previous auto bodyParagraphs[0]; tyre lane description gains the "traction, durability, fuel efficiency" phrasing
+- **Property** — `Callout` component (built previously, never placed) now runs on `/property` as a closing pull-quote: "Minimize downtime. Maximize the longevity of your assets."
+- **Consulting hub** — `.section-lead` paragraph lands above the spoke grid with the "distinct practice, most draw on more than one" line
+- Source-content corpus tags updated: ~10 items flipped from [NEW]/[PARTIAL] → [MIGRATED]
+
+---
+
 ## 2026-04-15 — Content migration pass from piqigroup.com
 
 WebFetched every live page of piqigroup.com (home, `/consulting/`, `/property-management/`, `/auto/`, `/downtown-fashion/`, `/yacht-chartering/`; confirmed `/about/`, `/contact/`, `/coaching/`, `/privacy/`, `/terms/` all 404). Migrated the content worth keeping into the new site.

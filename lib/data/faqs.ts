@@ -300,6 +300,11 @@ export const FAQS: FAQsByVertical = {
       question: "How do you measure progress without making it feel like a performance review?",
       answer:
         "We agree the outcomes you want at the start, in your language, and we check against them at defined review points — not every session. Progress is observable behaviour, not a score, and you own the read on whether it's shifting."
+    },
+    {
+      question: "How do you know the coaching is actually working?",
+      answer:
+        "We agree outcomes at the start — specific behaviours, specific shifts — and review against them at an agreed midpoint. The work is confidential, but progress against agreed outcomes is visible to whoever is sponsoring the engagement. If the shift isn't happening, we say so and adjust cadence or approach."
     }
   ]
 } as const;

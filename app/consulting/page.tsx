@@ -3,19 +3,19 @@ import Link from "next/link";
 import { Hero } from "@/components/sections/Hero";
 import { CTABanner } from "@/components/sections/CTABanner";
 import { FAQ } from "@/components/sections/FAQ";
+import { MediaSplit } from "@/components/sections/MediaSplit";
+import { IconList } from "@/components/sections/IconList";
+import { ImageGallery } from "@/components/sections/ImageGallery";
+import { QuoteBlock } from "@/components/sections/QuoteBlock";
 import { Container } from "@/components/ui/Container";
 import { JsonLd } from "@/components/global/JsonLd";
-import { buildReview, buildWebPage } from "@/lib/schema";
+import { buildWebPage } from "@/lib/schema";
 import { getVertical } from "@/lib/data/verticals";
 import { getAllConsultingServices } from "@/lib/data/consulting-services";
 import { getFAQs } from "@/lib/data/faqs";
 import { SITE } from "@/lib/constants";
 
 const VERTICAL = getVertical("consulting");
-
-const PULLQUOTE_BODY =
-  "An effective high-level strategy is the secret behind every successful business.";
-const PULLQUOTE_AUTHOR = "Mike Wright";
 
 export const metadata: Metadata = {
   title: "Consulting",
@@ -41,7 +41,7 @@ export default function ConsultingHubPage() {
           </>
         }
         subtitle={vertical?.description}
-        actions={[{ label: "Contact PIQI Consulting", href: "/contact", variant: "primary" }]}
+        actions={[{ label: "Contact PIQI Consulting", href: "/contact?vertical=consulting", variant: "primary" }]}
         image={
           vertical?.heroImage
             ? { src: vertical.heroImage.url, alt: vertical.heroImage.alt }
@@ -50,15 +50,17 @@ export default function ConsultingHubPage() {
       />
 
       <section className="section">
-        <Container variant="narrow">
-          <p className="eyebrow">The advisory arm</p>
-          <h2>Piqi Consulting — one arm of PIQI Group.</h2>
-          <div className="prose">
+        <Container>
+          <div className="section-heading">
+            <p className="eyebrow">The advisory arm</p>
+            <h2>Piqi Consulting — one arm of PIQI Group.</h2>
+          </div>
+          <div className="prose prose-wide">
             <p>
               Piqi Consulting is the advisory practice of PIQI Group. Our expertise spans business
               consulting, strategy, project management, process consulting, supply chain support,
-              and project commercial services — brought in where your organisation needs clarity on
-              the next move and control over the work that delivers it.
+              and project commercial services — brought in where your organisation needs clarity
+              on the next move and control over the work that delivers it.
             </p>
             <p>
               Across engagements we offer Strategic Business Planning, Operational Performance,
@@ -70,25 +72,60 @@ export default function ConsultingHubPage() {
         </Container>
       </section>
 
-      <section className="section">
-        <Container variant="narrow">
-          <p className="eyebrow">What we do</p>
-          <h2>Cradle-to-grave project support.</h2>
-          <div className="prose">
-            <p>
-              With extensive experience in the Project Commercial environment, Piqi Consulting
-              provides cradle-to-grave project support services. We run project reviews so
-              Front-End Loading (FEL) is streamlined and efficient, and we stay close to delivery
-              so budgeting, planning, and risk management all land against the original end-goal.
-            </p>
-            <p>
-              The second half is discipline during implementation: procurement, contracts, claims,
-              cost control — protecting the commercial outcome until close-out, with Knowledge
-              Management Learnings written down and transferred to your team.
-            </p>
-          </div>
-        </Container>
-      </section>
+      <MediaSplit
+        reverse
+        tone="accent"
+        eyebrow="What we do"
+        title="Cradle-to-grave project support."
+        body={[
+          "With extensive experience in the Project Commercial environment, Piqi Consulting provides cradle-to-grave project support services. We run project reviews so Front-End Loading (FEL) is streamlined and efficient, and we stay close to delivery so budgeting, planning, and risk management all land against the original end-goal.",
+          "The second half is discipline during implementation: procurement, contracts, claims, cost control — protecting the commercial outcome until close-out, with Knowledge Management Learnings written down and transferred to your team."
+        ]}
+        image={{
+          src: "https://images.unsplash.com/photo-1541410965313-d53b3c16ef17?w=2400&q=80&auto=format&fit=crop",
+          alt: "Construction crane against a dusk sky — project delivery."
+        }}
+      />
+
+      {vertical?.gallery && vertical.gallery.length > 0 ? (
+        <ImageGallery
+          eyebrow="Inside the work"
+          title="What the engagement looks like."
+          items={vertical.gallery}
+        />
+      ) : null}
+
+      <IconList
+        eyebrow="At a glance"
+        title="Five practices, one commercial mindset."
+        items={[
+          {
+            iconSrc: "/brand/icons/Consultation.svg",
+            title: "Business process",
+            description: "Analyse, streamline, operationalise."
+          },
+          {
+            iconSrc: "/brand/icons/Stats.svg",
+            title: "Strategy",
+            description: "Direction, trade-offs, positioning."
+          },
+          {
+            iconSrc: "/brand/icons/Management.svg",
+            title: "Project management",
+            description: "On-time delivery."
+          },
+          {
+            iconSrc: "/brand/icons/Cube.svg",
+            title: "Supply chain",
+            description: "Operational control."
+          },
+          {
+            iconSrc: "/brand/icons/Projects.svg",
+            title: "Commercial services",
+            description: "Detail that protects the outcome."
+          }
+        ]}
+      />
 
       <section className="section">
         <Container>
@@ -96,6 +133,9 @@ export default function ConsultingHubPage() {
             <p className="eyebrow">Where we come in</p>
             <h2>Five services, one commercial mindset.</h2>
           </div>
+          <p className="section-lead">
+            Each of the five services below is a distinct practice. Most clients draw on more than one.
+          </p>
           <div className="consulting-grid">
             {services.map((s) => (
               <Link key={s.slug} href={`/consulting/${s.slug}`} className="consulting-tile">
@@ -109,17 +149,12 @@ export default function ConsultingHubPage() {
         </Container>
       </section>
 
-      <section className="section">
-        <Container variant="narrow">
-          <blockquote className="pullquote">
-            &ldquo;{PULLQUOTE_BODY}&rdquo;
-            <cite>&mdash; {PULLQUOTE_AUTHOR}</cite>
-          </blockquote>
-          <JsonLd
-            data={buildReview({ body: PULLQUOTE_BODY, authorName: PULLQUOTE_AUTHOR })}
-          />
-        </Container>
-      </section>
+      <QuoteBlock
+        eyebrow="Voice from the work"
+        quote="An effective high-level strategy is the secret behind every successful business."
+        authorName="Mike Wright"
+        emitReviewSchema
+      />
 
       <FAQ
         items={getFAQs("consulting")}
@@ -130,6 +165,7 @@ export default function ConsultingHubPage() {
       <CTABanner
         headline="Need a short read on where to start?"
         actionLabel="Talk to consulting"
+        actionHref="/contact?vertical=consulting"
       />
 
       <JsonLd

@@ -11,13 +11,48 @@ export const runtime = "nodejs";
 // sandbox address or keep this route returning the 503 defined below.
 const FROM_ADDRESS = "PIQI Group Website <website@piqigroup.com>";
 
+const VERTICAL_SLUGS = [
+  "consulting",
+  "property",
+  "fashion",
+  "yachts",
+  "auto",
+  "coaching",
+  "other"
+] as const;
+
 const contactSchema = z.object({
   name: z.string().min(2).max(100),
   email: z.string().email().max(200),
   message: z.string().min(10).max(5000),
   subject: z.string().max(200).optional(),
-  company: z.string().max(200).optional()
+  company: z.string().max(200).optional(),
+  vertical: z.enum(VERTICAL_SLUGS).optional()
 });
+
+const VERTICAL_LABELS: Record<(typeof VERTICAL_SLUGS)[number], string> = {
+  consulting: "Consulting",
+  property: "Property Management",
+  fashion: "Downtown Fashion",
+  yachts: "Yacht Charters",
+  auto: "Piqi Auto",
+  coaching: "Coaching",
+  other: "Other"
+};
+
+function isAllowedOrigin(origin: string | null): boolean {
+  // Non-browser clients (curl, sandbox tests, server-to-server) omit Origin.
+  // Browsers always send it; use that to reject cross-origin CSRF attempts.
+  if (!origin) return true;
+  if (origin === SITE.url) return true;
+  if (
+    process.env.NODE_ENV !== "production" &&
+    (origin.startsWith("http://localhost") || origin.startsWith("http://127.0.0.1"))
+  ) {
+    return true;
+  }
+  return false;
+}
 
 type RateLimitEntry = { count: number; resetAt: number };
 
@@ -55,6 +90,13 @@ function getClientKey(request: Request): string {
 }
 
 export async function POST(request: Request): Promise<NextResponse> {
+  if (!isAllowedOrigin(request.headers.get("origin"))) {
+    return NextResponse.json(
+      { ok: false, error: "Cross-origin request rejected." },
+      { status: 403 }
+    );
+  }
+
   const clientKey = getClientKey(request);
   const { limited } = rateLimit(clientKey);
 
@@ -83,7 +125,7 @@ export async function POST(request: Request): Promise<NextResponse> {
     );
   }
 
-  const { name, email, message, subject, company } = parsed.data;
+  const { name, email, message, subject, company, vertical } = parsed.data;
 
   // Honeypot: a real user cannot see or tab into the `company` field.
   // Any value here indicates a bot — return a silent success without sending.
@@ -111,9 +153,12 @@ export async function POST(request: Request): Promise<NextResponse> {
       : `New enquiry from ${name}`
   }`;
 
+  const verticalLabel = vertical ? VERTICAL_LABELS[vertical] : "(not specified)";
+
   const textBody = [
     `Name:\n${name}`,
     `Email:\n${email}`,
+    `Vertical of interest:\n${verticalLabel}`,
     `Subject:\n${trimmedSubject && trimmedSubject.length > 0 ? trimmedSubject : "(none provided)"}`,
     `Message:\n${message}`
   ].join("\n\n");

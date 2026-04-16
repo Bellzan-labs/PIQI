@@ -126,7 +126,8 @@ export const CONSULTING_SERVICES: readonly ConsultingService[] = [
     order: 2,
     published: true,
     bodyParagraphs: [
-      "Every company has a long-term vision organised into smaller, time-bound missions. Your business strategy is the chosen path to those missions. Working closely with your core management, we capture, study, and present your existing strategy, then run strategy-capture sessions with the management team to surface gaps and translate intent into the processes and procedures that run on the work floor."
+      "Every company has a long-term vision organised into smaller, time-bound missions. Your business strategy is the chosen path to those missions. Working closely with your core management, we capture, study, and present your existing strategy, then run strategy-capture sessions with the management team to surface gaps and translate intent into the processes and procedures that run on the work floor.",
+      "Strategy work that delivers growth, protects margin, and sharpens competitive position — done in the room with your core management, not as a deck handed over at the end."
     ],
     faqs: [
       {
@@ -209,6 +210,16 @@ export const CONSULTING_SERVICES: readonly ConsultingService[] = [
         title: "Process streamlining",
         description:
           "We remove duplicated steps and hand-offs so throughput and accuracy both improve."
+      },
+      {
+        title: "Inventory management",
+        description:
+          "We tune stock levels and replenishment cadences so capital stops sitting on shelves and service levels stop slipping."
+      },
+      {
+        title: "Supplier relationships",
+        description:
+          "We consolidate requirements and build the vendor relationships that compound over contracts — better pricing, better terms, fewer surprises."
       }
     ],
     seoKeywords: ["supply chain", "logistics", "operations consulting", "PIQI Group"],

@@ -1,6 +1,8 @@
+import type { ReactNode } from "react";
 import { Hero } from "@/components/sections/Hero";
 import { CTABanner } from "@/components/sections/CTABanner";
 import { FAQ } from "@/components/sections/FAQ";
+import { MediaSplit } from "@/components/sections/MediaSplit";
 import { Container } from "@/components/ui/Container";
 import { JsonLd } from "@/components/global/JsonLd";
 import { buildWebPage } from "@/lib/schema";
@@ -10,6 +12,7 @@ import { SITE } from "@/lib/constants";
 
 export type VerticalHubProps = {
   vertical: Vertical;
+  extraAfterMediaSplit?: ReactNode;
 };
 
 const LANES_HEADING: Record<string, string> = {
@@ -19,7 +22,7 @@ const LANES_HEADING: Record<string, string> = {
   coaching: "Three lanes of work."
 };
 
-export function VerticalHub({ vertical }: VerticalHubProps) {
+export function VerticalHub({ vertical, extraAfterMediaSplit }: VerticalHubProps) {
   const url = `${SITE.url}/${vertical.slug}`;
   const faqs = getFAQs(vertical.slug);
   const lanesHeading = LANES_HEADING[vertical.slug] ?? "What we actually do.";
@@ -41,24 +44,18 @@ export function VerticalHub({ vertical }: VerticalHubProps) {
         </section>
       ) : null}
 
-      <section className="section">
-        <Container variant="narrow">
-          <p className="eyebrow">What we offer</p>
-          <h2>Core offerings</h2>
-          {vertical.bodyParagraphs && vertical.bodyParagraphs.length > 0 ? (
-            <div className="prose">
-              {vertical.bodyParagraphs.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
-          ) : null}
-          <ul className="offerings-list">
-            {vertical.offerings.map((o) => (
-              <li key={o}>{o}</li>
-            ))}
-          </ul>
-        </Container>
-      </section>
+      {(vertical.bodyParagraphs && vertical.bodyParagraphs.length > 0) ||
+      vertical.offerings.length > 0 ? (
+        <MediaSplit
+          eyebrow="What we offer"
+          title="Core offerings"
+          body={vertical.bodyParagraphs}
+          bullets={[...vertical.offerings]}
+          image={{ src: vertical.heroImage.url, alt: vertical.heroImage.alt }}
+        />
+      ) : null}
+
+      {extraAfterMediaSplit ?? null}
 
       {vertical.lanes && vertical.lanes.length > 0 ? (
         <section className="section lanes-section">

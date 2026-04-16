@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Hero } from "@/components/sections/Hero";
-import { Container } from "@/components/ui/Container";
 import { ContactForm } from "@/components/contact-form";
 import { JsonLd } from "@/components/global/JsonLd";
 import { buildLocalBusiness, buildWebPage } from "@/lib/schema";
@@ -61,7 +61,9 @@ export default function ContactPage() {
           </div>
 
           <div className="contact-card">
-            <ContactForm />
+            <Suspense fallback={null}>
+              <ContactForm />
+            </Suspense>
           </div>
         </div>
       </section>

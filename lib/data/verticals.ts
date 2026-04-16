@@ -15,6 +15,12 @@ export type Lane = {
   whenItApplies?: string;
 };
 
+export type VerticalGallery = {
+  src: string;
+  alt: string;
+  caption?: string;
+};
+
 export type Vertical = {
   slug: string;
   displayName: string;
@@ -26,6 +32,7 @@ export type Vertical = {
   offerings: readonly string[];
   bodyParagraphs?: readonly string[];
   lanes?: readonly Lane[];
+  gallery?: readonly VerticalGallery[];
   operatorBrand?: string;
   published: boolean;
   cta: { label: string; href: string };
@@ -46,6 +53,20 @@ export const VERTICALS: readonly Vertical[] = [
       url: unsplash("1507679799987-c73779587ccf"),
       alt: "Dark boardroom with long table and warm lighting."
     },
+    gallery: [
+      {
+        src: unsplash("1559028012-481c04fa702d"),
+        alt: "Hands laying out strategy documents on a desk."
+      },
+      {
+        src: unsplash("1542831371-29b0f74f9713"),
+        alt: "Analyst reviewing data on a laptop in a quiet office."
+      },
+      {
+        src: unsplash("1513542789411-b6a5d4f31634"),
+        alt: "Notebook, pen, and planning notes on a dark surface."
+      }
+    ],
     howWeEngage: [
       { title: "Discovery", description: "We meet to understand the brief, the constraints, and what a good outcome looks like." },
       { title: "Proposal + scope", description: "We write down the work, the people, the timeline, and the commercials before starting." },
@@ -64,7 +85,7 @@ export const VERTICALS: readonly Vertical[] = [
       "Our engagements are sized for mid-market and enterprise operators who need capacity in the room, not a slide deck. If McKinsey would show up with fifty people, we're the wrong fit; if you need three senior people who have sat in procurement committees and contract reviews, that's us."
     ],
     published: true,
-    cta: { label: "Explore consulting", href: "/contact" }
+    cta: { label: "Explore consulting", href: "/contact?vertical=consulting" }
   },
   {
     slug: "property",
@@ -77,6 +98,20 @@ export const VERTICALS: readonly Vertical[] = [
       url: unsplash("1512453979798-5ea266f8880c"),
       alt: "Modern residential building exterior at dusk."
     },
+    gallery: [
+      {
+        src: unsplash("1600585154340-be6161a56a0c"),
+        alt: "Modern residential home exterior in low, warm light."
+      },
+      {
+        src: unsplash("1600596542815-ffad4c1539a9"),
+        alt: "Architectural interior with soft shadow and clean lines."
+      },
+      {
+        src: unsplash("1522708323590-d24dbb6b0267"),
+        alt: "Concrete and glass facade detail under a dusk sky."
+      }
+    ],
     howWeEngage: [
       { title: "Site assessment", description: "We walk the property, review its current condition, and agree what needs attention." },
       { title: "Management agreement", description: "We set the scope, cadence, and reporting so you know what you're paying for." },
@@ -114,7 +149,7 @@ export const VERTICALS: readonly Vertical[] = [
       }
     ],
     published: true,
-    cta: { label: "Speak to the team", href: "/contact" }
+    cta: { label: "Speak to the team", href: "/contact?vertical=property" }
   },
   {
     slug: "fashion",
@@ -127,6 +162,24 @@ export const VERTICALS: readonly Vertical[] = [
       url: unsplash("1515549832467-8783363e19b6"),
       alt: "Tailor's bench with fabric and sewing tools in warm light."
     },
+    gallery: [
+      {
+        src: unsplash("1445205170230-053b83016050"),
+        alt: "Hands guiding fabric through a sewing machine."
+      },
+      {
+        src: unsplash("1558618666-fcd25c85cd64"),
+        alt: "Close-up of stitched fabric and thread on a workbench."
+      },
+      {
+        src: unsplash("1591085686350-798c0f9faa7f"),
+        alt: "A tailored garment hanging in a quiet studio."
+      },
+      {
+        src: unsplash("1617137968427-85924c800a22"),
+        alt: "Detail of finished couture — seams, texture, and light."
+      }
+    ],
     howWeEngage: [
       { title: "Consultation", description: "Bring the occasion, the fabric preferences, and the references — we'll shape the brief together." },
       { title: "Measure and design", description: "Full measurements, design confirmation, and pricing agreed before a single cut is made." },
@@ -167,7 +220,7 @@ export const VERTICALS: readonly Vertical[] = [
       }
     ],
     published: true,
-    cta: { label: "Start a commission", href: "/contact" }
+    cta: { label: "Start a commission", href: "/contact?vertical=fashion" }
   },
   {
     slug: "yachts",
@@ -177,9 +230,15 @@ export const VERTICALS: readonly Vertical[] = [
     description:
       "A self-catering catamaran with four double cabins. You bring the people and the plan; we hand you the boat.",
     heroImage: {
-      url: unsplash("1505873242700-f289a29e1e0f"),
-      alt: "Catamaran sailing on open water at golden hour."
+      url: "/brand/yachts/on-water.jpg",
+      alt: "The catamaran on open water."
     },
+    gallery: [
+      { src: "/brand/yachts/ocean.jpg", alt: "Catamaran at anchor in open water." },
+      { src: "/brand/yachts/deck-1.jpg", alt: "Yacht deck — view forward." },
+      { src: "/brand/yachts/deck-2.jpg", alt: "Yacht deck — alternate angle." },
+      { src: "/brand/yachts/interior.jpg", alt: "Cabin and lounge interior." }
+    ],
     howWeEngage: [
       { title: "Dates and itinerary", description: "Choose your dates, guest count, and rough cruising plan — we confirm availability." },
       { title: "Provisioning briefing", description: "We walk you through the boat, safety, and what self-catering looks like on board." },
@@ -200,7 +259,7 @@ export const VERTICALS: readonly Vertical[] = [
     ],
     operatorBrand: "NW Yacht Chartering",
     published: true,
-    cta: { label: "Enquire about a charter", href: "/contact" }
+    cta: { label: "Enquire about a charter", href: "/contact?vertical=yachts" }
   },
   {
     slug: "auto",
@@ -213,6 +272,20 @@ export const VERTICALS: readonly Vertical[] = [
       url: unsplash("1504222490345-c075b6008014"),
       alt: "Close-up of a car body panel in a dimly lit workshop."
     },
+    gallery: [
+      {
+        src: unsplash("1486262715619-67b85e0b08d3"),
+        alt: "Workshop detail — tools and bodywork under directional light."
+      },
+      {
+        src: unsplash("1580273916550-e323be2ae537"),
+        alt: "Mechanic working on a vehicle in a darkened bay."
+      },
+      {
+        src: unsplash("1625047509248-ec889cbff17f"),
+        alt: "Hand finishing a car panel with focused precision."
+      }
+    ],
     howWeEngage: [
       { title: "Booking", description: "Call or enquire — describe the damage or the tyres you need." },
       { title: "Assessment", description: "Bring the vehicle in. We quote on what we can see, in writing, before any work starts." },
@@ -225,10 +298,8 @@ export const VERTICALS: readonly Vertical[] = [
       "Trusted fitment-centre referrals"
     ],
     bodyParagraphs: [
-      "Professional panel beating and tyre sales. Our technicians handle minor dents, scratches, and major collision repairs with the precision the job demands, and we supply a range of high-quality tyres for most vehicle types.",
-      "Note: we sell tyres but do not fit them — we'll recommend a trusted fitment centre in your area. Everything else, from quote to handover, happens under one roof.",
-      "Insurance claim or cash job, we'll tell you which is the better call before you decide. We've seen customers lose no-claim bonuses on repairs that would have cost less out of pocket; we've also seen cash jobs that should have gone through insurance. Send us a WhatsApp photo of the damage for an initial view before you commit either way.",
-      "Bring the vehicle in, we'll assess and quote in writing, you approve, we book the work. Fleet and corporate accounts are welcome — if you have multiple vehicles needing regular body or tyre work, we'll set up an account with agreed pricing and reporting."
+      "Accidents happen. Bring the vehicle in, we assess and quote in writing, you approve, we book the work. Fleet and corporate accounts are welcome — if you have multiple vehicles needing regular body or tyre work, we'll set up an account with agreed pricing and reporting.",
+      "Insurance claim or cash job, we'll tell you which is the better call before you decide. We've seen customers lose no-claim bonuses on repairs that would have cost less out of pocket; we've also seen cash jobs that should have gone through insurance. Send us a WhatsApp photo of the damage for an initial view before you commit either way."
     ],
     lanes: [
       {
@@ -240,12 +311,12 @@ export const VERTICALS: readonly Vertical[] = [
       {
         title: "Tyre supply",
         description:
-          "We stock tyres for most vehicle types. We don't fit them ourselves — we'll recommend a trusted fitment centre in your area.",
+          "We stock tyres for most vehicle types, with an eye on traction, durability, and fuel efficiency across driving conditions. We don't fit them ourselves — we'll recommend a trusted fitment centre in your area.",
         whenItApplies: "You need new tyres and want them bought through someone who won't upsell you."
       }
     ],
     published: true,
-    cta: { label: "Book a service", href: "/contact" }
+    cta: { label: "Book a service", href: "/contact?vertical=auto" }
   },
   {
     slug: "coaching",
@@ -258,6 +329,20 @@ export const VERTICALS: readonly Vertical[] = [
       url: unsplash("1521295121783-8a321d551ad2"),
       alt: "Figure in profile at a window, quiet contemplative light."
     },
+    gallery: [
+      {
+        src: unsplash("1499209974431-9dddcece7f88"),
+        alt: "Two people in a quiet conversation across a table."
+      },
+      {
+        src: unsplash("1523240795612-9a054b0db644"),
+        alt: "A candid exchange between coach and client, softly lit."
+      },
+      {
+        src: unsplash("1573164574511-73c773193279"),
+        alt: "Hands holding a notebook and pen — reflection in progress."
+      }
+    ],
     howWeEngage: [
       { title: "Intake", description: "A no-obligation first conversation to agree whether coaching is the right fit and what you want to work on." },
       { title: "Cadence", description: "We set a rhythm — usually fortnightly sessions over three to six months — and the outcomes we'll track." },
@@ -299,7 +384,7 @@ export const VERTICALS: readonly Vertical[] = [
       }
     ],
     published: true,
-    cta: { label: "Start a conversation", href: "/contact" }
+    cta: { label: "Start a conversation", href: "/contact?vertical=coaching" }
   }
 ] as const;
 
