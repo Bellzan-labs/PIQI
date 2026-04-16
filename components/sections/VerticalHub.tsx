@@ -1,19 +1,31 @@
+import type { ReactNode } from "react";
 import { Hero } from "@/components/sections/Hero";
 import { CTABanner } from "@/components/sections/CTABanner";
+import { FAQ } from "@/components/sections/FAQ";
+import { MediaSplit } from "@/components/sections/MediaSplit";
 import { Container } from "@/components/ui/Container";
 import { JsonLd } from "@/components/global/JsonLd";
 import { buildWebPage } from "@/lib/schema";
+import { getFAQs } from "@/lib/data/faqs";
 import type { Vertical } from "@/lib/data/verticals";
 import { SITE } from "@/lib/constants";
 
 export type VerticalHubProps = {
   vertical: Vertical;
-  offerings: string[];
-  body?: string;
+  extraAfterMediaSplit?: ReactNode;
 };
 
-export function VerticalHub({ vertical, offerings, body }: VerticalHubProps) {
+const LANES_HEADING: Record<string, string> = {
+  property: "Three lanes, one accountable team.",
+  fashion: "Three lanes, one in-house studio.",
+  auto: "Two lanes, one workshop.",
+  coaching: "Three lanes of work."
+};
+
+export function VerticalHub({ vertical, extraAfterMediaSplit }: VerticalHubProps) {
   const url = `${SITE.url}/${vertical.slug}`;
+  const faqs = getFAQs(vertical.slug);
+  const lanesHeading = LANES_HEADING[vertical.slug] ?? "What we actually do.";
   return (
     <>
       <Hero
@@ -24,18 +36,79 @@ export function VerticalHub({ vertical, offerings, body }: VerticalHubProps) {
         image={{ src: vertical.heroImage.url, alt: vertical.heroImage.alt }}
       />
 
-      <section className="section">
-        <Container variant="narrow">
-          <p className="eyebrow">What we offer</p>
-          <h2>Core offerings</h2>
-          <ul className="offerings-list">
-            {offerings.map((o) => (
-              <li key={o}>{o}</li>
-            ))}
-          </ul>
-          {body ? <p>{body}</p> : null}
-        </Container>
-      </section>
+      {vertical.operatorBrand ? (
+        <section className="section hero-subline-section">
+          <Container variant="narrow">
+            <p className="hero-subline">Operated as {vertical.operatorBrand}</p>
+          </Container>
+        </section>
+      ) : null}
+
+      {(vertical.bodyParagraphs && vertical.bodyParagraphs.length > 0) ||
+      vertical.offerings.length > 0 ? (
+        <MediaSplit
+          eyebrow="What we offer"
+          title="Core offerings"
+          body={vertical.bodyParagraphs}
+          bullets={[...vertical.offerings]}
+          image={{ src: vertical.heroImage.url, alt: vertical.heroImage.alt }}
+        />
+      ) : null}
+
+      {extraAfterMediaSplit ?? null}
+
+      {vertical.lanes && vertical.lanes.length > 0 ? (
+        <section className="section lanes-section">
+          <Container>
+            <div className="section-heading">
+              <p className="eyebrow">What we actually do</p>
+              <h2>{lanesHeading}</h2>
+            </div>
+            <div className="lanes-grid">
+              {vertical.lanes.map((lane) => (
+                <article key={lane.title} className="lane-card">
+                  <h3>{lane.title}</h3>
+                  <p className="lane-description">{lane.description}</p>
+                  {lane.whenItApplies ? (
+                    <p className="lane-when">
+                      <span>When it applies:</span> {lane.whenItApplies}
+                    </p>
+                  ) : null}
+                </article>
+              ))}
+            </div>
+          </Container>
+        </section>
+      ) : null}
+
+      {vertical.howWeEngage && vertical.howWeEngage.length > 0 ? (
+        <section className="section engagement-section">
+          <Container>
+            <div className="section-heading">
+              <p className="eyebrow">How we engage</p>
+              <h2>What working with us looks like.</h2>
+            </div>
+            <ol className="engagement-steps">
+              {vertical.howWeEngage.map((step, i) => (
+                <li key={step.title} className="engagement-step">
+                  <span className="engagement-step-index" aria-hidden="true">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3>{step.title}</h3>
+                  <p>{step.description}</p>
+                </li>
+              ))}
+            </ol>
+          </Container>
+        </section>
+      ) : null}
+
+      <FAQ
+        items={faqs}
+        slugForSchema={vertical.slug}
+        eyebrow="Questions"
+        title="Good questions to ask."
+      />
 
       <CTABanner actionLabel={vertical.cta.label} actionHref={vertical.cta.href} />
 

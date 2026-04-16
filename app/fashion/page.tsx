@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { VerticalHub } from "@/components/sections/VerticalHub";
+import { ImageGallery } from "@/components/sections/ImageGallery";
 import { getVertical } from "@/lib/data/verticals";
 import { SITE } from "@/lib/constants";
 
@@ -16,14 +17,11 @@ export default function FashionPage() {
   return (
     <VerticalHub
       vertical={v}
-      offerings={[
-        "Wedding attire, bridesmaid and flower girl outfits",
-        "Groom and best man suits",
-        "Matric dance outfits",
-        "School uniforms, tracksuits, and safety clothing",
-        "Branded embroidered or printed clothing"
-      ]}
-      body="High fashion and bespoke clothing that translates your vision into craft."
+      extraAfterMediaSplit={
+        v.gallery && v.gallery.length > 0 ? (
+          <ImageGallery eyebrow="The studio" title="Cut, sewn, finished." items={v.gallery} />
+        ) : null
+      }
     />
   );
 }

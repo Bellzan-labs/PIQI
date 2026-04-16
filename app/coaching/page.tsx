@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { VerticalHub } from "@/components/sections/VerticalHub";
+import { ImageGallery } from "@/components/sections/ImageGallery";
 import { getVertical } from "@/lib/data/verticals";
 import { SITE } from "@/lib/constants";
 
@@ -16,13 +17,15 @@ export default function CoachingPage() {
   return (
     <VerticalHub
       vertical={v}
-      offerings={[
-        "Leadership enhancement",
-        "Communication coaching",
-        "Work-life balance guidance",
-        "Actionable strategies for personal and professional growth"
-      ]}
-      body="Sessions are confidential and focused on outcomes you can apply the next week."
+      extraAfterMediaSplit={
+        v.gallery && v.gallery.length > 0 ? (
+          <ImageGallery
+            eyebrow="The practice"
+            title="Where the work happens."
+            items={v.gallery}
+          />
+        ) : null
+      }
     />
   );
 }

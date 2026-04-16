@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Hero } from "@/components/sections/Hero";
 import { GroupFacts } from "@/components/sections/GroupFacts";
 import { CTABanner } from "@/components/sections/CTABanner";
+import { MediaSplit } from "@/components/sections/MediaSplit";
 import { Container } from "@/components/ui/Container";
 import { JsonLd } from "@/components/global/JsonLd";
 import { Motif2 } from "@/components/brand";
@@ -58,17 +59,19 @@ export default function AboutPage() {
 
       <GroupFacts />
 
-      <section className="section">
-        <Container variant="narrow">
-          <h2>How we operate as a group</h2>
-          <p>
-            Verticals don&apos;t cross-sell each other by default. The group function keeps
-            standards consistent across brand, contracting, and governance, and steps in where a
-            client benefits from more than one vertical working together.
-          </p>
-          {/* TODO Phase 3: expand into the group-level governance and shared services picture. */}
-        </Container>
-      </section>
+      <MediaSplit
+        reverse
+        eyebrow="Operating model"
+        title="How we operate as a group."
+        body={[
+          "Verticals don't cross-sell each other by default. The group function keeps standards consistent across brand, contracting, and governance, and steps in when a client benefits from more than one vertical working together on the same problem.",
+          "We operate from South Africa and serve clients internationally. The group holds the same position today it held when it started in 2016: deliver what we said we would, write down what we did, and leave your team able to run it without us."
+        ]}
+        image={{
+          src: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=2400&q=80&auto=format&fit=crop",
+          alt: "Long architectural corridor with dramatic light and shadow — abstract group imagery."
+        }}
+      />
 
       <CTABanner />
 

@@ -3,6 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Hero } from "@/components/sections/Hero";
 import { CTABanner } from "@/components/sections/CTABanner";
+import { FAQ } from "@/components/sections/FAQ";
+import { MediaSplit } from "@/components/sections/MediaSplit";
 import { Container } from "@/components/ui/Container";
 import { JsonLd } from "@/components/global/JsonLd";
 import { buildService, buildWebPage } from "@/lib/schema";
@@ -43,17 +45,17 @@ export default function ConsultingServicePage({ params }: { params: Params }) {
         eyebrow="Consulting"
         title={service.title}
         subtitle={service.heroTagline}
-        actions={[{ label: "Talk to consulting", href: "/contact", variant: "primary" }]}
+        actions={[{ label: "Talk to consulting", href: "/contact?vertical=consulting", variant: "primary" }]}
         image={{ src: service.heroImage.url, alt: service.heroImage.alt }}
       />
 
-      <section className="section">
-        <Container variant="narrow">
-          <p className="eyebrow">Where we come in</p>
-          <h2>{service.heroTagline}</h2>
-          <p>{service.heroDescription}</p>
-        </Container>
-      </section>
+      <MediaSplit
+        eyebrow="Where we come in"
+        title={service.heroTagline}
+        body={service.bodyParagraphs ?? [service.heroDescription]}
+        image={{ src: service.heroImage.url, alt: service.heroImage.alt }}
+        reverse={service.order % 2 === 0}
+      />
 
       <section className="section">
         <Container>
@@ -72,6 +74,41 @@ export default function ConsultingServicePage({ params }: { params: Params }) {
         </Container>
       </section>
 
+      {service.felStages && service.felStages.length > 0 ? (
+        <section className="section fel-section">
+          <Container>
+            <div className="section-heading">
+              <p className="eyebrow">FEL stages</p>
+              <h2>What each gate actually produces.</h2>
+            </div>
+            <ol className="fel-stages">
+              {service.felStages.map((s) => (
+                <li key={s.stage} className="fel-stage">
+                  <h3>{s.stage}</h3>
+                  <dl className="fel-stage-rows">
+                    <dt>Deliverable</dt>
+                    <dd>{s.deliverable}</dd>
+                    <dt>Decision</dt>
+                    <dd>{s.decision}</dd>
+                    <dt>Duration</dt>
+                    <dd>{s.duration}</dd>
+                  </dl>
+                </li>
+              ))}
+            </ol>
+          </Container>
+        </section>
+      ) : null}
+
+      {service.faqs && service.faqs.length > 0 ? (
+        <FAQ
+          items={service.faqs}
+          slugForSchema={`consulting-${service.slug}`}
+          eyebrow="Questions"
+          title={`Good questions about ${service.shortTitle.toLowerCase()}.`}
+        />
+      ) : null}
+
       <section className="section consulting-back-link-section">
         <Container variant="narrow">
           <Link href="/consulting" className="back-link">
@@ -80,7 +117,10 @@ export default function ConsultingServicePage({ params }: { params: Params }) {
         </Container>
       </section>
 
-      <CTABanner actionLabel={`Start with ${service.shortTitle.toLowerCase()}`} />
+      <CTABanner
+        actionLabel={`Start with ${service.shortTitle.toLowerCase()}`}
+        actionHref="/contact?vertical=consulting"
+      />
 
       <JsonLd
         data={[

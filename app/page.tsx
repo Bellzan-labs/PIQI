@@ -6,7 +6,10 @@ import { VerticalGrid } from "@/components/sections/VerticalGrid";
 import { UVP } from "@/components/sections/UVP";
 import { CTABanner } from "@/components/sections/CTABanner";
 import { ClientLogos } from "@/components/sections/ClientLogos";
+import { MediaSplit } from "@/components/sections/MediaSplit";
 import { Motif1 } from "@/components/brand";
+import { JsonLd } from "@/components/global/JsonLd";
+import { buildWebPage } from "@/lib/schema";
 import { SITE } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -91,9 +94,32 @@ export default function HomePage() {
       <GroupFacts />
       <ClientLogos />
       <VerticalGrid />
+
+      <MediaSplit
+        eyebrow="About the group"
+        title="A South African group with an international client base."
+        body={[
+          "PIQI Group was founded in 2016 and operates from South Africa, serving clients internationally. The group runs an advisory practice alongside a portfolio of asset-based businesses — property management, fashion, yacht charters, auto, and coaching. These are distinct operations with distinct customers; we do not pretend otherwise.",
+          "What ties the arms together is common ownership, a shared standard for how the work is run, and a service ethos that favours clarity and follow-through over noise. Each business is accountable for its own outcomes; the group provides the operational discipline and the single point of contact when a client needs more than one of them."
+        ]}
+        image={{
+          src: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=2400&q=80&auto=format&fit=crop",
+          alt: "Modernist interior with clean geometric volumes — abstract group imagery."
+        }}
+      />
+
       <UVP />
       <CTABanner />
       {/* TODO Phase 3: add group-voice trust strip once named team / client logos land. */}
+
+      <JsonLd
+        data={buildWebPage({
+          title: "PIQI Group",
+          description: SITE.description,
+          url: SITE.url,
+          type: "WebPage"
+        })}
+      />
     </>
   );
 }

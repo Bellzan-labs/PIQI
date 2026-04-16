@@ -254,23 +254,26 @@ Live site has no blog/guides/testimonials. v1 has no content pipeline. This phas
 
 | Dependency | Status | Blocks |
 |------------|--------|--------|
-| Brand palette / token confirmation from existing `app/globals.css` | Open | Phase 1A design system |
-| Team member names & bios | Blocker | Any future leadership/team page (not in v1) |
-| Yacht vessel name + home port + pricing | Blocker | Phase 3 Yachts hub copy |
-| Case studies / testimonials / client logos | Blocker | Social proof across all hubs (not in v1) |
-| Group founded year + SA regions served + any publicly-shareable scale metric | Blocker | Homepage group-at-a-glance strip + About Group Facts block (trust substitute while team/case studies blocked) |
-| 1-2 page group profile PDF (assembled from six vertical blurbs + contact block) | Blocker | About page "Download PIQI Group Profile" link — near-universal SA/UK corporate-group idiom (Bidvest, Richemont, Remgro, Naspers) |
+| Brand palette / token confirmation from existing `app/globals.css` | Resolved (2026-04-15) | — |
+| Founded year + area served | Resolved (2026-04-15) — founded 2016, international | — |
+| Vertical hub body copy | Resolved (2026-04-15) — migrated from piqigroup.com | — |
+| FAQ content per vertical | Resolved (2026-04-15) — 25 pairs migrated from piqigroup.com | — |
+| Yacht operator brand | Resolved (2026-04-15) — NW Yacht Chartering surfaced on `/yachts` | — |
+| Testimonial / social proof | Partial (2026-04-15) — Mike Wright quote live on `/consulting` pullquote. No other testimonials or client logos yet. | Stronger trust strip on homepage |
+| Auto "sells tyres but cannot fit them" | Resolved (2026-04-15) — honest framing shipped: "we sell but don't fit — we'll recommend a trusted fitment centre". Stakeholder may still want a fitment partner. | — |
+| Team member names & bios | Blocker | About leadership block + homepage team strip |
+| Yacht vessel name + home port + pricing | Blocker | Richer `/yachts` hub copy and rate card |
+| Case studies / client logos | Blocker | ClientLogos slot on homepage + any Portfolio work post-launch |
+| 1-2 page group profile PDF | Blocker | About page "Download PIQI Group Profile" link |
 | Physical address (currently only PO Box 751615 Gardenview 2047) | Blocker | LocalBusiness schema geo precision |
-| Auto "sells tyres but cannot fit them" copy/ops decision | Blocker | Phase 3 Auto hub — recommend external fitment or add fitment partner |
 | Banking vertical — confirm DEFERRED for v1 | Assumed deferred | Sitemap/nav lock |
-| Resend API key | Open | Phase 3 API route |
+| Resend API key + piqi.co.za domain verification (SPF/DKIM) | Open | Contact form becomes live end-to-end |
 | DNS provider (investigate Crowberry Media current WP setup) | Blocker | Phase 5 cutover |
-| Email provider for info@piqi.co.za (keep MX vs migrate) | Blocker | Phase 5 Resend setup |
+| Email provider for `info@piqi.co.za` (keep MX vs migrate) | Blocker | Phase 5 Resend setup |
 | GA4 measurement ID | Open | Phase 5 analytics |
 | Cookie consent platform ID | Open | Phase 5 consent |
 | Company GitHub org for repo transfer | Open | Handoff |
 | Company Vercel account | Open | Handoff |
-| Resend API key (account under Stephen or PIQI) | Open | Phase 3 |
 
 ---
 

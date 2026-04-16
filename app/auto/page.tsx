@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { VerticalHub } from "@/components/sections/VerticalHub";
+import { ImageGallery } from "@/components/sections/ImageGallery";
 import { getVertical } from "@/lib/data/verticals";
 import { SITE } from "@/lib/constants";
 
@@ -16,12 +17,15 @@ export default function AutoPage() {
   return (
     <VerticalHub
       vertical={v}
-      offerings={[
-        "Panel beating and accident repair",
-        "Tyre sales and replacement",
-        "Customer-first service and aftercare"
-      ]}
-      body="Whether you need minor repairs or a full tyre replacement, the team is here to help."
+      extraAfterMediaSplit={
+        v.gallery && v.gallery.length > 0 ? (
+          <ImageGallery
+            eyebrow="The workshop"
+            title="Inside the workshop."
+            items={v.gallery}
+          />
+        ) : null
+      }
     />
   );
 }
