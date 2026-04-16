@@ -3,7 +3,8 @@ import { Container } from "@/components/ui/Container";
 
 export const metadata: Metadata = {
   title: "Terms of Use",
-  description: "PIQI Group terms of use.",
+  description:
+    "The terms and conditions that apply when you use the PIQI Group website and contact any of its verticals.",
   alternates: { canonical: "/terms" }
 };
 

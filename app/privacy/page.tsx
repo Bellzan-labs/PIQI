@@ -3,7 +3,8 @@ import { Container } from "@/components/ui/Container";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "PIQI Group privacy policy.",
+  description:
+    "How PIQI Group handles personal information collected through enquiries, the website, and engagements with our verticals.",
   alternates: { canonical: "/privacy" }
 };
 

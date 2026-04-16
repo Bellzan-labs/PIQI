@@ -37,6 +37,28 @@ export function VerticalHub({ vertical, offerings, body }: VerticalHubProps) {
         </Container>
       </section>
 
+      {vertical.howWeEngage && vertical.howWeEngage.length > 0 ? (
+        <section className="section engagement-section">
+          <Container>
+            <div className="section-heading">
+              <p className="eyebrow">How we engage</p>
+              <h2>What working with us looks like.</h2>
+            </div>
+            <ol className="engagement-steps">
+              {vertical.howWeEngage.map((step, i) => (
+                <li key={step.title} className="engagement-step">
+                  <span className="engagement-step-index" aria-hidden="true">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3>{step.title}</h3>
+                  <p>{step.description}</p>
+                </li>
+              ))}
+            </ol>
+          </Container>
+        </section>
+      ) : null}
+
       <CTABanner actionLabel={vertical.cta.label} actionHref={vertical.cta.href} />
 
       <JsonLd

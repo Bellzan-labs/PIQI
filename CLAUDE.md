@@ -89,7 +89,7 @@ planner/                 Project spec — MASTER-PLAN + phase docs + reference/ 
 - **Phase 1A — Foundation (audit + scaffold + chrome):** shipped
 - **Phase 1B — Section components + brand motifs + schema validator:** shipped
 - **Phase 2 — Homepage polish + Consulting hub + spokes content pass:** next
-- **Phase 3 — 5 remaining vertical hubs + About + Contact + Resend API:** pending
+- **Phase 3 — 5 remaining vertical hubs + About + Contact + Resend API:** pending (contact form partially shipped — API route live, awaits RESEND_API_KEY + domain verification)
 - **Phase 4 — Content infra (FAQ + RSS stub only for v1):** scoped
 - **Phase 5 — DNS cutover + Resend + self-host fonts + legal copy:** scoped
 - **Phase 6 — Post-launch monitoring + content growth:** scoped
