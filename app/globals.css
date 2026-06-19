@@ -2919,3 +2919,99 @@ html {
 .sibling-strip-up {
   margin: 2rem 0 0;
 }
+
+/* =========================================================
+   REDESIGN R3 — consulting (the only depth-2 vertical).
+   Sticky local nav rail (visible mini-hub asymmetry) + the
+   footer sub-nav listing the 5 spokes under Consulting.
+   Source: planner/redesign/01-REDESIGN-PLAN.md (R3).
+   ========================================================= */
+.consulting-rail {
+  position: sticky;
+  top: var(--header-height);
+  z-index: var(--z-sticky);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--blur-md)) var(--glass-saturate);
+  -webkit-backdrop-filter: blur(var(--blur-md)) var(--glass-saturate);
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .consulting-rail {
+    background: var(--surface-2);
+  }
+}
+
+.consulting-rail-inner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.consulting-rail-inner::-webkit-scrollbar {
+  display: none;
+}
+
+.consulting-rail-label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--track-eyebrow);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+  padding-right: 0.85rem;
+  border-right: 1px solid var(--hairline);
+}
+
+.consulting-rail-links {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.consulting-rail-link {
+  display: inline-flex;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  color: var(--muted-strong);
+  font-size: 0.92rem;
+  font-weight: 500;
+  transition: var(--t-colors);
+}
+
+.consulting-rail-link:hover,
+.consulting-rail-link:focus-visible {
+  color: var(--text);
+  background: var(--brand-soft);
+}
+
+.consulting-rail-link.is-active {
+  background: var(--brand);
+  color: #fff;
+  box-shadow: var(--glow-red-sm);
+}
+
+/* Footer sub-nav — the 5 consulting spokes nested under Consulting */
+.footer-subnav {
+  margin: 0.5rem 0 0.35rem;
+  padding-left: 0.85rem;
+  border-left: 1px solid var(--hairline);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.footer-subnav a {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.footer-subnav a:hover,
+.footer-subnav a:focus-visible {
+  color: var(--brand);
+}

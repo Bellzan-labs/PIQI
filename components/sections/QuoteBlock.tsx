@@ -24,7 +24,7 @@ export function QuoteBlock({
     <section className="section quote-block-section">
       <Container variant="narrow">
         {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
-        <figure className="quote-block">
+        <figure className="quote-block" data-reveal>
           <span className="quote-mark" aria-hidden="true">
             &ldquo;
           </span>

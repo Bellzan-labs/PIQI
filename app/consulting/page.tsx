@@ -11,9 +11,11 @@ import { Container } from "@/components/ui/Container";
 import { JsonLd } from "@/components/global/JsonLd";
 import { buildWebPage } from "@/lib/schema";
 import { getVertical } from "@/lib/data/verticals";
-import { getAllConsultingServices } from "@/lib/data/consulting-services";
+import { getAllConsultingServices, getConsultingNavItems } from "@/lib/data/consulting-services";
 import { getFAQs } from "@/lib/data/faqs";
 import { SITE } from "@/lib/constants";
+import { ConsultingNav } from "@/components/global/ConsultingNav";
+import { SiblingStrip } from "@/components/sections/SiblingStrip";
 
 const VERTICAL = getVertical("consulting");
 
@@ -49,9 +51,11 @@ export default function ConsultingHubPage() {
         }
       />
 
+      <ConsultingNav items={getConsultingNavItems()} />
+
       <section className="section">
         <Container>
-          <div className="section-heading">
+          <div className="section-heading" data-reveal>
             <p className="eyebrow">The advisory arm</p>
             <h2>Piqi Consulting — one arm of PIQI Group.</h2>
           </div>
@@ -129,14 +133,14 @@ export default function ConsultingHubPage() {
 
       <section className="section">
         <Container>
-          <div className="section-heading">
+          <div className="section-heading" data-reveal>
             <p className="eyebrow">Where we come in</p>
             <h2>Five services, one commercial mindset.</h2>
           </div>
           <p className="section-lead">
             Each of the five services below is a distinct practice. Most clients draw on more than one.
           </p>
-          <div className="consulting-grid">
+          <div className="consulting-grid" data-reveal-fade>
             {services.map((s) => (
               <Link key={s.slug} href={`/consulting/${s.slug}`} className="consulting-tile">
                 <h3>{s.title}</h3>
@@ -161,6 +165,8 @@ export default function ConsultingHubPage() {
         eyebrow="Questions"
         title="Good questions to ask a consulting partner."
       />
+
+      <SiblingStrip currentSlug="consulting" />
 
       <CTABanner
         headline="Need a short read on where to start?"

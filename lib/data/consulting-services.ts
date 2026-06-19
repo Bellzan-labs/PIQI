@@ -349,3 +349,8 @@ export function getConsultingService(slug: string): ConsultingService | undefine
 export function getAllConsultingServices(): readonly ConsultingService[] {
   return [...CONSULTING_SERVICES].filter((s) => s.published).sort((a, b) => a.order - b.order);
 }
+
+/** Lightweight list for the Consulting local nav rail (slug + short label). */
+export function getConsultingNavItems(): { slug: string; label: string }[] {
+  return getAllConsultingServices().map((s) => ({ slug: s.slug, label: s.shortTitle }));
+}
