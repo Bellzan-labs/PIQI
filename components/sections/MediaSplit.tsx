@@ -36,7 +36,7 @@ export function MediaSplit({
   return (
     <section className="section media-split-section">
       <Container>
-        <div className={classes}>
+        <div className={classes} data-reveal>
           <div className="media-split-text">
             {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
             <h2>{title}</h2>

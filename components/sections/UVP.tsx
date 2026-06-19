@@ -30,11 +30,11 @@ export function UVP({
   return (
     <section className="section uvp-section">
       <div className="container">
-        <div className="section-heading">
+        <div className="section-heading" data-reveal>
           <p className="eyebrow">{eyebrow}</p>
           <h2>{title}</h2>
         </div>
-        <div className="uvp-grid">
+        <div className="uvp-grid" data-reveal-fade>
           {items.map((item) => (
             <article key={item.title} className="uvp-card">
               <h3>{item.title}</h3>

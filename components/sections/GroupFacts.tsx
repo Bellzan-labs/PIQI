@@ -14,7 +14,7 @@ export function GroupFacts() {
     <section className="section group-facts-section">
       <Motif3 className="group-facts-motif" variant="light" />
       <div className="container">
-        <ul className="group-facts">
+        <ul className="group-facts" data-reveal-stagger>
           {facts.map((f) => {
             const isNumeric = /^\d+\+?$/.test(f.value);
             return (

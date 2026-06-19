@@ -7,14 +7,14 @@ export function VerticalGrid() {
   return (
     <section className="section vertical-grid-section">
       <div className="container">
-        <div className="section-heading">
+        <div className="section-heading" data-reveal>
           <p className="eyebrow">Our verticals</p>
           <h2>
             Six arms, <span className="text-accent">one</span> group.
           </h2>
         </div>
 
-        <div className="vertical-grid">
+        <div className="vertical-grid" data-reveal-fade>
           {verticals.map((v) => (
             <Link key={v.slug} href={`/${v.slug}`} className="vertical-tile">
               <div className="vertical-tile-media">
