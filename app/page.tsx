@@ -75,7 +75,7 @@ export default function HomePage() {
               src={COLLAGE_TILES[0].url}
               alt=""
               fill
-              sizes="(max-width: 900px) 100vw, 45vw"
+              sizes="(max-width: 900px) 90vw, 520px"
               className="collage-cover"
             />
             <span className="collage-badge">{COLLAGE_TILES[0].label}</span>
@@ -83,7 +83,7 @@ export default function HomePage() {
           <div className="collage-grid collage-grid-editorial">
             {COLLAGE_TILES.slice(1).map((t) => (
               <div key={t.url} className="collage-tile collage-tile-img">
-                <Image src={t.url} alt="" fill sizes="22vw" className="collage-cover" />
+                <Image src={t.url} alt="" fill sizes="(max-width: 900px) 30vw, 170px" className="collage-cover" />
                 <span className="collage-badge">{t.label}</span>
               </div>
             ))}

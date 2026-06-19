@@ -257,7 +257,7 @@
 @font-face {
   font-family: "Montserrat";
   src:
-    url("https://piqigroup.com/wp-content/uploads/elementor/google-fonts/fonts/montserrat-jtusjig1_i6t8kchkm459wlhyw.woff2")
+    url("/fonts/montserrat-jtusjig1_i6t8kchkm459wlhyw.woff2")
       format("woff2");
   font-style: normal;
   font-weight: 400;
@@ -267,7 +267,7 @@
 @font-face {
   font-family: "Montserrat";
   src:
-    url("https://piqigroup.com/wp-content/uploads/elementor/google-fonts/fonts/montserrat-jtusjig1_i6t8kchkm459wlhyw.woff2")
+    url("/fonts/montserrat-jtusjig1_i6t8kchkm459wlhyw.woff2")
       format("woff2");
   font-style: normal;
   font-weight: 500;
@@ -277,7 +277,7 @@
 @font-face {
   font-family: "Montserrat";
   src:
-    url("https://piqigroup.com/wp-content/uploads/elementor/google-fonts/fonts/montserrat-jtusjig1_i6t8kchkm459wrhyzbi.woff2")
+    url("/fonts/montserrat-jtusjig1_i6t8kchkm459wrhyzbi.woff2")
       format("woff2");
   font-style: normal;
   font-weight: 700;
@@ -287,7 +287,7 @@
 @font-face {
   font-family: "Hind";
   src:
-    url("https://piqigroup.com/wp-content/uploads/elementor/google-fonts/fonts/hind-5au69_a8oxmidgl4ba.woff2")
+    url("/fonts/hind-5au69_a8oxmidgl4ba.woff2")
       format("woff2");
   font-style: normal;
   font-weight: 400;
@@ -297,7 +297,7 @@
 @font-face {
   font-family: "Hind";
   src:
-    url("https://piqigroup.com/wp-content/uploads/elementor/google-fonts/fonts/hind-5au19_a8oxmifjpberysjq.woff2")
+    url("/fonts/hind-5au19_a8oxmifjpberysjq.woff2")
       format("woff2");
   font-style: normal;
   font-weight: 500;
@@ -307,7 +307,7 @@
 @font-face {
   font-family: "Hind";
   src:
-    url("https://piqigroup.com/wp-content/uploads/elementor/google-fonts/fonts/hind-5au19_a8oxmifnjderysjq.woff2")
+    url("/fonts/hind-5au19_a8oxmifnjderysjq.woff2")
       format("woff2");
   font-style: normal;
   font-weight: 700;
@@ -981,7 +981,8 @@ main {
 }
 /* =========================================================
    Phase 1A additions - accessibility, chrome, new components.
-   TODO Phase 5: self-host Montserrat + Hind .woff2 files.
+   Fonts self-hosted from /public/fonts (R5) — no external fetch,
+   so the type survives the DNS cutover off WordPress.
    ========================================================= */
 
 :focus-visible {
