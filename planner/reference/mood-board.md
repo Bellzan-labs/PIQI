@@ -53,7 +53,14 @@
 
 ## Design References
 
-TBD — list 3-5 reference sites once gathered with the client. Virgin Group's umbrella site is the conceptual reference for the group/vertical relationship; the visual language should remain PIQI's own (dark theme + Montserrat/Hind), not Virgin red.
+The redesign research dossier ([`../redesign/00-RESEARCH-DOSSIER.md`](../redesign/00-RESEARCH-DOSSIER.md)) catalogues the full reference set. The most directly applicable to PIQI's dark, plain-CSS, house-of-brands shell:
+
+- **Craft / taste benchmarks:** Linear, Vercel (Geist), Stripe, Apple — layered near-black, one editorial accent, strict spacing/type scales, glow-behind-content.
+- **Premium dark / luxury verticals:** high-end yachting (Wajer, Burgess), automotive ("Range Rover" register), fashion editorial (oversized type, asymmetry, dramatic whitespace) — for the Yachts / Auto / Fashion hubs.
+- **Interactive feel (cheap-but-premium tier):** Cuberto (magnetic cursor), Obys (scroll-pinned typography), Lenis smooth scroll — the 80%-wow moves that need no WebGL.
+- **House-of-brands IA:** Virgin (manifesto-first umbrella), LVMH / Accor (distinct properties in identical chrome) — adapted to the octopus.
+
+Virgin Group's umbrella site remains the conceptual reference for the group/vertical relationship; the visual language stays PIQI's own (dark theme + Montserrat/Hind, red statement accent), not Virgin red.
 
 ### Footer
 Multi-column. Contains: brand mark, group nav, vertical list, contact details (PO Box, email, two phones), legal links, "Powered By Bellzan" subfooter (currently present).
@@ -64,4 +71,4 @@ Multi-column. Contains: brand mark, group nav, vertical list, contact details (P
 
 ### Colors
 - See `/public/brand/` and `app/globals.css` for the working palette.
-- Final palette tokens are documented in MASTER-PLAN Phase 1A. Currently the color tokens from `globals.css` need a lift into a single `@theme` block — TBD blocker.
+- Final palette tokens live as plain CSS custom properties in `app/globals.css` (no Tailwind, no `@theme`). The evolved redesign palette — layered dark elevation, the PIQI red ramp, glow/grain tokens — is specified in [`../redesign/02-DESIGN-SYSTEM-SPEC.md`](../redesign/02-DESIGN-SYSTEM-SPEC.md).

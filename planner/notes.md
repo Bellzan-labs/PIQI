@@ -4,6 +4,29 @@ Running log for the project. Newest entries on top.
 
 ---
 
+## 2026-06-19 — Whole-site award-tier redesign planned + documentation refresh
+
+User goal: research the world's best websites and interactive experiences, document all of it, and plan one big redesign incorporating the best parts across the entire site — with **no real copy** (lorem placeholders only), and a docs read/update pass first. Planning + documentation only; **zero production code changed.**
+
+What landed:
+
+- **New `planner/redesign/` folder** with four artifacts from an 8-lens research workflow (award craft, product/brand taste, immersive/interactive technique, motion systems, dark-theme type/color, house-of-brands IA, perf/a11y/modern CSS, premium dark aesthetics) → synthesis → repo-grounded plan + design-system spec:
+  - `00-RESEARCH-DOSSIER.md` — the research, 15 distilled principles, full reconciliation against every locked decision.
+  - `01-REDESIGN-PLAN.md` — phased R0–R5 plan, page-by-page (all 16 routes) + component-by-component direction, tiered interactive systems, risks/gates/rollback.
+  - `02-DESIGN-SYSTEM-SPEC.md` — evolved `globals.css` token system (elevation ladder, red ramp via `color-mix()`, fluid type scale, spacing, motion, effects) with a migration-safe aliasing shim so nothing breaks.
+  - `README.md` — index, thesis, status.
+- **Thesis:** "layered-light dark editorial system where the red is the only voice raised." Signature = a branded red→navy→ink route-transition wipe + a living `@property`-animated hero overlay, pure-CSS-first, with `feTurbulence` grain. Award-tier craft by perfecting what PIQI already owns — no 3D scene.
+- **Documentation hygiene:** fixed stale references that contradicted the locked decisions — `phase-1-foundation.md`, `phase-5-launch.md`, `mood-board.md`, and `MASTER-PLAN.md` still cited Tailwind / `@theme` / a light theme / `ThemeToggle`. Corrected to plain-CSS + dark-only. `CLAUDE.md` phase status updated (Phases 2–3 shipped, FAQ shipped) + a redesign-initiative section added. Mood-board "Design References" (was TBD) populated. `SETUP-BLUEPRINT-*.md` left as-is — they are meta-docs of the original Astro/Tailwind/Decap template, not PIQI's stack.
+- **Real bug surfaced by the plan:** `components/revolver-heading.tsx` ships Tailwind utility classes (`text-4xl md:text-6xl`, `text-blue-400`) that do nothing in this no-Tailwind repo, plus a blue that violates the red-only rule. Flagged for R4 (remove or rewrite) — not yet touched.
+
+Quarantined under "REQUIRES USER APPROVAL" (must not build without sign-off): any WebGL/3D/canvas-shader hero, typeface-family swap (Montserrat/Hind → Bricolage/Inter is the research suggestion), any second hue, UI sound, permanent preloader.
+
+Decisions made: redesign respects all locked decisions by default; execution gated on explicit user go-ahead; R0 is a purely additive token layer.
+
+Open: user to confirm whether to proceed to execution (and from which phase), and to rule on the approval-gated items + the font-family question.
+
+---
+
 ## 2026-04-15 — Second content-migration pass (from source-content corpus)
 
 Applied the README's top-ranked [NEW]/[PARTIAL] items from `planner/source-content/`:

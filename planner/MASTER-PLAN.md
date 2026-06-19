@@ -10,7 +10,7 @@ The generic reusable template this was derived from used `{{PLACEHOLDER}}` token
 
 - **Find & replace placeholders:** every `{{TOKEN_NAME}}` needs a real value. Use find-in-folder against `planner/`.
 - **Customize phase contents to scope:** phases are a framework — add, remove, retitle tasks to match the site.
-- **Swap the tech stack if desired:** tech defaults are opinionated, not load-bearing. For this project the stack is **Next.js 14 App Router + React 18 + TypeScript + Tailwind + Vercel + Resend** (NOT Astro — the template's original default). Phase docs translate Astro patterns to Next.js equivalents inline.
+- **Swap the tech stack if desired:** tech defaults are opinionated, not load-bearing. For this project the stack is **Next.js 14 App Router + React 18 + TypeScript + plain CSS (CSS custom properties) + Vercel + Resend** (NOT Astro, and **NOT Tailwind** — the template's original defaults). Phase docs translate Astro patterns to Next.js equivalents inline.
 - **Delete phases you don't need:** brochureware sites can drop Phase 4 (content infra) and trim Phase 6.
 - **Keep the generic guidance:** JSON-LD lists, Lighthouse/WCAG targets, hub-and-spoke / octopus concept, CI patterns, exit-criteria formats — reusable.
 
@@ -27,7 +27,7 @@ The generic reusable template this was derived from used `{{PLACEHOLDER}}` token
 | `{{BUSINESS_DESCRIPTION}}` | a South African group, founded 2016, serving clients internationally — operating an advisory practice and a portfolio of asset-based businesses across consulting, property management, fashion, yacht charters, auto, and coaching |
 | `{{TARGET_AUDIENCE}}` | Per-vertical — see `reference/audience.md` |
 | `{{PRIMARY_FONT}}` | Montserrat (display, 400/500/700) + Hind (body, 400/500/700) — confirmed from existing `app/globals.css` |
-| `{{BRAND_COLORS}}` | Confirmed from `app/globals.css`: `--brand: #bb181d` (signature red), `--brand-deep: #7e000a`, `--brand-navy: #1d1624`. Light theme `--bg: #ffffff`; dark theme `--bg: #09070d`. Dark theme is default; white logo on dark |
+| `{{BRAND_COLORS}}` | Confirmed from `app/globals.css`: `--brand: #bb181d` (signature red), `--brand-deep: #7e000a`, `--brand-navy: #1d1624`. **Dark theme only** (`--bg: #09070d`); the former light theme was removed; white logo on dark. Evolved redesign palette in `redesign/02-DESIGN-SYSTEM-SPEC.md` |
 | `{{PRIMARY_EMAIL}}` | info@piqi.co.za |
 | `{{TEAM_MEMBER_*}}` | TBD (blocker — see Dependencies) |
 | `{{DEVELOPER_GIT_HOST}}` | stephencruzwright's GitHub (private repo) |
@@ -51,7 +51,7 @@ The site is structured as an **octopus sitemap**: a thin umbrella (Home, About, 
 **Domain:** piqigroup.com
 **Tech:** Next.js 14 (App Router, RSC) / React 18 / TypeScript / plain CSS with CSS custom properties (design tokens in `app/globals.css`) / Vercel / Resend (email).
 
-> **Note on CSS approach:** The existing repo does NOT use Tailwind. Design tokens live as CSS custom properties in `app/globals.css` (`--brand`, `--bg`, `--text`, `--radius-*`, etc.) with light/dark themes keyed on `html[data-theme=...]`. Phase 1 preserves this pattern rather than introducing Tailwind — the token system is already clean.
+> **Note on CSS approach:** The existing repo does NOT use Tailwind. Design tokens live as CSS custom properties in `app/globals.css` (`--brand`, `--bg`, `--text`, `--radius-*`, etc.). The site is **dark theme only** — the former light theme and `ThemeToggle` were removed deliberately. This pattern is preserved rather than introducing Tailwind — the token system is already clean. The planned redesign evolves these tokens in `redesign/02-DESIGN-SYSTEM-SPEC.md`.
 
 **Group facts (confirmed 2026-04-14):**
 - Founded **2016**
@@ -131,6 +131,8 @@ Banking (crossed out on source chart) is **DEFERRED** — not v1.
 
 ## Phases & Deliverables
 
+> **Build status (2026-06-19):** Phases 1A–3 shipped; Phase 4 FAQ shipped (RSS stub deferred); Phases 5–6 scoped. A whole-site **award-tier redesign** is planned on top of the shipped site — see [`redesign/`](redesign/README.md) (research dossier + plan + design-system spec). It is documented but **not yet executed** (gated on user go-ahead) and respects every locked decision. Canonical phase-status lives in `CLAUDE.md`.
+
 ### Phase 1A: Audit & Standardize Scaffold + Design System + Core Chrome
 > *Detailed tasks: [phase-1-foundation.md](phase-1-foundation.md)*
 
@@ -138,9 +140,9 @@ Next.js 14 scaffold already exists in the repo. Phase 1A audits what's there, st
 
 | Deliverable | Description |
 |-------------|-------------|
-| Scaffold audit | Confirm Next.js 14 App Router, TS strict, Tailwind pipeline, Vercel adapter; fill gaps |
+| Scaffold audit | Confirm Next.js 14 App Router, TS strict, plain-CSS token system (no Tailwind), Vercel adapter; fill gaps |
 | Developer tooling | ESLint, Prettier, `tsc --noEmit`, `next lint`, GitHub Actions CI |
-| Design system | Brand colors, typography (Montserrat + Hind), focus styles, spacing — pulled from existing `app/globals.css` and promoted to Tailwind `@theme` tokens |
+| Design system | Brand colors, typography (Montserrat + Hind), focus styles, spacing — kept as CSS custom properties in `app/globals.css` (no Tailwind, no `@theme`) |
 | Content structure | Typed data files under `content/` or `src/data/` (MDX or TS), read via `fs`/`contentlayer`/`next-mdx-remote` |
 | UI component library | Buttons, cards, inputs, containers, badges |
 | Group chrome | Header with 6 vertical nav items + About + Contact, mobile nav, footer |
@@ -306,6 +308,9 @@ Live site has no blog/guides/testimonials. v1 has no content pipeline. This phas
 | Dark theme + white logo | Existing precedent in repo (do not change without client sign-off) |
 | i18n deferred | Single-language for now; SA English |
 | Banking deferred | Per source sitemap chart (crossed out) |
+| Plain CSS, not Tailwind | Existing `app/globals.css` token system is clean; no Tailwind / CSS-in-JS / per-component modules (locked in `CLAUDE.md`) |
+| Dark theme only (light theme removed) | `[data-theme="light"]` + `ThemeToggle` removed deliberately; one value per token |
+| Whole-site award-tier redesign (2026-06-19) | Elevate craft within all locked decisions; research + plan in `planner/redesign/`; not executed pending user go-ahead |
 
 ---
 
@@ -321,6 +326,11 @@ planner/
   phase-5-launch.md            QA, analytics, DNS cutover FROM WordPress TO Vercel, Resend, rollback
   phase-6-post-launch.md       Monitoring, expansion backlog (blog, case studies, team page, Banking)
   notes.md                     Running decisions log (seeded 2026-04-14)
+  redesign/                    Award-tier whole-site redesign (planned 2026-06-19, not yet executed)
+    README.md                  Index + status + thesis + phased-rollout summary
+    00-RESEARCH-DOSSIER.md     8-lens world-class web-design research, constraint-reconciled
+    01-REDESIGN-PLAN.md        Executable phased plan (R0-R5) + page/component direction
+    02-DESIGN-SYSTEM-SPEC.md   Evolved globals.css token system (diff-minded, dark-only)
   reference/
     audience.md                Six per-vertical audiences + cross-vertical group visitor
     branding-tone.md           Virgin-style dual register; per-vertical tone matrix
