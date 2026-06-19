@@ -19,12 +19,12 @@ export function ImageGallery({ eyebrow, title, items }: ImageGalleryProps) {
     <section className="section image-gallery-section">
       <Container>
         {eyebrow || title ? (
-          <div className="section-heading">
+          <div className="section-heading" data-reveal>
             {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
             {title ? <h2>{title}</h2> : null}
           </div>
         ) : null}
-        <div className="image-gallery-grid">
+        <div className="image-gallery-grid" data-reveal-fade>
           {items.map((item) => (
             <figure key={item.src} className="image-gallery-item">
               <Image

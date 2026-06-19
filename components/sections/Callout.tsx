@@ -17,7 +17,7 @@ export function Callout({
 }: CalloutProps) {
   const isExternal = cta ? /^https?:\/\//.test(cta.href) : false;
   return (
-    <aside className={`callout callout--${variant}`}>
+    <aside className={`callout callout--${variant}`} data-reveal>
       {label ? <span className="callout-label">{label}</span> : null}
       <p className="callout-title">{title}</p>
       {body ? <p className="callout-body">{body}</p> : null}

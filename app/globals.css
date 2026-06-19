@@ -2904,3 +2904,18 @@ html {
 .group-nav-link-active {
   view-transition-name: nav-pill;
 }
+
+/* =========================================================
+   REDESIGN R2 — vertical hubs.
+   Lateral "More from PIQI Group" sibling strip at the foot of
+   every hub. Reuses the .vertical-tile look for cohesion.
+   Source: planner/redesign/01-REDESIGN-PLAN.md (R2).
+   ========================================================= */
+.sibling-strip-section {
+  background: var(--bg-soft);
+  border-top: 1px solid var(--hairline);
+}
+
+.sibling-strip-up {
+  margin: 2rem 0 0;
+}

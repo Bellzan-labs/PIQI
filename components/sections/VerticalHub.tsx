@@ -3,6 +3,7 @@ import { Hero } from "@/components/sections/Hero";
 import { CTABanner } from "@/components/sections/CTABanner";
 import { FAQ } from "@/components/sections/FAQ";
 import { MediaSplit } from "@/components/sections/MediaSplit";
+import { SiblingStrip } from "@/components/sections/SiblingStrip";
 import { Container } from "@/components/ui/Container";
 import { JsonLd } from "@/components/global/JsonLd";
 import { buildWebPage } from "@/lib/schema";
@@ -60,11 +61,11 @@ export function VerticalHub({ vertical, extraAfterMediaSplit }: VerticalHubProps
       {vertical.lanes && vertical.lanes.length > 0 ? (
         <section className="section lanes-section">
           <Container>
-            <div className="section-heading">
+            <div className="section-heading" data-reveal>
               <p className="eyebrow">What we actually do</p>
               <h2>{lanesHeading}</h2>
             </div>
-            <div className="lanes-grid">
+            <div className="lanes-grid" data-reveal-fade>
               {vertical.lanes.map((lane) => (
                 <article key={lane.title} className="lane-card">
                   <h3>{lane.title}</h3>
@@ -84,11 +85,11 @@ export function VerticalHub({ vertical, extraAfterMediaSplit }: VerticalHubProps
       {vertical.howWeEngage && vertical.howWeEngage.length > 0 ? (
         <section className="section engagement-section">
           <Container>
-            <div className="section-heading">
+            <div className="section-heading" data-reveal>
               <p className="eyebrow">How we engage</p>
               <h2>What working with us looks like.</h2>
             </div>
-            <ol className="engagement-steps">
+            <ol className="engagement-steps" data-reveal-fade>
               {vertical.howWeEngage.map((step, i) => (
                 <li key={step.title} className="engagement-step">
                   <span className="engagement-step-index" aria-hidden="true">
@@ -109,6 +110,8 @@ export function VerticalHub({ vertical, extraAfterMediaSplit }: VerticalHubProps
         eyebrow="Questions"
         title="Good questions to ask."
       />
+
+      <SiblingStrip currentSlug={vertical.slug} />
 
       <CTABanner actionLabel={vertical.cta.label} actionHref={vertical.cta.href} />
 
