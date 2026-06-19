@@ -82,14 +82,19 @@ public/
 scripts/
   validate-schema.js     Post-build JSON-LD crawler
 planner/                 Project spec — MASTER-PLAN + phase docs + reference/ + notes.md
+  redesign/              Award-tier whole-site redesign — research dossier + plan + design-system spec (planned, not executed)
 ```
 
 ## Phase status (update as phases ship)
 
 - **Phase 1A — Foundation (audit + scaffold + chrome):** shipped
 - **Phase 1B — Section components + brand motifs + schema validator:** shipped
-- **Phase 2 — Homepage polish + Consulting hub + spokes content pass:** next
-- **Phase 3 — 5 remaining vertical hubs + About + Contact + Resend API:** pending (contact form partially shipped — API route live, awaits RESEND_API_KEY + domain verification)
-- **Phase 4 — Content infra (FAQ + RSS stub only for v1):** scoped
+- **Phase 2 — Homepage polish + Consulting hub + spokes content pass:** shipped
+- **Phase 3 — 5 remaining vertical hubs + About + Contact + Resend API:** shipped (contact form API route live; awaits RESEND_API_KEY + piqi.co.za domain verification to go live end-to-end)
+- **Phase 4 — Content infra:** FAQ shipped (25 pairs migrated, FAQPage schema live); RSS stub deferred post-launch
 - **Phase 5 — DNS cutover + Resend + self-host fonts + legal copy:** scoped
 - **Phase 6 — Post-launch monitoring + content growth:** scoped
+
+## Redesign initiative (planned 2026-06-19)
+
+A whole-site, award-tier redesign is researched and documented in `planner/redesign/` (research dossier + redesign plan + design-system spec + README). It elevates craft *within* every locked decision above — no Tailwind, dark-only, red-as-statement, group pages abstract-only, all 16 routes static, no real copy (lorem placeholders only; schema-bound fields keep real strings). Phased R0–R5, where R0 is a purely additive token layer in `globals.css` via a migration-safe aliasing shim. **Not yet executed — gated on explicit user go-ahead.** A short list of moves is quarantined under "REQUIRES USER APPROVAL" in the plan (any WebGL/3D hero, typeface-family swap, any second hue, UI sound, a permanent preloader) and must not be built without sign-off.

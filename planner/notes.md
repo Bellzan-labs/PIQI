@@ -4,6 +4,57 @@ Running log for the project. Newest entries on top.
 
 ---
 
+## 2026-06-19 — Redesign R0–R5 executed + audited
+
+Shipped the full award-tier redesign on `dev` in six gated commits (R0–R5), each verified with `npm run build && lint && typecheck && validate-schema`. Throughout: all 16 routes stayed `○ Static` (consulting spokes `● SSG`), schema count held at **76 across 16 routes**, zero new real copy. A dedicated audit subagent then reviewed the whole diff and found **no high/medium defects** — only three low/cosmetic items (one fixed: the contact focus-glow now transitions `box-shadow`; two left as intentional forward-hooks/kept components).
+
+What shipped:
+
+- **R0 — token foundation** (`globals.css`): elevation ladder, hairlines, PIQI red ramp via `color-mix(oklab)`, fluid type + spacing scales, easing/duration/transition tokens, glow/grain/glass/shadow/z-index tokens; applied `feTurbulence` grain (`body::after`, behind content), custom `::selection`, thin scrollbar, tokenized focus ring, and a global reduced-motion strategy. Migration-safe aliasing shim re-points every legacy token name — no component churn.
+- **R1 — chrome + homepage**: pure-CSS scroll reveals via `animation-timeline: view()` (rise + opacity-only `fade` variants, `@supports` + reduced-motion gated so content is never hidden), staggered hero entrance, a slow "living" red bloom on the signature overlay, widened section rhythm (`--section-y`), token-tuned header/nav transitions, nav-pill `view-transition-name` hook.
+- **R2 — vertical hubs**: lateral "More from PIQI Group" `SiblingStrip` (links sideways + up only, never down) on all 5 hubs via the shared `VerticalHub`; reveals across hub sections.
+- **R3 — consulting mini-hub**: Consulting-only sticky local nav rail (`ConsultingNav`) on the hub + all 5 spokes; 5 spokes nested under Consulting in the footer (full-sitemap IA); sibling strip on the consulting hub; section reveals.
+- **R4 — about/contact + polish**: magnetic CTA (`Magnetic` wrapper on the site-wide CTABanner button; touch + reduced-motion gated), group-page motif scroll parallax, contact-form focus glow, About/Contact reveals. Fixed the latent `revolver-heading` bug (dead Tailwind + a red-rule-violating `text-blue-400`) and gated `scramble-text` under reduced-motion.
+- **R5 — perf/a11y**: self-hosted Montserrat + Hind from `/public/fonts` (killed the external `piqigroup.com` `@font-face` fetch — also survives the planned DNS cutover); tightened the homepage hero-collage `sizes`.
+
+As-built deviations from `redesign/01-REDESIGN-PLAN.md` (all deliberate, lower-risk choices):
+
+- **Scroll reveals** delivered as pure CSS (`view()` timelines), not a JS `IntersectionObserver` island — zero added JS, better fallback story.
+- **VerticalGrid asymmetry**: kept the clean auto-fit grid + staggered reveal rather than a 2-column Consulting span (6 tiles tile unevenly with a span). Consulting's mini-hub asymmetry is instead made visible by its unique local rail + footer sub-nav.
+- **GroupNav Consulting flyout**: skipped — a dropdown would be clipped by the `overflow-x: auto` pill bar; the sticky local rail + footer expose the 5 spokes instead.
+- **Route-transition curtain** (`next-view-transitions`): deferred — it adds an npm dependency; the nav-pill `view-transition-name` hook is already in place for when it's added.
+- **GroupFacts count-up**: dropped (values include non-numeric text e.g. "International"); a reveal is used instead.
+- **Custom cursor**: skipped (polarizing / a11y risk on a corporate umbrella); the magnetic CTA carries the micro-delight tier.
+
+Approval-gated items remain **not built** (per the plan): any WebGL/3D/canvas-shader hero, typeface-family swap (still Montserrat/Hind), any second hue, UI sound, a permanent preloader.
+
+Process note: the repo has a hook that auto-commits and auto-pushes to `origin/dev` after edits (it generated messages for R2/R4/R5 and earlier swept untracked `research/*` files into the docs commit). Flagged for the user — it bypasses the usual commit/push-on-request rule.
+
+---
+
+## 2026-06-19 — Whole-site award-tier redesign planned + documentation refresh
+
+User goal: research the world's best websites and interactive experiences, document all of it, and plan one big redesign incorporating the best parts across the entire site — with **no real copy** (lorem placeholders only), and a docs read/update pass first. Planning + documentation only; **zero production code changed.**
+
+What landed:
+
+- **New `planner/redesign/` folder** with four artifacts from an 8-lens research workflow (award craft, product/brand taste, immersive/interactive technique, motion systems, dark-theme type/color, house-of-brands IA, perf/a11y/modern CSS, premium dark aesthetics) → synthesis → repo-grounded plan + design-system spec:
+  - `00-RESEARCH-DOSSIER.md` — the research, 15 distilled principles, full reconciliation against every locked decision.
+  - `01-REDESIGN-PLAN.md` — phased R0–R5 plan, page-by-page (all 16 routes) + component-by-component direction, tiered interactive systems, risks/gates/rollback.
+  - `02-DESIGN-SYSTEM-SPEC.md` — evolved `globals.css` token system (elevation ladder, red ramp via `color-mix()`, fluid type scale, spacing, motion, effects) with a migration-safe aliasing shim so nothing breaks.
+  - `README.md` — index, thesis, status.
+- **Thesis:** "layered-light dark editorial system where the red is the only voice raised." Signature = a branded red→navy→ink route-transition wipe + a living `@property`-animated hero overlay, pure-CSS-first, with `feTurbulence` grain. Award-tier craft by perfecting what PIQI already owns — no 3D scene.
+- **Documentation hygiene:** fixed stale references that contradicted the locked decisions — `phase-1-foundation.md`, `phase-5-launch.md`, `mood-board.md`, and `MASTER-PLAN.md` still cited Tailwind / `@theme` / a light theme / `ThemeToggle`. Corrected to plain-CSS + dark-only. `CLAUDE.md` phase status updated (Phases 2–3 shipped, FAQ shipped) + a redesign-initiative section added. Mood-board "Design References" (was TBD) populated. `SETUP-BLUEPRINT-*.md` left as-is — they are meta-docs of the original Astro/Tailwind/Decap template, not PIQI's stack.
+- **Real bug surfaced by the plan:** `components/revolver-heading.tsx` ships Tailwind utility classes (`text-4xl md:text-6xl`, `text-blue-400`) that do nothing in this no-Tailwind repo, plus a blue that violates the red-only rule. Flagged for R4 (remove or rewrite) — not yet touched.
+
+Quarantined under "REQUIRES USER APPROVAL" (must not build without sign-off): any WebGL/3D/canvas-shader hero, typeface-family swap (Montserrat/Hind → Bricolage/Inter is the research suggestion), any second hue, UI sound, permanent preloader.
+
+Decisions made: redesign respects all locked decisions by default; execution gated on explicit user go-ahead; R0 is a purely additive token layer.
+
+Open: user to confirm whether to proceed to execution (and from which phase), and to rule on the approval-gated items + the font-family question.
+
+---
+
 ## 2026-04-15 — Second content-migration pass (from source-content corpus)
 
 Applied the README's top-ranked [NEW]/[PARTIAL] items from `planner/source-content/`:

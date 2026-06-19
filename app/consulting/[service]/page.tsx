@@ -10,9 +10,11 @@ import { JsonLd } from "@/components/global/JsonLd";
 import { buildService, buildWebPage } from "@/lib/schema";
 import {
   getAllConsultingServices,
-  getConsultingService
+  getConsultingService,
+  getConsultingNavItems
 } from "@/lib/data/consulting-services";
 import { SITE } from "@/lib/constants";
+import { ConsultingNav } from "@/components/global/ConsultingNav";
 
 type Params = { service: string };
 
@@ -49,6 +51,8 @@ export default function ConsultingServicePage({ params }: { params: Params }) {
         image={{ src: service.heroImage.url, alt: service.heroImage.alt }}
       />
 
+      <ConsultingNav items={getConsultingNavItems()} />
+
       <MediaSplit
         eyebrow="Where we come in"
         title={service.heroTagline}
@@ -59,11 +63,11 @@ export default function ConsultingServicePage({ params }: { params: Params }) {
 
       <section className="section">
         <Container>
-          <div className="section-heading">
+          <div className="section-heading" data-reveal>
             <p className="eyebrow">What we deliver</p>
             <h2>Scope of work</h2>
           </div>
-          <div className="feature-grid">
+          <div className="feature-grid" data-reveal-fade>
             {service.features.map((f) => (
               <article key={f.title} className="feature-card">
                 <h3>{f.title}</h3>
@@ -77,11 +81,11 @@ export default function ConsultingServicePage({ params }: { params: Params }) {
       {service.felStages && service.felStages.length > 0 ? (
         <section className="section fel-section">
           <Container>
-            <div className="section-heading">
+            <div className="section-heading" data-reveal>
               <p className="eyebrow">FEL stages</p>
               <h2>What each gate actually produces.</h2>
             </div>
-            <ol className="fel-stages">
+            <ol className="fel-stages" data-reveal-fade>
               {service.felStages.map((s) => (
                 <li key={s.stage} className="fel-stage">
                   <h3>{s.stage}</h3>

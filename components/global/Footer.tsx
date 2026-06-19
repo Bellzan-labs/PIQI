@@ -35,6 +35,15 @@ export function Footer() {
             {FOOTER_LINKS.verticals.map((l) => (
               <li key={l.href}>
                 <Link href={l.href}>{l.label}</Link>
+                {l.href === "/consulting" ? (
+                  <ul className="footer-subnav">
+                    {FOOTER_LINKS.consulting.map((s) => (
+                      <li key={s.href}>
+                        <Link href={s.href}>{s.label}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
               </li>
             ))}
           </ul>

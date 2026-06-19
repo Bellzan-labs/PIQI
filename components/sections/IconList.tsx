@@ -18,12 +18,12 @@ export function IconList({ eyebrow, title, items }: IconListProps) {
     <section className="section icon-list-section">
       <Container>
         {title ? (
-          <div className="section-heading">
+          <div className="section-heading" data-reveal>
             {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
             <h2>{title}</h2>
           </div>
         ) : null}
-        <div className="icon-list-row">
+        <div className="icon-list-row" data-reveal-fade>
           {items.map((item) => (
             <article key={item.title} className="icon-list-item">
               <div className="icon-list-icon" aria-hidden="true">

@@ -43,5 +43,14 @@ export const FOOTER_LINKS = {
     { label: "Yacht Charters", href: "/yachts" },
     { label: "Piqi Auto", href: "/auto" },
     { label: "Coaching", href: "/coaching" }
+  ],
+  // Consulting is the only vertical with sub-service spokes; nested under
+  // Consulting in the footer so the octopus is legible without a mega-menu.
+  consulting: [
+    { label: "Business Process", href: "/consulting/business-process" },
+    { label: "Strategy", href: "/consulting/strategy" },
+    { label: "Project Management", href: "/consulting/project-management" },
+    { label: "Supply Chain", href: "/consulting/supply-chain" },
+    { label: "Commercial Services", href: "/consulting/commercial-services" }
   ]
 } as const;

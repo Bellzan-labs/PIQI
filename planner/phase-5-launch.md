@@ -192,7 +192,7 @@ Create `vercel.json` at root:
 - [ ] All raster images via `next/image`
 - [ ] Montserrat + Hind via `font-display: swap`, no FOIT
 - [ ] Zero CLS from font loading
-- [ ] Minimize client components (`"use client"`) — keep MobileNav + ContactForm + ThemeToggle. Audit homepage `LottiePanel` and any other client islands for necessity.
+- [ ] Minimize client components (`"use client"`) — keep MobileNav + ContactForm. Audit homepage `LottiePanel` and any other client islands for necessity. *(`ThemeToggle` was removed — dark theme only. Any redesign-introduced client islands — smooth scroll, page transitions, custom cursor — must keep routes static and respect `prefers-reduced-motion`; see `planner/redesign/`.)*
 - [ ] Hero video: ensure poster image, `playsInline`, `muted`, `autoPlay` (already in place); evaluate replacing with optimized still on mobile
 - [ ] Lighthouse on: `/`, `/consulting/strategy`, `/contact`, one vertical hub
 - [ ] Fix any score below 95

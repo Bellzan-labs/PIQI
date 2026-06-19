@@ -30,10 +30,234 @@
   }
 }
 
+/* =========================================================
+   REDESIGN R0 — Design-system token foundation (additive).
+   Source: planner/redesign/02-DESIGN-SYSTEM-SPEC.md
+   Dark-only. Plain CSS custom properties. No Tailwind.
+   Legacy token names are re-pointed at the new system via the
+   migration-safe aliasing shim at the bottom of this block, so
+   every existing component keeps working unchanged.
+   ========================================================= */
+:root {
+  /* Color — elevation ladder (never pure #000) */
+  --ink: #08070c;
+  --surface-0: #0c0b12;
+  --surface-1: #12111b;
+  --surface-2: #181623;
+  --surface-3: #1f1c2c;
+  --surface-4: #262234;
+
+  /* Borders / hairlines */
+  --hairline: rgba(255, 255, 255, 0.08);
+  --hairline-strong: rgba(255, 255, 255, 0.14);
+  --hairline-faint: rgba(255, 255, 255, 0.05);
+  --edge-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  --hairline-red: color-mix(in oklab, var(--red) 35%, transparent);
+
+  /* Text (additive — legacy --text/--muted stay warm for now) */
+  --text-primary: #f4f3f7;
+  --text-strong: #ffffff;
+  --text-secondary: #c9c5d2;
+  --text-muted: #9a96a6;
+  --text-on-red: #ffffff;
+
+  /* PIQI red ramp — single source #bb181d, derived via color-mix(oklab) */
+  --red: #bb181d;
+  --red-700: color-mix(in oklab, var(--red) 70%, #000);
+  --red-800: color-mix(in oklab, var(--red) 50%, #000);
+  --red-900: color-mix(in oklab, var(--red) 32%, #000);
+  --red-400: color-mix(in oklab, var(--red) 78%, #fff);
+  --red-300: #e6595d;
+  --red-200: #ff8a8e;
+  --red-a32: rgba(187, 24, 29, 0.32);
+  --red-a22: rgba(187, 24, 29, 0.22);
+  --red-a16: rgba(187, 24, 29, 0.16);
+  --red-a12: rgba(187, 24, 29, 0.12);
+  --red-a08: rgba(187, 24, 29, 0.08);
+
+  /* Gradients / overlays / blooms */
+  --overlay: linear-gradient(
+    155deg,
+    color-mix(in oklab, var(--red) 60%, transparent) 0%,
+    rgba(20, 17, 29, 0.82) 52%,
+    var(--ink) 100%
+  );
+  --bloom-top: radial-gradient(60% 50% at 50% 0%, var(--red-a22), transparent 70%);
+  --bloom-corner: radial-gradient(50% 45% at 15% 20%, var(--red-a22), transparent 60%);
+  --group-backdrop:
+    radial-gradient(circle at top left, var(--red-a12), transparent 22%),
+    radial-gradient(circle at 85% 10%, var(--red-a08), transparent 20%),
+    linear-gradient(180deg, var(--surface-0) 0%, var(--ink) 100%);
+  --mesh-angle: 135deg;
+
+  /* Glows (glow behind content, never fill on surfaces) */
+  --glow-red-sm: 0 6px 18px var(--red-a32);
+  --glow-red-md: 0 18px 45px var(--red-a22);
+  --glow-red-lg: 0 24px 60px var(--red-a32);
+  --glow-red-text: 0 0 8px var(--red-a32);
+
+  /* Grain — mandatory anti-banding (pure CSS/SVG, no asset) */
+  --grain-url: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --grain-opacity: 0.035;
+
+  /* Typography — fluid scale (clamp; rem floor for a11y zoom) */
+  --fs-2xs: clamp(0.69rem, 0.67rem + 0.10vw, 0.75rem);
+  --fs-xs: clamp(0.78rem, 0.75rem + 0.15vw, 0.88rem);
+  --fs-sm: clamp(0.88rem, 0.85rem + 0.18vw, 0.96rem);
+  --fs-base: clamp(1rem, 0.95rem + 0.25vw, 1.1rem);
+  --fs-md: clamp(1.13rem, 1.05rem + 0.4vw, 1.3rem);
+  --fs-lg: clamp(1.3rem, 1.15rem + 0.7vw, 1.75rem);
+  --fs-xl: clamp(1.6rem, 1.35rem + 1.2vw, 2.4rem);
+  --fs-2xl: clamp(2rem, 1.6rem + 2vw, 3.4rem);
+  --fs-3xl: clamp(2.5rem, 1.9rem + 3.1vw, 4.6rem);
+  --fs-4xl: clamp(3.1rem, 2.2rem + 4.8vw, 6.4rem);
+  --fs-stat: clamp(3rem, 1.8rem + 6.5vw, 7rem);
+
+  /* Line-height & tracking */
+  --lh-display: 0.98;
+  --lh-tight: 1.12;
+  --lh-snug: 1.35;
+  --lh-body: 1.6;
+  --lh-relaxed: 1.7;
+  --track-display: -0.03em;
+  --track-tight: -0.01em;
+  --track-normal: 0;
+  --track-eyebrow: 0.12em;
+  --track-mono: 0.2em;
+
+  /* Font families — values stay Montserrat/Hind until R5 self-hosting */
+  --font-display: "Montserrat", system-ui, sans-serif;
+  --font-body: "Hind", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Geist Mono", monospace;
+
+  /* Spacing scale — strict 4 -> 192px */
+  --space-2: 0.125rem;
+  --space-4: 0.25rem;
+  --space-6: 0.375rem;
+  --space-8: 0.5rem;
+  --space-12: 0.75rem;
+  --space-16: 1rem;
+  --space-20: 1.25rem;
+  --space-24: 1.5rem;
+  --space-32: 2rem;
+  --space-40: 2.5rem;
+  --space-48: 3rem;
+  --space-64: 4rem;
+  --space-80: 5rem;
+  --space-96: 6rem;
+  --space-128: 8rem;
+  --space-160: 10rem;
+  --space-192: 12rem;
+  --section-y: clamp(var(--space-80), 10vw, var(--space-160));
+
+  /* Containers — KEEP legacy --container/--container-narrow, ADD these */
+  --container-wide: 1600px;
+  --container-text: 72ch;
+  --gutter: clamp(1.25rem, 4vw, 2.5rem);
+
+  /* Grid */
+  --grid-gap: clamp(1rem, 2.5vw, 1.75rem);
+  --col-min: 240px;
+  --col-min-wide: 280px;
+
+  /* Radii — md/lg/xl kept in the legacy block above; ADD these */
+  --radius-xs: 8px;
+  --radius-sm: 12px;
+  --radius-pill: 999px;
+
+  /* Z-index scale (formalizes the magic numbers already in use) */
+  --z-below: -1;
+  --z-base: 0;
+  --z-content: 1;
+  --z-raised: 2;
+  --z-sticky: 30;
+  --z-header: 50;
+  --z-flyout: 60;
+  --z-overlay: 70;
+  --z-modal: 80;
+  --z-toast: 90;
+  --z-skip: 100;
+
+  /* Motion — easing */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-ui: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Motion — durations */
+  --dur-1: 120ms;
+  --dur-2: 200ms;
+  --dur-3: 300ms;
+  --dur-4: 450ms;
+  --dur-5: 700ms;
+  --dur-6: 1000ms;
+  --stagger: 60ms;
+  --reveal-y: 20px;
+
+  /* Motion — standard transition recipes */
+  --t-colors: color var(--dur-2) var(--ease-ui),
+    background-color var(--dur-2) var(--ease-ui),
+    border-color var(--dur-2) var(--ease-ui);
+  --t-lift: transform var(--dur-3) var(--ease-out-expo),
+    box-shadow var(--dur-3) var(--ease-out-expo),
+    border-color var(--dur-3) var(--ease-ui);
+  --t-button: transform var(--dur-2) var(--ease-ui),
+    background-color var(--dur-2) var(--ease-ui),
+    box-shadow var(--dur-2) var(--ease-ui);
+
+  /* Effects — two-layer soft shadow ramp */
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-2: 0 4px 12px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-3: 0 12px 32px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.35);
+  --shadow-4: 0 24px 60px rgba(0, 0, 0, 0.45), 0 6px 16px rgba(0, 0, 0, 0.4);
+
+  /* Effects — dark glass */
+  --blur-sm: 8px;
+  --blur-md: 16px;
+  --blur-lg: 24px;
+  --glass-bg: color-mix(in oklab, var(--surface-2) 78%, transparent);
+  --glass-saturate: saturate(1.2);
+
+  /* Effects — focus ring */
+  --focus-ring: 2px solid var(--red);
+  --focus-ring-invert: 2px solid #ffffff;
+  --focus-offset: 2px;
+
+  /* Effects — scrollbar */
+  --scrollbar-thumb: var(--hairline-strong);
+  --scrollbar-track: transparent;
+
+  /* --- Migration-safe aliasing shim: legacy names -> new system ---
+     Keep these forever. Existing selectors resolve through the new
+     ladder; --text/--muted/--muted-strong stay warm (legacy) to avoid
+     a global text-color jolt — migrate those deliberately later. */
+  --bg: var(--surface-0);
+  --bg-soft: var(--surface-1);
+  --surface: var(--surface-1);
+  --surface-strong: var(--surface-2);
+  --line: var(--hairline);
+  --brand: var(--red);
+  --brand-deep: var(--red-700);
+  --brand-soft: var(--red-a16);
+  --brand-tint: var(--red-a12);
+  --brand-glow: var(--red-a32);
+  --shadow: var(--shadow-3);
+}
+
+/* Typed registration so the mesh angle is animatable (R1+). Ignored
+   by browsers without @property support — static --overlay is the
+   fallback, so nothing breaks. */
+@property --mesh-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 135deg;
+}
+
 @font-face {
   font-family: "Montserrat";
   src:
-    url("https://piqigroup.com/wp-content/uploads/elementor/google-fonts/fonts/montserrat-jtusjig1_i6t8kchkm459wlhyw.woff2")
+    url("/fonts/montserrat-jtusjig1_i6t8kchkm459wlhyw.woff2")
       format("woff2");
   font-style: normal;
   font-weight: 400;
@@ -43,7 +267,7 @@
 @font-face {
   font-family: "Montserrat";
   src:
-    url("https://piqigroup.com/wp-content/uploads/elementor/google-fonts/fonts/montserrat-jtusjig1_i6t8kchkm459wlhyw.woff2")
+    url("/fonts/montserrat-jtusjig1_i6t8kchkm459wlhyw.woff2")
       format("woff2");
   font-style: normal;
   font-weight: 500;
@@ -53,7 +277,7 @@
 @font-face {
   font-family: "Montserrat";
   src:
-    url("https://piqigroup.com/wp-content/uploads/elementor/google-fonts/fonts/montserrat-jtusjig1_i6t8kchkm459wrhyzbi.woff2")
+    url("/fonts/montserrat-jtusjig1_i6t8kchkm459wrhyzbi.woff2")
       format("woff2");
   font-style: normal;
   font-weight: 700;
@@ -63,7 +287,7 @@
 @font-face {
   font-family: "Hind";
   src:
-    url("https://piqigroup.com/wp-content/uploads/elementor/google-fonts/fonts/hind-5au69_a8oxmidgl4ba.woff2")
+    url("/fonts/hind-5au69_a8oxmidgl4ba.woff2")
       format("woff2");
   font-style: normal;
   font-weight: 400;
@@ -73,7 +297,7 @@
 @font-face {
   font-family: "Hind";
   src:
-    url("https://piqigroup.com/wp-content/uploads/elementor/google-fonts/fonts/hind-5au19_a8oxmifjpberysjq.woff2")
+    url("/fonts/hind-5au19_a8oxmifjpberysjq.woff2")
       format("woff2");
   font-style: normal;
   font-weight: 500;
@@ -83,7 +307,7 @@
 @font-face {
   font-family: "Hind";
   src:
-    url("https://piqigroup.com/wp-content/uploads/elementor/google-fonts/fonts/hind-5au19_a8oxmifnjderysjq.woff2")
+    url("/fonts/hind-5au19_a8oxmifnjderysjq.woff2")
       format("woff2");
   font-style: normal;
   font-weight: 700;
@@ -146,7 +370,7 @@ main {
 
 .section {
   position: relative;
-  padding: clamp(4.5rem, 8vw, 8rem) 0;
+  padding: var(--section-y) 0;
   scroll-margin-top: 100px;
 }
 
@@ -534,7 +758,7 @@ main {
   border: 1px solid var(--line);
   background: var(--surface);
   color: var(--text);
-  transition: border-color 180ms ease, background-color 180ms ease, outline-color 180ms ease;
+  transition: border-color 180ms ease, background-color 180ms ease, outline-color 180ms ease, box-shadow 180ms ease;
 }
 
 .form-field input:focus,
@@ -757,7 +981,8 @@ main {
 }
 /* =========================================================
    Phase 1A additions - accessibility, chrome, new components.
-   TODO Phase 5: self-host Montserrat + Hind .woff2 files.
+   Fonts self-hosted from /public/fonts (R5) — no external fetch,
+   so the type survives the DNS cutover off WordPress.
    ========================================================= */
 
 :focus-visible {
@@ -2448,4 +2673,410 @@ blockquote,
   font-size: 1.02rem;
   line-height: 1.6;
   max-width: 60ch;
+}
+
+/* =========================================================
+   REDESIGN R0 — applied foundation: type polish, grain,
+   custom selection, scrollbar, tokenized focus ring, and the
+   global reduced-motion strategy. Source:
+   planner/redesign/02-DESIGN-SYSTEM-SPEC.md
+   ========================================================= */
+
+/* Global type polish — thins hairlines + tightens display optical sizing */
+html {
+  font-optical-sizing: auto;
+}
+
+body {
+  font-feature-settings: "kern", "liga", "calt";
+}
+
+/* feTurbulence grain overlay — kills gradient banding on 8-bit displays.
+   Fixed + pointer-events:none (zero CLS); sits above the page background
+   and behind content (z-index below). */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-below);
+  pointer-events: none;
+  background-image: var(--grain-url);
+  opacity: var(--grain-opacity);
+  mix-blend-mode: overlay;
+}
+
+/* Custom selection — PIQI red */
+::selection {
+  background: var(--red);
+  color: var(--text-on-red);
+}
+
+/* Custom thin scrollbar — near-invisible track, hairline thumb */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: var(--radius-pill);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--hairline);
+}
+
+/* Tokenized focus ring — same look as the earlier rule; adds an inverted
+   white ring for use over red fills (CTA banner, active nav pill). */
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+  border-radius: 2px;
+}
+
+.cta-banner-section :focus-visible,
+.group-nav-link-active:focus-visible {
+  outline: var(--focus-ring-invert);
+}
+
+/* Reduced-motion — replace motion, don't strip it. Collapses durations
+   and the reveal offset so transforms become instant crossfades. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-1: 0.01ms;
+    --dur-2: 0.01ms;
+    --dur-3: 0.01ms;
+    --dur-4: 0.01ms;
+    --dur-5: 0.01ms;
+    --dur-6: 0.01ms;
+    --reveal-y: 0px;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =========================================================
+   REDESIGN R1 — global chrome + homepage motion.
+   Scroll-driven reveals (pure CSS), hero entrance, living hero
+   bloom, nav-pill glide hook, token-tuned chrome transitions.
+   Source: planner/redesign/01-REDESIGN-PLAN.md (R1).
+   ========================================================= */
+
+/* Scroll-driven reveals — compositor-only, zero JS. Browsers without
+   view() timelines (e.g. Safari) and reduced-motion users see the final
+   state immediately, so content is never hidden. Two variants:
+   - rise (opacity + translateY): containers / non-interactive children
+   - fade (opacity only): grids whose children carry their own hover
+     transform (a transform reveal would otherwise lock out the hover). */
+@keyframes reveal-rise {
+  from {
+    opacity: 0;
+    transform: translateY(var(--reveal-y));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes reveal-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    [data-reveal] {
+      animation: reveal-rise both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 35%;
+    }
+
+    [data-reveal-stagger] > * {
+      animation: reveal-rise both;
+      animation-timeline: view();
+      animation-range: entry 5% cover 30%;
+    }
+
+    [data-reveal-fade] > * {
+      animation: reveal-fade both;
+      animation-timeline: view();
+      animation-range: entry 5% cover 30%;
+    }
+  }
+}
+
+/* Hero entrance — runs once on load, server-rendered, no JS. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-full-bleed .eyebrow {
+    animation: reveal-rise 700ms var(--ease-out-expo) both;
+  }
+
+  .hero-full-bleed .hero-copy h1 {
+    animation: reveal-rise 800ms var(--ease-out-expo) 80ms both;
+  }
+
+  .hero-full-bleed .hero-text {
+    animation: reveal-rise 800ms var(--ease-out-expo) 160ms both;
+  }
+
+  .hero-full-bleed .hero-actions,
+  .hero-full-bleed .hero-collage-editorial {
+    animation: reveal-rise 800ms var(--ease-out-expo) 240ms both;
+  }
+}
+
+/* Living hero overlay — a slow-drifting red bloom behind the copy. The
+   signature "the red is alive" moment, pure CSS, pointer-events none, so
+   it never affects layout or legibility. Paused under reduced-motion. */
+.hero-overlay-brand {
+  overflow: hidden;
+}
+
+.hero-overlay-brand::after {
+  content: "";
+  position: absolute;
+  inset: -25%;
+  background: var(--bloom-corner);
+  opacity: 0.5;
+  pointer-events: none;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-overlay-brand::after {
+    animation: hero-bloom-drift 26s var(--ease-in-out) infinite alternate;
+  }
+}
+
+@keyframes hero-bloom-drift {
+  from {
+    transform: translate3d(-4%, -2%, 0) scale(1);
+  }
+  to {
+    transform: translate3d(5%, 4%, 0) scale(1.15);
+  }
+}
+
+/* Chrome — token-tuned easing on the header + nav links, and the
+   view-transition hook so the active red pill glides between routes once
+   SPA view transitions are enabled in R4 (inert no-op until then). */
+.site-header {
+  transition:
+    background-color var(--dur-3) var(--ease-ui),
+    backdrop-filter var(--dur-3) var(--ease-ui),
+    border-color var(--dur-3) var(--ease-ui),
+    box-shadow var(--dur-3) var(--ease-ui);
+}
+
+.group-nav-link {
+  transition:
+    background-color var(--dur-2) var(--ease-ui),
+    color var(--dur-2) var(--ease-ui),
+    transform var(--dur-2) var(--ease-ui);
+}
+
+.group-nav-link-active {
+  view-transition-name: nav-pill;
+}
+
+/* =========================================================
+   REDESIGN R2 — vertical hubs.
+   Lateral "More from PIQI Group" sibling strip at the foot of
+   every hub. Reuses the .vertical-tile look for cohesion.
+   Source: planner/redesign/01-REDESIGN-PLAN.md (R2).
+   ========================================================= */
+.sibling-strip-section {
+  background: var(--bg-soft);
+  border-top: 1px solid var(--hairline);
+}
+
+.sibling-strip-up {
+  margin: 2rem 0 0;
+}
+
+/* =========================================================
+   REDESIGN R3 — consulting (the only depth-2 vertical).
+   Sticky local nav rail (visible mini-hub asymmetry) + the
+   footer sub-nav listing the 5 spokes under Consulting.
+   Source: planner/redesign/01-REDESIGN-PLAN.md (R3).
+   ========================================================= */
+.consulting-rail {
+  position: sticky;
+  top: var(--header-height);
+  z-index: var(--z-sticky);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--blur-md)) var(--glass-saturate);
+  -webkit-backdrop-filter: blur(var(--blur-md)) var(--glass-saturate);
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .consulting-rail {
+    background: var(--surface-2);
+  }
+}
+
+.consulting-rail-inner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.consulting-rail-inner::-webkit-scrollbar {
+  display: none;
+}
+
+.consulting-rail-label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--track-eyebrow);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+  padding-right: 0.85rem;
+  border-right: 1px solid var(--hairline);
+}
+
+.consulting-rail-links {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.consulting-rail-link {
+  display: inline-flex;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  color: var(--muted-strong);
+  font-size: 0.92rem;
+  font-weight: 500;
+  transition: var(--t-colors);
+}
+
+.consulting-rail-link:hover,
+.consulting-rail-link:focus-visible {
+  color: var(--text);
+  background: var(--brand-soft);
+}
+
+.consulting-rail-link.is-active {
+  background: var(--brand);
+  color: #fff;
+  box-shadow: var(--glow-red-sm);
+}
+
+/* Footer sub-nav — the 5 consulting spokes nested under Consulting */
+.footer-subnav {
+  margin: 0.5rem 0 0.35rem;
+  padding-left: 0.85rem;
+  border-left: 1px solid var(--hairline);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.footer-subnav a {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.footer-subnav a:hover,
+.footer-subnav a:focus-visible {
+  color: var(--brand);
+}
+
+/* =========================================================
+   REDESIGN R4 — About/Contact + interactive polish.
+   Magnetic CTA, group-page motif parallax, contact-form focus
+   glow, and the corrected revolver-heading classes.
+   Source: planner/redesign/01-REDESIGN-PLAN.md (R4).
+   ========================================================= */
+
+/* Magnetic wrapper — eases the child toward the pointer (JS sets transform);
+   the transition smooths the spring-back on leave. Touch + reduced-motion are
+   gated out in the component, so it falls back to a normal button. */
+.magnetic {
+  display: inline-flex;
+  transition: transform var(--dur-4) var(--ease-out-expo);
+  will-change: transform;
+}
+
+/* Group-page motif parallax — subtle scroll drift, compositor-only, gated. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .hero-motif-accent,
+    .group-facts-motif {
+      animation: motif-drift linear both;
+      animation-timeline: view();
+      animation-range: cover;
+    }
+  }
+}
+
+@keyframes motif-drift {
+  from {
+    transform: translateY(-6%);
+  }
+  to {
+    transform: translateY(6%);
+  }
+}
+
+/* Contact-form focus glow — soft red ring on field focus. */
+.form-field input:focus,
+.form-field textarea:focus {
+  box-shadow: 0 0 0 3px var(--red-a16);
+}
+
+/* Revolver heading (corrected — red/white only, no Tailwind, no blue). */
+.revolver-heading {
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: var(--fs-3xl);
+  font-weight: 700;
+  letter-spacing: var(--track-display);
+  line-height: var(--lh-display);
+}
+
+.revolver-word {
+  display: inline-block;
+  color: var(--red);
+  font-weight: 700;
+}
+
+.revolver-word-final {
+  color: var(--text-strong);
 }

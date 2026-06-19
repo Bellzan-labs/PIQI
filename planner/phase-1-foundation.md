@@ -5,7 +5,7 @@
 
 **Reference docs:** [audience](reference/audience.md) | [branding-tone](reference/branding-tone.md) | [mood-board](reference/mood-board.md) | [services](reference/services.md)
 
-> **Framing:** The repo already has Next.js 14, React 18, TypeScript, Tailwind, and a working homepage at `app/page.tsx`. Phase 1 here is **"audit and standardize the existing scaffold"**, not "create from scratch". Do not touch `app/` or `components/` during planner work — implementation happens later.
+> **Framing:** The repo already has Next.js 14, React 18, TypeScript, plain CSS (CSS custom-property design tokens in `app/globals.css` — **no Tailwind**), and a working homepage at `app/page.tsx`. Phase 1 here is **"audit and standardize the existing scaffold"**, not "create from scratch". Do not touch `app/` or `components/` during planner work — implementation happens later.
 
 ---
 
@@ -23,7 +23,7 @@ The following are already in place (verify, don't re-create):
 - [x] Plain CSS with CSS custom properties in `app/globals.css` (**no Tailwind** — don't add it; the token system works)
 - [x] Vercel deployment (built-in, no adapter needed — Next.js on Vercel is native)
 - [x] `public/brand/` asset tree (logo, icons, brand images, video, animations)
-- [x] Existing components: `ContactForm`, `LottiePanel`, `RevolverHeading`, `ScrambleText`, `ThemeToggle` (in `components/` — reuse, don't recreate)
+- [x] Existing components: `ContactForm`, `LottiePanel`, `RevolverHeading`, `ScrambleText` (in `components/` — reuse, don't recreate). *(`ThemeToggle` was later removed — the site is dark-theme only.)*
 
 Gaps to fill:
 - [ ] Confirm `next.config.mjs` has `trailingSlash: false`
@@ -90,11 +90,13 @@ Gaps to fill:
 
 ---
 
-## 3. Design System (Tailwind tokens)
+## 3. Design System (CSS custom-property tokens)
 
-The existing `app/globals.css` already defines a working token system. Montserrat (display) + Hind (body). Light + dark themes. Dark is default; white PIQI logo is the precedent.
+The existing `app/globals.css` already defines a working token system as **plain CSS custom properties** (no Tailwind, no `@theme`). Montserrat (display) + Hind (body). **Dark theme only** — the former light theme and `ThemeToggle` were removed deliberately; white PIQI logo is the precedent.
 
 ### Tokens already present in `globals.css` (don't re-invent)
+
+> **Historical note:** the "Value (light)" column below is retained for reference only — the light theme was removed; only the dark values are live. The evolved redesign token system lives in [`redesign/02-DESIGN-SYSTEM-SPEC.md`](redesign/02-DESIGN-SYSTEM-SPEC.md).
 | Token | Value (light) | Value (dark) | Usage |
 |-------|---------------|--------------|-------|
 | `--bg` | `#ffffff` | `#09070d` | Primary background |
@@ -150,7 +152,7 @@ PIQI/
     not-found.tsx                Custom 404
     api/
       contact/route.ts           POST — Resend + Zod (Phase 3)
-    globals.css                  Tailwind import + @theme tokens (existing)
+    globals.css                  Plain CSS — design tokens as custom properties (existing; no Tailwind)
   components/
     global/                      Header, GroupNav, MobileNav, Footer, SEO, Breadcrumbs
     sections/                    Hero, UVP, VerticalGrid, CTABanner
@@ -244,7 +246,7 @@ In `components/ui/`:
 - [ ] **SectionHeading** — eyebrow + h2 + optional subtitle.
 - [ ] **Badge / Tag**
 - [ ] **Input / Textarea** — labels, error state, `aria-describedby`.
-- [ ] **Logo** — full and icon variants. White (current), dark (reserve for future light theme).
+- [ ] **Logo** — full and icon variants. White (current). *(No light theme — a dark-on-light mark is not needed.)*
 
 ---
 
