@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/Button";
+import { Magnetic } from "@/components/magnetic";
 
 export type CTABannerProps = {
   headline?: string;
@@ -20,9 +21,11 @@ export function CTABanner({
           <h2>{headline}</h2>
           <p>{subtitle}</p>
         </div>
-        <Button href={actionHref} variant="primary" size="lg">
-          {actionLabel}
-        </Button>
+        <Magnetic>
+          <Button href={actionHref} variant="primary" size="lg">
+            {actionLabel}
+          </Button>
+        </Magnetic>
       </div>
     </section>
   );

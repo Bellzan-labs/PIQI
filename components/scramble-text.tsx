@@ -21,6 +21,14 @@ export default function ScrambleText({
   const [display, setDisplay] = useState(text);
 
   useEffect(() => {
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      setDisplay(text);
+      return;
+    }
+
     let frame = 0;
     let interval: NodeJS.Timeout;
 

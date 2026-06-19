@@ -3015,3 +3015,67 @@ html {
 .footer-subnav a:focus-visible {
   color: var(--brand);
 }
+
+/* =========================================================
+   REDESIGN R4 — About/Contact + interactive polish.
+   Magnetic CTA, group-page motif parallax, contact-form focus
+   glow, and the corrected revolver-heading classes.
+   Source: planner/redesign/01-REDESIGN-PLAN.md (R4).
+   ========================================================= */
+
+/* Magnetic wrapper — eases the child toward the pointer (JS sets transform);
+   the transition smooths the spring-back on leave. Touch + reduced-motion are
+   gated out in the component, so it falls back to a normal button. */
+.magnetic {
+  display: inline-flex;
+  transition: transform var(--dur-4) var(--ease-out-expo);
+  will-change: transform;
+}
+
+/* Group-page motif parallax — subtle scroll drift, compositor-only, gated. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .hero-motif-accent,
+    .group-facts-motif {
+      animation: motif-drift linear both;
+      animation-timeline: view();
+      animation-range: cover;
+    }
+  }
+}
+
+@keyframes motif-drift {
+  from {
+    transform: translateY(-6%);
+  }
+  to {
+    transform: translateY(6%);
+  }
+}
+
+/* Contact-form focus glow — soft red ring on field focus. */
+.form-field input:focus,
+.form-field textarea:focus {
+  box-shadow: 0 0 0 3px var(--red-a16);
+}
+
+/* Revolver heading (corrected — red/white only, no Tailwind, no blue). */
+.revolver-heading {
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: var(--fs-3xl);
+  font-weight: 700;
+  letter-spacing: var(--track-display);
+  line-height: var(--lh-display);
+}
+
+.revolver-word {
+  display: inline-block;
+  color: var(--red);
+  font-weight: 700;
+}
+
+.revolver-word-final {
+  color: var(--text-strong);
+}

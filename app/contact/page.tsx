@@ -34,7 +34,7 @@ export default function ContactPage() {
 
       <section className="section contact-section">
         <div className="container contact-grid">
-          <div className="contact-copy">
+          <div className="contact-copy" data-reveal>
             <p className="eyebrow">Details</p>
             <h2>Direct contact</h2>
             <ul className="contact-details">
@@ -60,7 +60,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className="contact-card">
+          <div className="contact-card" data-reveal>
             <Suspense fallback={null}>
               <ContactForm />
             </Suspense>

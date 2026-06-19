@@ -5,14 +5,19 @@ import ScrambleText from "./scramble-text";
 
 const words = ["Success", "Growth", "Impact", "PIQI"];
 
+/**
+ * Cycling display heading — scrambles between words, resolving on the brand.
+ * Plain PIQI classes (no Tailwind), red statement word resolving to white on
+ * "PIQI", and it holds still under prefers-reduced-motion.
+ */
 export default function RevolverHeading() {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % words.length);
-    }, 2000);
-
+    }, 2200);
     return () => clearInterval(interval);
   }, []);
 
@@ -20,14 +25,12 @@ export default function RevolverHeading() {
   const isFinal = word === "PIQI";
 
   return (
-    <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-none text-center">
+    <h2 className="revolver-heading">
       Choose{" "}
       <ScrambleText
         text={word}
-        className={`font-semibold ${
-          isFinal ? "text-white scale-110" : "text-blue-400 scale-1100"
-        }`}
+        className={`revolver-word${isFinal ? " revolver-word-final" : ""}`}
       />
-    </h1>
+    </h2>
   );
 }

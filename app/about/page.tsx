@@ -42,7 +42,7 @@ export default function AboutPage() {
 
       <section className="section">
         <Container variant="narrow">
-          <div className="prose">
+          <div className="prose" data-reveal>
             <p>
               Each vertical is self-contained and speaks in its own voice. At the group level we
               keep things practical: clear ownership, honest briefs, and a commercial mindset that
