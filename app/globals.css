@@ -758,7 +758,7 @@ main {
   border: 1px solid var(--line);
   background: var(--surface);
   color: var(--text);
-  transition: border-color 180ms ease, background-color 180ms ease, outline-color 180ms ease;
+  transition: border-color 180ms ease, background-color 180ms ease, outline-color 180ms ease, box-shadow 180ms ease;
 }
 
 .form-field input:focus,

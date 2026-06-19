@@ -1,6 +1,6 @@
 # PIQI Group — Redesign Initiative
 
-> **Status:** Planning artifact, complete. **Execution not yet started** — awaiting user go-ahead before any code changes. Created 2026-06-19.
+> **Status:** Executed. Phases R0–R5 shipped on `dev` (2026-06-19), audited, all four quality gates green (build / lint / typecheck / validate-schema), all 16 routes static, 76 schemas. As-built deviations are logged in [`../notes.md`](../notes.md). Created 2026-06-19.
 
 This folder holds the research and plan for a single, whole-site redesign: elevating PIQI Group from a competent-but-conventional dark site to award-tier (Awwwards-SOTD-adjacent) interactive quality — **without breaking a single locked decision** in [`../../CLAUDE.md`](../../CLAUDE.md), and **without real copy** (existing copy stays; any new slot uses lorem placeholders, never invented facts).
 
