@@ -50,21 +50,21 @@ export const VERTICALS: readonly Vertical[] = [
     description:
       "Strategy, project delivery, supply chain, and commercial services for organisations that need clarity and control.",
     heroImage: {
-      url: unsplash("1507679799987-c73779587ccf"),
-      alt: "Dark boardroom with long table and warm lighting."
+      url: unsplash("1740933084077-edca148dbd5a"),
+      alt: "Dark boardroom table lined with leather chairs, warm pendant lights glowing softly behind."
     },
     gallery: [
       {
-        src: unsplash("1559028012-481c04fa702d"),
-        alt: "Hands laying out strategy documents on a desk."
+        src: unsplash("1636996692940-4e61c2d79dfa"),
+        alt: "Hands writing planning notes in a spiral notebook in dim, low light."
       },
       {
-        src: unsplash("1542831371-29b0f74f9713"),
-        alt: "Analyst reviewing data on a laptop in a quiet office."
+        src: unsplash("1639485527766-92d074dcb142"),
+        alt: "A person working at a laptop in a dark office, lit by a small desk lamp."
       },
       {
-        src: unsplash("1513542789411-b6a5d4f31634"),
-        alt: "Notebook, pen, and planning notes on a dark surface."
+        src: unsplash("1761322572550-967ea8c0bfd9"),
+        alt: "An open notebook with a pen and pencils on a dark wood desk."
       }
     ],
     howWeEngage: [
@@ -95,8 +95,8 @@ export const VERTICALS: readonly Vertical[] = [
     description:
       "Maintenance, letting, and construction support for property owners who want their buildings to run without daily oversight.",
     heroImage: {
-      url: unsplash("1512453979798-5ea266f8880c"),
-      alt: "Modern residential building exterior at dusk."
+      url: unsplash("1742427605934-db05a2a833f6"),
+      alt: "Modern residential building exterior at dusk, warm-lit windows against a deep blue sky."
     },
     gallery: [
       {
@@ -104,12 +104,12 @@ export const VERTICALS: readonly Vertical[] = [
         alt: "Modern residential home exterior in low, warm light."
       },
       {
-        src: unsplash("1600596542815-ffad4c1539a9"),
-        alt: "Architectural interior with soft shadow and clean lines."
+        src: unsplash("1759300631898-c07422768bb5"),
+        alt: "Architectural concrete interior with soft directional light and clean lines."
       },
       {
-        src: unsplash("1522708323590-d24dbb6b0267"),
-        alt: "Concrete and glass facade detail under a dusk sky."
+        src: unsplash("1745015446589-7ee6f702d8c1"),
+        alt: "Glass curtain-wall facade detail in cool dusk tones."
       }
     ],
     howWeEngage: [
@@ -164,16 +164,16 @@ export const VERTICALS: readonly Vertical[] = [
     },
     gallery: [
       {
-        src: unsplash("1558618666-fcd25c85cd64"),
-        alt: "Close-up of stitched fabric and thread on a workbench."
+        src: unsplash("1497997092403-f091fcf5b6c4"),
+        alt: "Close-up of a sewing-machine foot guiding thread across dark fabric."
       },
       {
-        src: unsplash("1591085686350-798c0f9faa7f"),
-        alt: "A tailored garment hanging in a quiet studio."
+        src: unsplash("1611171711960-cc3da04c95bf"),
+        alt: "A tailored suit jacket on a dress form in a dim studio."
       },
       {
-        src: unsplash("1617137968427-85924c800a22"),
-        alt: "Detail of finished couture — seams, texture, and light."
+        src: unsplash("1585412459212-8def26f7e84c"),
+        alt: "Detail of a finished tailored jacket — lapel, pocket, and seams in directional light."
       }
     ],
     howWeEngage: [
@@ -265,8 +265,8 @@ export const VERTICALS: readonly Vertical[] = [
     description:
       "Panel beating for bodywork repairs, and tyre supply. Straight-forward pricing and workmanship you can inspect.",
     heroImage: {
-      url: unsplash("1504222490345-c075b6008014"),
-      alt: "Close-up of a car body panel in a dimly lit workshop."
+      url: unsplash("1769021955466-ed4372792114"),
+      alt: "Close-up of a car body panel in a dimly lit workshop, a tool resting against the bodywork."
     },
     gallery: [
       {
@@ -274,8 +274,8 @@ export const VERTICALS: readonly Vertical[] = [
         alt: "Workshop detail — tools and bodywork under directional light."
       },
       {
-        src: unsplash("1580273916550-e323be2ae537"),
-        alt: "Mechanic working on a vehicle in a darkened bay."
+        src: unsplash("1643700973089-baa86a1ab9ee"),
+        alt: "Mechanic working beneath a vehicle on a lift in a darkened workshop bay."
       },
       {
         src: unsplash("1625047509248-ec889cbff17f"),
@@ -322,21 +322,21 @@ export const VERTICALS: readonly Vertical[] = [
     description:
       "One-on-one coaching for leaders and professionals working through a specific challenge — leadership, communication, or life-work rhythm.",
     heroImage: {
-      url: unsplash("1521295121783-8a321d551ad2"),
-      alt: "Figure in profile at a window, quiet contemplative light."
+      url: unsplash("1673643680854-70f901ee7bba"),
+      alt: "A figure in profile reaching toward a shaft of light from a small window in a dark room."
     },
     gallery: [
       {
-        src: unsplash("1499209974431-9dddcece7f88"),
-        alt: "Two people in a quiet conversation across a table."
+        src: unsplash("1646940930383-de7a8a5a44ff"),
+        alt: "Two people across a small table in warm, dim light, absorbed in quiet thought."
       },
       {
-        src: unsplash("1523240795612-9a054b0db644"),
-        alt: "A candid exchange between coach and client, softly lit."
+        src: unsplash("1761933799610-c9a75f115794"),
+        alt: "Two professionals in a close, intent conversation in dim, warm light."
       },
       {
-        src: unsplash("1573164574511-73c773193279"),
-        alt: "Hands holding a notebook and pen — reflection in progress."
+        src: unsplash("1579279252285-c988761b913f"),
+        alt: "A hand holding a pen over a spiral notebook on a dark wooden surface."
       }
     ],
     howWeEngage: [
