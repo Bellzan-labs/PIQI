@@ -159,14 +159,10 @@ export const VERTICALS: readonly Vertical[] = [
     description:
       "Wedding attire, matric outfits, uniforms, and embroidered or printed clothing, cut and finished in-house.",
     heroImage: {
-      url: unsplash("1515549832467-8783363e19b6"),
-      alt: "Tailor's bench with fabric and sewing tools in warm light."
+      url: unsplash("1445205170230-053b83016050"),
+      alt: "Garments on a rail viewed through a boutique window in warm light."
     },
     gallery: [
-      {
-        src: unsplash("1445205170230-053b83016050"),
-        alt: "Hands guiding fabric through a sewing machine."
-      },
       {
         src: unsplash("1558618666-fcd25c85cd64"),
         alt: "Close-up of stitched fabric and thread on a workbench."
