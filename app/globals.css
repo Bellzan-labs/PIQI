@@ -364,8 +364,11 @@ main {
 }
 
 .container {
-  width: min(var(--container), calc(100%));
+  width: min(var(--container), 100%);
   margin-inline: auto;
+  /* Consistent responsive side gutter at every width (was edge-to-edge above
+     520px). Uses the design-system --gutter token; box-sizing is border-box. */
+  padding-inline: var(--gutter);
 }
 
 .section {
@@ -952,10 +955,6 @@ main {
 }
 
 @media (max-width: 520px) {
-  .container {
-    width: min(var(--container), calc(100% - 1.3rem));
-  }
-
   .hero {
     padding-top: 2.5rem;
   }
@@ -3092,4 +3091,25 @@ html {
 
 .revolver-word-final {
   color: var(--text-strong);
+}
+
+/* =========================================================
+   Responsive audit fixes (Playwright sweep, mobile -> desktop).
+   The consistent side gutter now lives on .container. Here, the
+   three 3-item grids (group facts, UVP cards, sibling strip)
+   go 1-col -> 3-col and skip the lopsided 2-col step that
+   orphaned the third card in the tablet range.
+   ========================================================= */
+.group-facts,
+.uvp-grid,
+.sibling-strip.vertical-grid {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .group-facts,
+  .uvp-grid,
+  .sibling-strip.vertical-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
